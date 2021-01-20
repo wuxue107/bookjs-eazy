@@ -15,11 +15,16 @@ web打印自动分页、预览。内容满了，自动换页， wkhtmltopdf生�
 
 
 - 除了自动分页，打印页码。还可以生成目录
+
 ![](https://img-blog.csdnimg.cn/img_convert/cdd97e4bd4478de30a1680cd01c8b152.png)
+
 ![](https://img-blog.csdnimg.cn/img_convert/86c1dba85391ee791343650504491a06.png)
-- 使用方式：
-	1. 配置页面参数：
-		在全局定义一个bookConfig
+
+- 使用方式：只需添加一个配置，填入要插入PDF中的HTML就可以了
+    
+    
+1. 配置页面参数：在全局定义一个bookConfig
+
 
 ```html
 <script>
@@ -45,6 +50,7 @@ web打印自动分页、预览。内容满了，自动换页， wkhtmltopdf生�
 }
 </script>
 ```
+
 2. 定义一个id为content-box节点内放入要插入到文档里的内容；
 
 ```html
