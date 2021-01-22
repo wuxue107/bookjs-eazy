@@ -1,21 +1,22 @@
 # WEB打印，自动分页插件。
 
-- 主要解决，web打印，分页可控的问题
+- 主要解决，web打印生成PDF，分页可控的问题
 - 结合wkhtmltopdf或chrome headless生成精美（渲染完毕后，在Console上会输出wkhtmlpdf的PDF配套生成命令）
 	
 
-
 web打印自动分页、预览(支持移动WEB)、目录、页眉页脚。内容满了，自动换页， wkhtmltopdf生成PDF。bookjs-eazy
+
 
 - 预览案例
 	
 	<a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a>
+
 	<a href="https://bookjs.zhouwuxue.com/simple-4.html" target="_blank" rel="noopener noreferrer">另一个小说案例</a>
-- 除了自动分页，打印页码。还可以生成目录
 
 
 - 使用方式：
-	1. 配置页面参数：
+
+1. 配置页面参数：
 		在全局定义一个bookConfig
 
 ```html
@@ -42,6 +43,7 @@ web打印自动分页、预览(支持移动WEB)、目录、页眉页脚。内容
 }
 </script>
 ```
+
 2. 定义一个id为content-box节点内放入要插入到文档里的内容；
 
 ```html
