@@ -14,7 +14,8 @@
 # 使用方式：
 
 ## 配置页面参数：
-		在全局定义一个bookConfig
+
+在全局定义一个bookConfig
 
 ```html
 <script>
