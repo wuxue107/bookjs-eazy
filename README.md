@@ -42,7 +42,7 @@
 </script>
 ```
 
-## 定义一个id为content-box节点内放入要插入到文档里的内容；
+定义一个id为content-box节点内放入要插入到文档里的内容；
 
 ```html
 <div id="content-box" style="display: none">
@@ -73,7 +73,7 @@
 </div>
 ```
 
- - content-box下的每个节点都需定义属性 data-op-type,表示在文档中的插入方式 其值如下：
+content-box下的每个节点都需定义属性 data-op-type,表示在文档中的插入方式 其值如下：
    
         block : 块：如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页（默认）
         
