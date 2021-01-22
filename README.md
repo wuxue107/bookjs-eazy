@@ -28,7 +28,7 @@
 		NA_LEGAL、NA_LETTER、NA_LEDGER、NA_EXECUTIVE、NA_INVOICE、
 		BIG_K32
 		**/
-		pageSize : 'ISO_A0', // 定义纸张大小
+		pageSize : 'ISO_A4', // 定义纸张大小
 		// orientation : 'portrait',// landscape
 		orientation :  'landscape', // 定义是横屏还是竖屏放置
 		padding : "10mm 10mm 10mm 10mm", // 边距
