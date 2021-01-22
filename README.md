@@ -15,7 +15,7 @@
 
 ## 配置页面参数：
 
-在全局定义一个bookConfig
+- 在全局定义一个bookConfig
 
 ```html
 <script>
@@ -42,7 +42,7 @@
 </script>
 ```
 
-定义一个id为content-box节点内放入要插入到文档里的内容；
+- 定义一个id为content-box节点内放入要插入到文档里的内容；
 
 ```html
 <div id="content-box" style="display: none">
@@ -73,24 +73,27 @@
 </div>
 ```
 
-content-box下的每个节点都需定义属性 data-op-type,表示在文档中的插入方式 其值如下：
+- content-box下的每个节点都需定义属性 data-op-type,表示在文档中的插入方式 其值如下：
    
         block : 块：如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页（默认）
         
-        block-box : 块盒子：块盒子内部包含的多个块，盒子内的多个块被分割到多个页面时，都会复制包裹块的盒子的部分。
-            以上图中的表格为例：table节点定义为块盒子使用class：nop-block-box标记。
-            tbody节点定义为容纳块的节点，使用class: nop-fill-box标记
-            这样在填充行tr时，当前页空间不足时，换页并复制外部table的节点。这样表头就得到复用
+        block-box : 块盒子：块盒子内部nop-fill-box标记的节点包含的多个块，盒子内的多个块被分割到多个页面时，都会复制包裹块的外部节点。
+            以上图中的表格为例：
+            table节点定义为块盒子
+            tbody节点定义为容纳块的容器节点（使用class: nop-fill-box标记）
+            这样在填充行tr时，当前页空间不足时，换页并复制外部table（除去nop-fill-box标记的部分）比继续填充。这样表头就得到复用
             
-        text-box : 文本盒子：与块盒子类似，文本内容跨多个页面时，会复制外部包裹文本的盒子的部分。
-             文本盒子节点 class: nop-text-box 填充节点用class : nop-fill-box标记
+        text-box : 文本盒子：与块盒子类似，大文本内容跨多个页面时，会复制外部包裹文本的盒子的部分。
+             文本盒子节点， 大文本的容器节点需用 class : nop-fill-box标记
 
-        new-page : 插入新页，class: nop-new-page 标记在此位置换页
+        new-page : 标记从新页，开始插入
 
         pendants : 页面部件列表（页眉/页脚/页标签），在其后的每个页面都会显示。
 
 
-## 生成PDF,点击打印按钮，前端打印为PDF。或使用chrome headless,wkhtmltopdf后端生成PDF。
+## 生成PDF
+- 点击打印按钮，前端打印为PDF。
+- 使用chrome headless,wkhtmltopdf后端生成PDF。在Console上会输出wkhtmlpdf的PDF配套生成命令
 
 
 
