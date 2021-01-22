@@ -1,22 +1,20 @@
-# WEB打印，自动分页插件。
+# WEB打印，自动分页插件。支持预览、生成目录、页眉页脚。内容满了，自动换页， wkhtmltopdf生成PDF。bookjs-eazy
 
 - 主要解决，web打印生成PDF，分页可控的问题
 - 结合wkhtmltopdf或chrome headless生成精美（渲染完毕后，在Console上会输出wkhtmlpdf的PDF配套生成命令）
 	
 
-web打印自动分页、预览(支持移动WEB)、目录、页眉页脚。内容满了，自动换页， wkhtmltopdf生成PDF。bookjs-eazy
 
-
-- 预览案例
+# 预览案例
 	
 	<a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a>
 
 	<a href="https://bookjs.zhouwuxue.com/simple-4.html" target="_blank" rel="noopener noreferrer">另一个小说案例</a>
 
 
-- 使用方式：
+# 使用方式：
 
-1. 配置页面参数：
+## 配置页面参数：
 		在全局定义一个bookConfig
 
 ```html
@@ -44,7 +42,7 @@ web打印自动分页、预览(支持移动WEB)、目录、页眉页脚。内容
 </script>
 ```
 
-2. 定义一个id为content-box节点内放入要插入到文档里的内容；
+## 定义一个id为content-box节点内放入要插入到文档里的内容；
 
 ```html
 <div id="content-box" style="display: none">
@@ -92,11 +90,11 @@ web打印自动分页、预览(支持移动WEB)、目录、页眉页脚。内容
         pendants : 页面部件列表（页眉/页脚/页标签），在其后的每个页面都会显示。
 
 
-3. 生成PDF,点击打印按钮，前端打印为PDF。或使用chrome headless,wkhtmltopdf后端生成PDF。
+## 生成PDF,点击打印按钮，前端打印为PDF。或使用chrome headless,wkhtmltopdf后端生成PDF。
 
 
 
-- 直接上示例代码：（效果见上：预览eazy-2）
+# 直接上示例代码：（效果见上：预览eazy-2）
 ```html
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
