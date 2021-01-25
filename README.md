@@ -1,5 +1,6 @@
 # WEB打印，自动分页插件。支持预览、生成目录、页眉页脚。内容满了，自动换页， wkhtmltopdf生成PDF。bookjs-eazy
 
+- [gitee仓库](https://gitee.com/wuxue107/bookjs-eazy)
 - 主要解决，web打印生成PDF，分页可控的问题
 - 结合wkhtmltopdf或chrome headless生成精美（渲染完毕后，在Console上会输出wkhtmlpdf的PDF配套生成命令）
 	
@@ -29,12 +30,12 @@ bookConfig = {
     NA_LEGAL、NA_LETTER、NA_LEDGER、NA_EXECUTIVE、NA_INVOICE、
     BIG_K32
     **/
-    // 可选，默认：ISO_A4,两种定义纸张大小方式
+    // 定义纸张大小,两种方式,可选，默认：ISO_A4
     pageSize : 'ISO_A4', 
-    orientation :  'landscape', // landscape 定义是横屏还是竖屏放置
+    orientation :  'landscape', // portrait/landscape 定义是竖屏/横屏放置
     /** pageSizeConfig 和 pageSize/orientation组合 ，只选一即可 **/
     pageSizeOption : {
-        width : '15cm',
+        width : '15cm', // 自定义宽高
         height : '20cm',
     }
 
