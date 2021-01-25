@@ -39,23 +39,41 @@ bookConfig = {
         height : '20cm',
     }
 
-    // 可选，边距
-    padding : "10mm 10mm 10mm 10mm", 
+    // 可选，边距，所列选项为默认值
+    padding : "31.8mm 25.4mm 31.8mm 25.4mm", 
     
-    // 可选，简易页码插件设置，默认值
+    // 简易页码插件，可选（默认未开启），所列选项为开启是的默认值
     simplePageNum : {
-        pageBegin : 0, // 从第几页开始编号，默认0为第一页开始，，没有页码,也可以为一个css选择器如：".first_page"，从包含选择器接点的页面开始编号
-        pageEnd : -1,  // 从第几页结束编号，默认-1为最后一页结束，，没有页码,也可以为一个css选择器如：".end_page"，到包含选择器接点的页面结束编号
+        // 从第几页开始编号，默认0为第一页开始，，没有页码,也可以为一个css选择器如：".first_page"，从包含选择器接点的页面开始编号
+        pageBegin : 0, 
+        // 从第几页结束编号，默认-1为最后一页结束，，没有页码,也可以为一个css选择器如：".end_page"，到包含选择器接点的页面结束编号
+        pageEnd : -1,  
     }, 
 
-    // 可选：目录插件，默认值
+    // 目录插件，可选（默认未开启），所列选项为开启是的默认值
     simpleCatalog : {
         titlesSelector : 'h1,h2,h3,h4,h5,h6', // 作为目录标题的选择器，按目录级别依次
         positionSelector : '.nop-page-item-pagenum-1', //可选，目录位置，默认为第一个编号页前
     },
     
+    // 工具栏插件，可选（默认开启），所列选项为开启是的默认值
+    toolBar : {
+        webPrint : true,  // Web打印按钮功能
+        saveHtml : false, // 禁用保存HTML功能
+        buttons : [
+            // 这里可以自定义工具栏按钮
+            // {
+            //    id : 'cloudPrint',
+            //    icon : 'https://xxxx.../aa.png'
+            //    onClick : function(){ console.log("...do some thing"); }
+            // }
+        ]
+    }
+    
+    // 重要
     // 当这个值为true时，页面才开始渲染。如果你的页面是动态的，
-    // 就先将默认值设为false,当内容准备好后，在将其设为true
+    // 就先将默认值设为false,当内容准备好后，在将其设为true，
+    // bookConfig.start = true;
     start : true,
 }
 </script>
@@ -134,12 +152,15 @@ bookConfig = {
     <link rel="shortcut icon" href="./js/nop.jpg" type="image/x-icon">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <!-- 后端wkhtmltopdf生成PDF时提供js兼容 -->
     <script src="https://cdn.bootcdn.net/ajax/libs/js-polyfills/0.1.43/polyfill.min.js"></script>
+    <!-- bookjs-eazy 依赖 jquery及loadash -->
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
-    <script src="./js/bookjs/1.2.0/bookjs-eazy.min.js"></script>
-    <link rel="stylesheet" href="./js/fonts.css">
 
+    <script src="./js/bookjs/1.2.0/bookjs-eazy.min.js"></script>
+    <!-- -->
+    <link rel="stylesheet" href="./js/fonts.css">
 </head>
 <body>
 <script>
