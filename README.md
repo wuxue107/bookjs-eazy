@@ -19,25 +19,43 @@
 
 ```html
 <script>
-		bookConfig = {
-		/**  全部纸张类型，未全量测试，常用ISO_A4
-		ISO_A0、ISO_A1、ISO_A2、ISO_A3、ISO_A4、ISO_A5
-		ISO_B0、ISO_B1、ISO_B2、ISO_B3、ISO_B4、ISO_B5、ISO_B6、ISO_B7、ISO_B8、ISO_B9、ISO_B10
-		ISO_C0、ISO_C1、ISO_C2、ISO_C3、ISO_C4、ISO_C5、ISO_C6、ISO_C7、ISO_DL、ISO_C7_6
-		JIS_B0、JIS_B1、JIS_B2、JIS_B3、JIS_B4、JIS_B5、JIS_B6、JIS_B7、JIS_B8、JIS_B9
-		NA_LEGAL、NA_LETTER、NA_LEDGER、NA_EXECUTIVE、NA_INVOICE、
-		BIG_K32
-		**/
-		pageSize : 'ISO_A4', // 定义纸张大小
-		// orientation : 'portrait',// landscape
-		orientation :  'landscape', // 定义是横屏还是竖屏放置
-		padding : "10mm 10mm 10mm 10mm", // 边距
-		pageNumberStart : 0, // 从第几页开始编号，0为第一页开始，或false值，没有页码,也可以为一个css选择器如：".first_cover"，从包含选择器接点的页面开始编号
-		catalog : true, // boolean,会以h1,h2,h3,h4,h5,h6,等当成章节是否生成目录。
+bookConfig = {
+    
+    /**  全部纸张类型，未全量测试，常用ISO_A4
+    ISO_A0、ISO_A1、ISO_A2、ISO_A3、ISO_A4、ISO_A5
+    ISO_B0、ISO_B1、ISO_B2、ISO_B3、ISO_B4、ISO_B5、ISO_B6、ISO_B7、ISO_B8、ISO_B9、ISO_B10
+    ISO_C0、ISO_C1、ISO_C2、ISO_C3、ISO_C4、ISO_C5、ISO_C6、ISO_C7、ISO_DL、ISO_C7_6
+    JIS_B0、JIS_B1、JIS_B2、JIS_B3、JIS_B4、JIS_B5、JIS_B6、JIS_B7、JIS_B8、JIS_B9
+    NA_LEGAL、NA_LETTER、NA_LEDGER、NA_EXECUTIVE、NA_INVOICE、
+    BIG_K32
+    **/
+    // 可选，默认：ISO_A4,两种定义纸张大小方式
+    pageSize : 'ISO_A4', 
+    orientation :  'landscape', // landscape 定义是横屏还是竖屏放置
+    /** pageSizeConfig 和 pageSize/orientation组合 ，只选一即可 **/
+    pageSizeOption : {
+        width : '15cm',
+        height : '20cm',
+    }
 
-		// 当这个值为true时，页面才开始渲染。如果你的页面是动态的，
-		// 就先将默认值设为false,当内容准备好后，在将其设为true
-		start : true,
+    // 可选，边距
+    padding : "10mm 10mm 10mm 10mm", 
+    
+    // 可选，简易页码插件设置，默认值
+    simplePageNum : {
+        pageBegin : 0, // 从第几页开始编号，默认0为第一页开始，，没有页码,也可以为一个css选择器如：".first_page"，从包含选择器接点的页面开始编号
+        pageEnd : -1,  // 从第几页结束编号，默认-1为最后一页结束，，没有页码,也可以为一个css选择器如：".end_page"，到包含选择器接点的页面结束编号
+    }, 
+
+    // 可选：目录插件，默认值
+    simpleCatalog : {
+        titlesSelector : 'h1,h2,h3,h4,h5,h6', // 作为目录标题的选择器，按目录级别依次
+        positionSelector : '.nop-page-item-pagenum-1', //可选，目录位置，默认为第一个编号页前
+    },
+    
+    // 当这个值为true时，页面才开始渲染。如果你的页面是动态的，
+    // 就先将默认值设为false,当内容准备好后，在将其设为true
+    start : true,
 }
 </script>
 ```
@@ -118,7 +136,7 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/js-polyfills/0.1.43/polyfill.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
-    <script src="./js/bookjs/1.1.0/bookjs-eazy.min.js"></script>
+    <script src="./js/bookjs/1.2.0/bookjs-eazy.min.js"></script>
     <link rel="stylesheet" href="./js/fonts.css">
 
 </head>
@@ -129,8 +147,19 @@
         // orientation : 'portrait',// landscape
         orientation :  'landscape',
         padding : "20mm 10mm 20mm 10mm",
-        pageNumberStart : 0,
-        catalog : true,
+
+        // 页码设置
+        simplePageNum : {
+            pageBegin : 0,
+            pageEnd : -1,
+        }, 
+
+        // 目录
+        simpleCatalog : {
+            titlesSelector : 'h1,h2,h3,h4,h5,h6',
+            positionSelector : '.nop-page-item-pagenum-1'
+        },
+
         start : true,
     }
 </script>
