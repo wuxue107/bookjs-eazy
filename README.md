@@ -9,7 +9,13 @@
 # 预览案例
 
 - <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a>
+
+![alt ](./eazy-2-qrcode.png)
+
 - <a href="https://bookjs.zhouwuxue.com/simple-4.html" target="_blank" rel="noopener noreferrer">另一个小说案例</a>
+
+![alt ](./simple-4-qrcode.png)
+
 - [小票打印](https://gitee.com/wuxue107/nop-printer)
 
 
@@ -34,7 +40,7 @@ bookConfig = {
     // 定义纸张大小,两种方式,可选，默认：ISO_A4
     pageSize : 'ISO_A4', 
     orientation :  'landscape', // portrait/landscape 定义是竖屏/横屏放置
-    /** pageSizeOption 和 pageSize/orientation组合 ，只选一即可 **/
+    /** pageSizeConfig 和 pageSize/orientation组合 ，只选一即可 **/
     pageSizeOption : {
         width : '15cm', // 自定义宽高
         height : '20cm',
@@ -84,7 +90,7 @@ bookConfig = {
 
 ```html
 <div id="content-box" style="display: none">
-    <div data-op-type="pendants">
+    <div data-op-type="pendants"><!-- 定义页面部件（页面/页脚/书签） -->
         <div class='pendant-title' style='color: #666666'>第一章：AAAAAAAAAAAAA</div>
     </div>
     <h1 data-op-type='block'>第1章</h1><!-- 块 -->
@@ -101,7 +107,7 @@ bookConfig = {
         </tfoot>
     </table>
     <div data-op-type="new-page"></div><!-- 新页面标记 -->
-    <div data-op-type="pendants">
+    <div data-op-type="pendants"><!-- 定义页面部件（页面/页脚/书签） -->
         <div class='pendant-title' style='color: #666666'>第二章：BBBBBBBBBBB</div>
     </div>
     <h1  data-op-type='block'>第2章</h1><!-- 块 -->
@@ -153,7 +159,7 @@ bookConfig = {
     <link rel="shortcut icon" href="./js/nop.jpg" type="image/x-icon">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
-    <!-- 后端wkhtmltopdf生成PDF时提供js兼容 -->
+    <!-- 后端wkhtmltopdf生成PDF时提供js兼容，如果你需要用到wkhtmltopdf，请不要用任何es6的语法 -->
     <script src="https://cdn.bootcdn.net/ajax/libs/js-polyfills/0.1.43/polyfill.min.js"></script>
     <!-- bookjs-eazy 依赖 jquery及loadash -->
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
