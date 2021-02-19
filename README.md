@@ -49,7 +49,7 @@
     #
 ```
 
-    2. 使用wkhtmltopdf渲染,需自己去下载命令行，放入PATH的环境变量所在目录下
+    2. 使用wkhtmltopdf渲染(会更据h1-h6生成PDF书签),需自己去下载命令行，放入PATH的环境变量所在目录下
 ```bash
     bin/pdf-a4-portrait "https://bookjs.zhouwuxue.com/simple-4.html" simple-4-2.pdf
     #
