@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+// apt install chromium-browser
+// docker run -d -p 9222:9222 --rm --name headless-shell chromedp/headless-shell
+// "C:\Program Files\Google\Chrome\Application\chrome.exe" --headless --disable-gpu --remote-debugging-port=9222 --disable-extensions --mute-audio
+// "chromium-browser" --headless --disable-gpu --remote-debugging-port=9222 --disable-extensions --mute-audio
+// "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --remote-debugging-port=9222
+
+// node bin/html2pdf print --agent=puppeteer --checkJs "window.status === 'PDFComplete'" --output simple-4.pdf --timeout 60000 --printDelay 1000 "https://bookjs.zhouwuxue.com/simple-4.html"
+
+const program = require('commander');
+program.version('1.0.0')
+    .command('print <url>')
+    .option('-o --output [outputfile]', '保存PDF文件的路径','output.pdf')
+    .option('-t --timeout [type]', '超时时间',60000)
+    .option('-a --agent [agent]', '指定转换引擎chrome-headless|puppeteer，默认：puppeteer','puppeteer')
+    .option('-d --printDelay [delay]', '打印前等待延迟（毫秒）', 1000)
+    .option('-c --checkJs [jsExpression]', '打印前等待延迟（毫秒）', 'window.status === "PDFComplete"')
+    .action(function(url,cmd){
+        let html2pdf;
+        if(cmd.agent === 'puppeteer'){
+              html2pdf = require('../converter/puppeteer');
+        }else if(cmd.agent === 'chrome-headless'){
+              html2pdf = require('../converter/chrome-headless');
+        }else{
+              console.error("无效参数:--agent [agent]");
+              process.exit(1);
+        }
+
+        // 要转为PDF的网页URL
+        //let url = 'http://localhost:8080/simple-4.html';
+        // 输出保持PDF的文件路径
+        let pdfFile = cmd.output;
+        // 渲染超时时间
+        let timeout = parseInt(cmd.timeout);
+
+        // 检查PDF实付完成的JS表达式，定时检测直到表达式值为true,是看上渲染
+        let checkJs = cmd.checkJs;
+        let printDelay = parseInt(cmd.printDelay);
+
+        html2pdf(url,pdfFile,timeout,printDelay,checkJs);
+    });
+
+program.parse(process.argv);

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+script_path=$(cd `dirname "$0"`;pwd)
+"${script_path}/pdf-print" A5 Landscape $@

@@ -1,0 +1,23 @@
+{
+  "name": "bookjs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://gitee.com/wuxue107/bookjs-eazy.git",
+  "author": "nop <575065955@qq.com>",
+  "license": "MIT",
+  "bin": {
+    "html2pdf": "bin/html2pdf"
+  },
+  "scripts": {
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+  },
+  "dependencies": {
+    "chrome-remote-interface": "^0.28.2",
+    "commander": "latest",
+    "puppeteer": "^5.5.0"
+  }
+}
