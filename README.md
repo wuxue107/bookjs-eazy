@@ -23,7 +23,7 @@
 
 -  使用配套命令行工具。
 
-    1. 使用chrome headless方式渲染
+## 使用chrome headless方式渲染
 ```bash
     # 首次使用时,安装bin/html2pdf的依赖包
     yarn install
@@ -49,7 +49,8 @@
     #
 ```
 
-    2. 使用wkhtmltopdf渲染(会更据h1-h6生成PDF书签),需自己去下载命令行，放入PATH的环境变量所在目录下
+## 使用wkhtmltopdf渲染(会更据h1-h6生成PDF书签),需自己去下载命令行，放入PATH的环境变量所在目录下
+    
 ```bash
     bin/pdf-a4-portrait "https://bookjs.zhouwuxue.com/simple-4.html" simple-4-2.pdf
     #
