@@ -17,7 +17,7 @@
 
 - [小票打印](https://gitee.com/wuxue107/nop-printer)
 
-## 生成PDF方式
+# 生成PDF方式
 - 可以通过浏览器点击打印按钮，打印另存为PDF
 - 此插件适配了wkhtmltopdf和chrome headless。也可以结合wkhtmltopdf或chrome headless从后端生成精美（渲染完毕后，在Console上会输出wkhtmltopdf的PDF配套生成命令）
 
