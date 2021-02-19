@@ -2,12 +2,11 @@
 
 - [gitee仓库](https://gitee.com/wuxue107/bookjs-eazy)
 - 主要解决，web打印生成PDF，分页可控的问题
-- 结合wkhtmltopdf或chrome headless生成精美（渲染完毕后，在Console上会输出wkhtmlpdf的PDF配套生成命令）
-	
+- 生成图书纸张样式的预览，并以此生成PDF文件。
 
 
 # 预览案例
-
+- bug: 苹果手机预览会出线分页和字体大小问题，在于插件依赖js动态计算高度，似乎是因为苹果为了优化，渲染不同步所带来的
 - <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a>
 
 ![alt ](https://bookjs.zhouwuxue.com/js/bookjs/eazy-2-qrcode.png)
@@ -18,12 +17,53 @@
 
 - [小票打印](https://gitee.com/wuxue107/nop-printer)
 
+## 生成PDF方式
+- 可以通过浏览器点击打印按钮，打印另存为PDF
+- 此插件适配了wkhtmltopdf和chrome headless。也可以结合wkhtmltopdf或chrome headless从后端生成精美（渲染完毕后，在Console上会输出wkhtmltopdf的PDF配套生成命令）
+
+-  使用配套命令行工具。
+
+    1. 使用chrome headless方式渲染
+```bash
+    # 首次使用时,安装bin/html2pdf的依赖包
+    yarn install
+```
+
+```bash
+    # 安装过后，执行命令
+    # 示例：
+    node bin/html2pdf print --agent=puppeteer --checkJs "window.status === 'PDFComplete'" --output simple-4-1.pdf --timeout 60000 --printDelay 1000 "https://bookjs.zhouwuxue.com/simple-4.html"
+    
+    #
+    # 命令行说明：
+    #   Usage: html2pdf print [options] <url>
+    #   
+    #   Options:
+    #     -o --output [outputfile]     保存PDF文件的路径 (default: "output.pdf")
+    #     -t --timeout [type]          超时时间 (default: 60000)
+    #     -a --agent [agent]           指定转换引擎chrome-headless|puppeteer，默认：puppeteer (default: "puppeteer")
+    #     -d --printDelay [delay]      打印前等待延迟（毫秒） (default: 1000)
+    #     -c --checkJs [jsExpression]  检查是否渲染完成的js表达式 (default: "window.document.readyState === \"complete\"")
+    #     -h, --help                   display help for command
+    #
+    #
+```
+
+    2. 使用wkhtmltopdf渲染,需自己去下载命令行，放入PATH的环境变量所在目录下
+```bash
+    bin/pdf-a4-portrait "https://bookjs.zhouwuxue.com/simple-4.html" simple-4-2.pdf
+    #
+    # 在bin目录下，有数个同类脚本文件。
+    # 
+    # bin/pdf-[纸张]-[纸张方向]  [预览的链接] [输出文件]
+    #
+```
 
 # 使用方式：
 
 ## 配置页面参数：
 
-- 在全局定义一个bookConfig
+- 定义一个全局配置变量 bookConfig
 
 ```html
 <script>
@@ -39,7 +79,7 @@ bookConfig = {
     **/
     // 定义纸张大小,两种方式,可选，默认：ISO_A4
     pageSize : 'ISO_A4', 
-    orientation :  'landscape', // portrait/landscape 定义是竖屏/横屏放置
+    orientation :  'landscape', // portrait/landscape 定义纸张是竖屏/横屏放置
     /** pageSizeConfig 和 pageSize/orientation组合 ，只选一即可 **/
     pageSizeOption : {
         width : '15cm', // 自定义宽高
@@ -106,7 +146,7 @@ bookConfig = {
             <tr><td colspan="3">表格尾部</td></tr>
         </tfoot>
     </table>
-    <div data-op-type="new-page"></div><!-- 新页面标记 -->
+    <div data-op-type="new-page"></div><!-- 新页面标记，强制从新页开始 -->
     <div data-op-type="pendants"><!-- 定义页面部件（页面/页脚/书签） -->
         <div class='pendant-title' style='color: #666666'>第二章：BBBBBBBBBBB</div>
     </div>
@@ -117,7 +157,7 @@ bookConfig = {
 </div>
 ```
 
-- content-box下的每个节点都需定义属性 data-op-type,表示在文档中的插入方式 其值如下：
+- content-box下的每个节点都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
    
         block : 块：如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页（默认）
         
@@ -132,12 +172,7 @@ bookConfig = {
 
         new-page : 标记从新页，开始插入
 
-        pendants : 页面部件列表（页眉/页脚/页标签），在其后的每个页面都会显示。
-
-
-## 生成PDF
-- 点击打印按钮，前端打印为PDF。
-- 使用chrome headless,wkhtmltopdf后端生成PDF。在Console上会输出wkhtmlpdf的PDF配套生成命令
+        pendants : 页面部件列表（页眉/页脚/页标签），在其后定义的每个页面都会显示。
 
 
 

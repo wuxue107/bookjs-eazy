@@ -14,7 +14,7 @@ program.version('1.0.0')
     .option('-t --timeout [type]', '超时时间',60000)
     .option('-a --agent [agent]', '指定转换引擎chrome-headless|puppeteer，默认：puppeteer','puppeteer')
     .option('-d --printDelay [delay]', '打印前等待延迟（毫秒）', 1000)
-    .option('-c --checkJs [jsExpression]', '打印前等待延迟（毫秒）', 'window.status === "PDFComplete"')
+    .option('-c --checkJs [jsExpression]', '检查是否渲染完成的js表达式', 'window.document.readyState === "complete"')
     .action(function(url,cmd){
         let html2pdf;
         if(cmd.agent === 'puppeteer'){
