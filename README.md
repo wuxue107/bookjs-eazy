@@ -101,12 +101,12 @@ text-box : 文本盒子：与块盒子类似，大文本内容跨多个页面时
 
 new-page : 标记从新页，开始插入
 
-pendants : 页面部件列表（页眉/页脚/页标签），在其后定义的每个页面都会显示。
+pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对页面纸张固定的元素），在其定义后的每个页面都会显示，直到下一个pendants出现。
 ```
 
 ```html
 <div id="content-box" style="display: none">
-    <div data-op-type="pendants"><!-- 定义页面部件（页眉/页脚/书签/水印背景等） -->
+    <div data-op-type="pendants"><!-- 定义页面部件（页眉/页脚/页标签/水印背景等） -->
         <div class='pendant-title' style='color: #666666'>第一章：AAAAAAAAAAAAA</div>
     </div>
     <h1 data-op-type='block'>第1章</h1><!-- 块 -->
