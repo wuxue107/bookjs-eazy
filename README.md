@@ -106,7 +106,7 @@ pendants : 页面部件列表（页眉/页脚/页标签），在其后定义的�
 
 ```html
 <div id="content-box" style="display: none">
-    <div data-op-type="pendants"><!-- 定义页面部件（页面/页脚/书签） -->
+    <div data-op-type="pendants"><!-- 定义页面部件（页眉/页脚/书签/水印背景等） -->
         <div class='pendant-title' style='color: #666666'>第一章：AAAAAAAAAAAAA</div>
     </div>
     <h1 data-op-type='block'>第1章</h1><!-- 块 -->
@@ -123,7 +123,7 @@ pendants : 页面部件列表（页眉/页脚/页标签），在其后定义的�
         </tfoot>
     </table>
     <div data-op-type="new-page"></div><!-- 新页面标记，强制从新页开始 -->
-    <div data-op-type="pendants"><!-- 定义页面部件（页面/页脚/书签） -->
+    <div data-op-type="pendants"><!-- 定义页面部件（页眉/页脚/书签/水印背景等） -->
         <div class='pendant-title' style='color: #666666'>第二章：BBBBBBBBBBB</div>
     </div>
     <h1  data-op-type='block'>第2章</h1><!-- 块 -->
