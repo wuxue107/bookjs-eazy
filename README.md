@@ -1,7 +1,7 @@
 # WEB打印，HTML转PDF工具。bookjs-eazy
 - 仓库地址： [GITEE](https://gitee.com/wuxue107/bookjs-eazy) | [GITHUB](https://github.com/wuxue107/bookjs-eazy)
 - 主要解决，HTML生成PDF，分页可控的问题
-- 优势：1. 只需专注用H5构件你的PDF内容,而无需关心分页问题，内容满了，自动换页,支持预览、WEB打印、页码/目录、自定义页眉页脚。2.前后端皆可生成PDF,后端配套使用chrome headless和wkhtmltopdf命令行PDF生成工具。
+- 优势：1. 只需专注用H5构件你的PDF内容,而无需关心分页及内容截断问题，内容满了，自动换页,支持预览、WEB打印、页码/目录、自定义页眉页脚。2.前后端皆可生成PDF,后端配套使用chrome headless和wkhtmltopdf命令行PDF生成工具。
 
 
 
