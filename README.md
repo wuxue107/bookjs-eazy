@@ -1,8 +1,8 @@
-# WEB打印，自动分页插件。支持预览、生成目录、页眉页脚。内容满了，自动换页， wkhtmltopdf生成PDF。bookjs-eazy
+# WEB打印，HTML转PDF工具。bookjs-eazy
+- 仓库地址： [GITEE](https://gitee.com/wuxue107/bookjs-eazy) | [GITHUB](https://github.com/wuxue107/bookjs-eazy)
+- 主要解决，HTML生成PDF，分页可控的问题
+- 优势：1. 只需专注用H5构件你的PDF内容,而无需关心分页问题，内容满了，自动换页,支持预览、WEB打印、页码/目录、自定义页眉页脚。2.前后端皆可生成PDF,后端配套使用chrome headless和wkhtmltopdf命令行PDF生成工具。
 
-- [gitee仓库](https://gitee.com/wuxue107/bookjs-eazy)
-- 主要解决，web打印生成PDF，分页可控的问题
-- 生成图书纸张样式的预览，并以此生成PDF文件。
 
 
 # 预览案例
@@ -16,49 +16,6 @@
 ![alt ](https://bookjs.zhouwuxue.com/js/bookjs/simple-4-qrcode.png)
 
 - [小票打印](https://gitee.com/wuxue107/nop-printer)
-
-# 生成PDF方式
-- 可以通过浏览器点击打印按钮，打印另存为PDF
-- 此插件适配了wkhtmltopdf和chrome headless。也可以结合wkhtmltopdf或chrome headless从后端生成精美（渲染完毕后，在Console上会输出wkhtmltopdf的PDF配套生成命令）
-
--  使用配套命令行工具。
-
-## 使用chrome headless方式渲染
-```bash
-    # 首次使用时,安装bin/html2pdf的依赖包
-    yarn install
-```
-
-```bash
-    # 安装过后，执行命令
-    # 示例：
-    node bin/html2pdf print --agent=puppeteer --checkJs "window.status === 'PDFComplete'" --output simple-4-1.pdf --timeout 60000 --printDelay 1000 "https://bookjs.zhouwuxue.com/simple-4.html"
-    
-    #
-    # 命令行说明：
-    #   Usage: html2pdf print [options] <url>
-    #   
-    #   Options:
-    #     -o --output [outputfile]     保存PDF文件的路径 (default: "output.pdf")
-    #     -t --timeout [type]          超时时间 (default: 60000)
-    #     -a --agent [agent]           指定转换引擎chrome-headless|puppeteer，默认：puppeteer (default: "puppeteer")
-    #     -d --printDelay [delay]      打印前等待延迟（毫秒） (default: 1000)
-    #     -c --checkJs [jsExpression]  检查是否渲染完成的js表达式 (default: "window.document.readyState === \"complete\"")
-    #     -h, --help                   display help for command
-    #
-    #
-```
-
-## 使用wkhtmltopdf渲染(会更据h1-h6生成PDF书签),需自己去下载命令行，放入PATH的环境变量所在目录下
-    
-```bash
-    bin/pdf-a4-portrait "https://bookjs.zhouwuxue.com/simple-4.html" simple-4-2.pdf
-    #
-    # 在bin目录下，有数个同类脚本文件。
-    # 
-    # bin/pdf-[纸张]-[纸张方向]  [预览的链接] [输出文件]
-    #
-```
 
 # 使用方式：
 
@@ -159,21 +116,23 @@ bookConfig = {
 ```
 
 - content-box下的每个节点都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
-   
-        block : 块：如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页（默认）
-        
-        block-box : 块盒子：块盒子内部nop-fill-box标记的节点包含的多个块，盒子内的多个块被分割到多个页面时，都会复制包裹块的外部节点。
-            以上图中的表格为例：
-            table节点定义为块盒子
-            tbody节点定义为容纳块的容器节点（使用class: nop-fill-box标记）
-            这样在填充行tr时，当前页空间不足时，换页并复制外部table（除去nop-fill-box标记的部分）比继续填充。这样表头就得到复用
-            
-        text-box : 文本盒子：与块盒子类似，大文本内容跨多个页面时，会复制外部包裹文本的盒子的部分。
-             文本盒子节点， 大文本的容器节点需用 class : nop-fill-box标记
+```
+block : 块：如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页（默认）
 
-        new-page : 标记从新页，开始插入
+block-box : 块盒子：块盒子内部nop-fill-box标记的节点包含的多个块，盒子内的多个块被分割到多个页面时，都会复制包裹块的外部节点。
+    以上图中的表格为例：
+    table节点定义为块盒子
+    tbody节点定义为容纳块的容器节点（使用class: nop-fill-box标记）
+    这样在填充行tr时，当前页空间不足时，换页并复制外部table（除去nop-fill-box标记的部分）比继续填充。这样表头就得到复用
+    
+text-box : 文本盒子：与块盒子类似，大文本内容跨多个页面时，会复制外部包裹文本的盒子的部分。
+     文本盒子节点， 大文本的容器节点需用 class : nop-fill-box标记
 
-        pendants : 页面部件列表（页眉/页脚/页标签），在其后定义的每个页面都会显示。
+new-page : 标记从新页，开始插入
+
+pendants : 页面部件列表（页眉/页脚/页标签），在其后定义的每个页面都会显示。
+```
+
 
 
 
@@ -357,57 +316,6 @@ bookConfig = {
         <tr><td>8</td><td>张三</td><td>12</td></tr>
         <tr><td>9</td><td>张三</td><td>12</td></tr>
         <tr><td>10</td><td>张三</td><td>12</td></tr>
-
-        <tr><td>1</td><td>张三</td><td>12</td></tr>
-        <tr><td>2</td><td>张三</td><td>12</td></tr>
-        <tr><td>3</td><td>张三</td><td>12</td></tr>
-        <tr><td>4</td><td>张三</td><td>12</td></tr>
-        <tr><td>5</td><td>张三</td><td>12</td></tr>
-        <tr><td>6</td><td>张三</td><td>12</td></tr>
-        <tr><td>7</td><td>张三</td><td>12</td></tr>
-        <tr><td>8</td><td>张三</td><td>12</td></tr>
-        <tr><td>9</td><td>张三</td><td>12</td></tr>
-        <tr><td>10</td><td>张三</td><td>12</td></tr>
-        <tr><td>1</td><td>张三</td><td>12</td></tr>
-        <tr><td>2</td><td>张三</td><td>12</td></tr>
-        <tr><td>3</td><td>张三</td><td>12</td></tr>
-        <tr><td>4</td><td>张三</td><td>12</td></tr>
-        <tr><td>5</td><td>张三</td><td>12</td></tr>
-        <tr><td>6</td><td>张三</td><td>12</td></tr>
-        <tr><td>7</td><td>张三</td><td>12</td></tr>
-        <tr><td>8</td><td>张三</td><td>12</td></tr>
-        <tr><td>9</td><td>张三</td><td>12</td></tr>
-        <tr><td>10</td><td>张三</td><td>12</td></tr>
-        <tr><td>1</td><td>张三</td><td>12</td></tr>
-        <tr><td>2</td><td>张三</td><td>12</td></tr>
-        <tr><td>3</td><td>张三</td><td>12</td></tr>
-        <tr><td>4</td><td>张三</td><td>12</td></tr>
-        <tr><td>5</td><td>张三</td><td>12</td></tr>
-        <tr><td>6</td><td>张三</td><td>12</td></tr>
-        <tr><td>7</td><td>张三</td><td>12</td></tr>
-        <tr><td>8</td><td>张三</td><td>12</td></tr>
-        <tr><td>9</td><td>张三</td><td>12</td></tr>
-        <tr><td>10</td><td>张三</td><td>12</td></tr>
-        <tr><td>1</td><td>张三</td><td>12</td></tr>
-        <tr><td>2</td><td>张三</td><td>12</td></tr>
-        <tr><td>3</td><td>张三</td><td>12</td></tr>
-        <tr><td>4</td><td>张三</td><td>12</td></tr>
-        <tr><td>5</td><td>张三</td><td>12</td></tr>
-        <tr><td>6</td><td>张三</td><td>12</td></tr>
-        <tr><td>7</td><td>张三</td><td>12</td></tr>
-        <tr><td>8</td><td>张三</td><td>12</td></tr>
-        <tr><td>9</td><td>张三</td><td>12</td></tr>
-        <tr><td>10</td><td>张三</td><td>12</td></tr>
-        <tr><td>1</td><td>张三</td><td>12</td></tr>
-        <tr><td>2</td><td>张三</td><td>12</td></tr>
-        <tr><td>3</td><td>张三</td><td>12</td></tr>
-        <tr><td>4</td><td>张三</td><td>12</td></tr>
-        <tr><td>5</td><td>张三</td><td>12</td></tr>
-        <tr><td>6</td><td>张三</td><td>12</td></tr>
-        <tr><td>7</td><td>张三</td><td>12</td></tr>
-        <tr><td>8</td><td>张三</td><td>12</td></tr>
-        <tr><td>9</td><td>张三</td><td>12</td></tr>
-        <tr><td>10</td><td>张三</td><td>12</td></tr>
         <tr><td>1</td><td>张三</td><td>12</td></tr>
         <tr><td>2</td><td>张三</td><td>12</td></tr>
         <tr><td>3</td><td>张三</td><td>12</td></tr>
@@ -452,4 +360,50 @@ bookConfig = {
 </div>
 </body>
 </html>
+```
+
+
+# 生成PDF，配套PDF生成命令行工具的使用
+- 可以通过浏览器点击打印按钮，打印另存为PDF
+- 此插件适配了wkhtmltopdf和chrome headless。可使用本项目中配套封装的命令行工具，从后端生成精美PDF
+
+
+## 使用chrome headless方式渲染
+
+```bash
+    # 首次使用时,安装bin/html2pdf的依赖包
+    yarn install
+```
+
+```bash
+    # 安装过后，执行命令
+    # 示例：
+    bin/html2pdf print --checkJs "window.status === 'PDFComplete'" --output simple-4-1.pdf "https://bookjs.zhouwuxue.com/simple-4.html"
+    
+    #
+    # 命令行说明：
+    #   Usage: html2pdf print [options] <url>
+    #   
+    #   Options:
+    #     -o --output [outputfile]     保存PDF文件的路径 (default: "output.pdf")
+    #     -t --timeout [type]          超时时间 (default: 60000)
+    #     -a --agent [agent]           指定转换引擎chrome-headless|puppeteer，默认：puppeteer (default: "puppeteer")
+    #     -d --printDelay [delay]      打印前等待延迟（毫秒） (default: 1000)
+    #     -c --checkJs [jsExpression]  检查是否渲染完成的js表达式 (default: "window.document.readyState === \"complete\"")
+    #     -h, --help                   display help for command
+    #
+    #
+```
+
+## 使用wkhtmltopdf渲染(会更据h1-h6生成PDF书签),需自己去下载命令行，放入PATH的环境变量所在目录下
+    
+```bash
+
+    bin/pdf-a4-portrait "https://bookjs.zhouwuxue.com/simple-4.html" simple-4-2.pdf
+    #
+    # 在bin目录下，有数个同类脚本文件。
+    # 
+    # bin/pdf-[纸张]-[纸张方向]  [预览的链接] [输出文件]
+    #
+    # 注意：如果使用wkhtmltopdf方式的自定义尺寸，不用担心，浏览器渲染完毕后，在Console上会输出wkhtmltopdf的PDF配套生成命令
 ```
