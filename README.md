@@ -375,7 +375,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 ```bash
     # 安装过后，执行命令
     # 示例：
-    bin/html2pdf print --checkJs "window.status === 'PDFComplete'" --output simple-4-1.pdf "https://bookjs.zhouwuxue.com/simple-4.html"
+    bin/html2pdf print --output simple-4-1.pdf "https://bookjs.zhouwuxue.com/simple-4.html"
     
     #
     # 命令行说明：
@@ -386,7 +386,8 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
     #     -t --timeout [type]          超时时间 (default: 60000)
     #     -a --agent [agent]           指定转换引擎chrome-headless|puppeteer，默认：puppeteer (default: "puppeteer")
     #     -d --printDelay [delay]      打印前等待延迟（毫秒） (default: 1000)
-    #     -c --checkJs [jsExpression]  检查是否渲染完成的js表达式 (default: "window.document.readyState === \"complete\"")
+    #     -c --checkJs [jsExpression]  检查是否渲染完成的js表达式 (default: "window.status === 'PDFComplete'")
+    #                                  "window.document.readyState === 'complete'" 这个表达式可以用作非bookjs-eazy构建的网页
     #     -h, --help                   display help for command
     #
     #
