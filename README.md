@@ -160,7 +160,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
 
-    <script src="./js/bookjs/1.2.0/bookjs-eazy.min.js"></script>
+    <script src="./js/bookjs/1.3.0/bookjs-eazy.min.js"></script>
     <!-- -->
     <link rel="stylesheet" href="./js/fonts.css">
 </head>
