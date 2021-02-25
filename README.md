@@ -400,7 +400,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
     
 ```bash
 
-    bin/pdf-a4-portrait "https://bookjs.zhouwuxue.com/eazy-2.html" eazy-2-2.pdf
+    bin/pdf-a4-landscape "https://bookjs.zhouwuxue.com/eazy-2.html" eazy-2-2.pdf
     #
     # 在bin目录下，有数个同类脚本文件。
     # 

@@ -13,7 +13,7 @@ let sleep = async function(timeout){
 const html2pdf = function(pageUrl,pdfFile,timeout,printDelay,checkPdfRenderCompleteJs){
     checkPdfRenderCompleteJs = checkPdfRenderCompleteJs || 'window.document.readyState === "complete"';
     console.log({pageUrl,pdfFile,timeout,printDelay,checkPdfRenderCompleteJs})
-    Chrome(function (chrome) {
+    Chrome({},function (chrome) {
         with (chrome) {
             // 显示PDF网页的Console输出消息
             Console.enable();

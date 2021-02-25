@@ -14,6 +14,8 @@ const html2pdf = function(pageUrl,pdfFile,timeout,printDelay,checkPdfRenderCompl
         const browser = await puppeteer.launch({
             headless: true,
             dumpio : true,
+            timeout : timeout + 5,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
         });
 
         const page = await browser.newPage()
