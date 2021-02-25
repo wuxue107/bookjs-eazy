@@ -18,7 +18,10 @@
 - [小票打印](https://gitee.com/wuxue107/nop-printer)
 
 # 使用方式：
-    渲染机制：程序会检查全局变量window.bookConfig.start 的值。直到此值为true时，才开始渲染将 #content-box 节点的内容渲染为PDF样式。
+    渲染机制：
+    程序会检查全局变量window.bookConfig.start 的值。
+    直到此值为true时，才开始渲染将 #content-box 节点的内容渲染为PDF样式。
+    重要：如果你的页面是动态的，就先将默认值设为false,当内容准备好后，在将其设为true，
 ## 配置页面参数：
 
 - 定义一个全局配置变量 bookConfig
