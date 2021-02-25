@@ -408,3 +408,17 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
     #
     # 注意：如果使用wkhtmltopdf方式的自定义尺寸，不用担心，浏览器渲染完毕后，在Console上会输出wkhtmltopdf的PDF配套生成命令
 ```
+## 生成常见问题
+- 生成的PDF里全是框框,原因在于。在linux服务器环境下，通常没有安装所需字体。
+- 执行bin/pdf-xx-xx 相关命令，找不到wkhtmltopdf，需自己去下载wkhtmltopdf放置PATH目录下
+- bin/html2pdf --agent=chrome-headless参数启动时，报错。该agent使用的是本地已存在的chrome headless remote-debug服务
+```bash
+:: 启动一个本地chrome headless
+"chrome.exe" --headless --disable-gpu --remote-debugging-port=9222 --disable-extensions --mute-audio
+:: 然后再使用 --agent=chrome-headless 则会成功。
+:: 默认的 --agent=puppeteer 则不需,以上操作，会启动自带的浏览器。
+```
+
+。
+
+
