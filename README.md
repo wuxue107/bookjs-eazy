@@ -375,7 +375,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 ```bash
     # 安装过后，执行命令
     # 示例：
-    bin/html2pdf print --output simple-4-1.pdf "https://bookjs.zhouwuxue.com/simple-4.html"
+    bin/html2pdf print --output eazy-2-1.pdf "https://bookjs.zhouwuxue.com/eazy-2.html"
     
     #
     # 命令行说明：
@@ -397,7 +397,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
     
 ```bash
 
-    bin/pdf-a4-portrait "https://bookjs.zhouwuxue.com/simple-4.html" simple-4-2.pdf
+    bin/pdf-a4-portrait "https://bookjs.zhouwuxue.com/eazy-2.html" eazy-2-2.pdf
     #
     # 在bin目录下，有数个同类脚本文件。
     # 
