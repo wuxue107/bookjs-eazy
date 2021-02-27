@@ -15,7 +15,7 @@ const html2pdf = function(pageUrl,pdfFile,timeout,printDelay,checkPdfRenderCompl
             headless: true,
             dumpio : true,
             timeout : timeout + 5,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
+            args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu', '--disable-extensions', '--mute-audio']
         });
 
         const page = await browser.newPage()
