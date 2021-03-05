@@ -68,7 +68,7 @@ bookConfig = {
     toolBar : {
         webPrint : true,  // 可选，默认true,Web打印按钮功能
         saveHtml : false, // 可选，默认false,禁用保存HTML功能
-        serverPrint : {   // 可选，默认false,服务端打印，点击直接下载就PDF, bool|object
+        serverPrint : {   // 可选，bool|object，默认false,true:使用官网的api接口,object:使用自定义的服务端打印，点击直接下载PDF
             serverUrl : '/', // 服务端地址
         },
         buttons : [
@@ -368,6 +368,9 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
 # 生成PDF，配套PDF生成命令行工具的使用
 - 可以通过浏览器点击打印按钮，打印另存为PDF
+- (推荐) 也可以直接使用打开toolBar.serverPrint = true,直接使用官网api,进行生成下载。
+    前提是。你的页面外网可访问。也可以使用自定义自己的server。
+    如果使用官网api，建议使用短期授权码机制，携带在url上。只有在有授权码在一定时间段内才有访问bookjs-eazy创建的页面
 - 此插件适配了wkhtmltopdf和chrome headless。可使用本项目中配套封装的命令行工具，从后端生成精美PDF
 
 
