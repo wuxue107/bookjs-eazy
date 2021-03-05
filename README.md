@@ -68,6 +68,9 @@ bookConfig = {
     toolBar : {
         webPrint : true,  // Web打印按钮功能
         saveHtml : false, // 禁用保存HTML功能
+        serverPrint : {   // 服务端打印，点击直接下载就PDF
+            serverUrl : '/', // 服务端地址
+        },
         buttons : [
             // 这里可以自定义工具栏按钮
             // {
