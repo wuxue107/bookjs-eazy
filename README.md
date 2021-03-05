@@ -66,9 +66,9 @@ bookConfig = {
     
     // 工具栏插件，可选（默认开启），所列选项为开启是的默认值
     toolBar : {
-        webPrint : true,  // Web打印按钮功能
-        saveHtml : false, // 禁用保存HTML功能
-        serverPrint : {   // 服务端打印，点击直接下载就PDF
+        webPrint : true,  // 可选，默认true,Web打印按钮功能
+        saveHtml : false, // 可选，默认false,禁用保存HTML功能
+        serverPrint : {   // 可选，默认false,服务端打印，点击直接下载就PDF, bool|object
             serverUrl : '/', // 服务端地址
         },
         buttons : [
@@ -421,7 +421,3 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 :: 然后再使用 --agent=chrome-headless 则会成功。
 :: 默认的 --agent=puppeteer 则不需,以上操作，会启动自带的浏览器。
 ```
-
-。
-
-
