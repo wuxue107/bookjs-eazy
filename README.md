@@ -68,9 +68,13 @@ bookConfig = {
     toolBar : {
         webPrint : true,  // 可选，默认true,Web打印按钮功能
         saveHtml : false, // 可选，默认false,禁用保存HTML功能
-        serverPrint : {   // 可选，bool|object，默认false,true:使用官网的api接口,object:使用自定义的服务端打印，点击直接下载PDF
-            serverUrl : '/', // 服务端地址
-        },
+        
+        // 服务端打印并下载, 可选，bool|object，默认false,true:使用官网的api接口,object:使用自定义的服务端打印
+        // true等效的object的配置：serverPrint : { serverUrl : '//bookjs.zhouwuxue.com/' },
+        // 要使用serverPrint,必须server能访问到你的网页。网页不要使用登录状态授权，建议通过URL参数传递临时授权
+        // 如果使用官方的server进行打印，则需公网上可正确访问
+        serverPrint : true,
+        
         buttons : [
             // 这里可以自定义工具栏按钮
             // {
@@ -110,10 +114,12 @@ new-page : 标记从新页，开始插入
 pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对页面纸张固定的元素），在其定义后的每个页面都会显示，直到下一个pendants出现。
 ```
 
+- 使用样例
+
 ```html
 <div id="content-box" style="display: none">
     <div data-op-type="pendants"><!-- 定义页面部件（页眉/页脚/页标签/水印背景等） -->
-        <div class='pendant-title' style='color: #666666'>第一章：AAAAAAAAAAAAA</div>
+        <div class='pendant-title'>第一章：AAAAAAAAAAAAA</div>
     </div>
     <h1 data-op-type='block'>第1章</h1><!-- 块 -->
     <table data-op-type="block-box" class="simple-table" border="1"><!-- 块盒子 -->
@@ -130,7 +136,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
     </table>
     <div data-op-type="new-page"></div><!-- 新页面标记，强制从新页开始 -->
     <div data-op-type="pendants"><!-- 定义页面部件（页眉/页脚/书签/水印背景等） -->
-        <div class='pendant-title' style='color: #666666'>第二章：BBBBBBBBBBB</div>
+        <div class='pendant-title'>第二章：BBBBBBBBBBB</div>
     </div>
     <h1  data-op-type='block'>第2章</h1><!-- 块 -->
     <p data-op-type="text-box"><!-- 文本盒子 -->
@@ -138,6 +144,8 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
     </p>
 </div>
 ```
+
+
 
 ## 直接上示例代码：（效果见上：预览eazy-2）
 ```html
@@ -149,23 +157,19 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="x5-orientation" content="portrait">
+    <!--<meta name="screen-orientation" content="portrait">-->
+    <!--<meta name="x5-orientation" content="portrait">-->
     <meta name="format-detection" content="telephone=no">
     <meta name="author" content="nop">
     <meta name="generator" content="wkhtmltopdf">
-    <link rel="shortcut icon" href="./js/nop.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="https://bookjs.zhouwuxue.com/js/nop.jpg" type="image/x-icon">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
-    <!-- 后端wkhtmltopdf生成PDF时提供js兼容，如果你需要用到wkhtmltopdf，请不要用任何es6的语法 -->
     <script src="https://cdn.bootcdn.net/ajax/libs/js-polyfills/0.1.43/polyfill.min.js"></script>
-    <!-- bookjs-eazy 依赖 jquery及loadash -->
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+    <script src="https://bookjs.zhouwuxue.com/js/bookjs/1.3.0/bookjs-eazy.min.js"></script>
 
-    <script src="./js/bookjs/1.3.0/bookjs-eazy.min.js"></script>
-    <!-- -->
-    <link rel="stylesheet" href="./js/fonts.css">
 </head>
 <body>
 <script>
@@ -174,19 +178,13 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
         // orientation : 'portrait',// landscape
         orientation :  'landscape',
         padding : "20mm 10mm 20mm 10mm",
-
-        // 页码设置
-        simplePageNum : {
-            pageBegin : 0,
-            pageEnd : -1,
-        }, 
-
-        // 目录
-        simpleCatalog : {
-            titlesSelector : 'h1,h2,h3,h4,h5,h6',
-            positionSelector : '.nop-page-item-pagenum-1'
+        simpleCatalog : {},
+        simplePageNum : {},
+        toolBar : {
+            serverPrint : true,
+            webPrint : true,
+            saveHtml : false,
         },
-
         start : true,
     }
 </script>
@@ -199,8 +197,17 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
     .simple-table {
         width: 100%;
+        border-spacing: 0;
+        border-collapse: unset;
+        border-top: #000 1px solid;
+        border-right: #000 1px solid;
     }
 
+    .simple-table th,
+    .simple-table td {
+        border-left: #000 1px solid;
+        border-bottom: #000 1px solid;
+    }
 
     h1,h2,h3,h4{
         font-weight: 600;
@@ -224,6 +231,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
     .pendant-title{
         position: absolute;
+        color: #666666;
         top: 1cm;
         left: 1cm;
     }
@@ -231,7 +239,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 <div id="content-box" style="display: none">
     <div data-op-type='new-page'></div>
     <div data-op-type="pendants">
-        <div class='pendant-title' style='color: #666666'>第一章：AAAAAAAAAAAAA</div>
+        <div class='pendant-title'>第一章：AAAAAAAAAAAAA</div>
     </div>
     <h1 data-op-type='block'>第1章</h1>
     <table data-op-type="block-box" class="simple-table" border="1">
@@ -239,6 +247,56 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
         <tr><th>ID</th><th>姓名</th><th>年龄</th></tr>
         </thead>
         <tbody class="nop-fill-box">
+        <tr><td>1</td><td>张三</td><td>12</td></tr>
+        <tr><td>2</td><td>张三</td><td>12</td></tr>
+        <tr><td>3</td><td>张三</td><td>12</td></tr>
+        <tr><td>4</td><td>张三</td><td>12</td></tr>
+        <tr><td>5</td><td>张三</td><td>12</td></tr>
+        <tr><td>6</td><td>张三</td><td>12</td></tr>
+        <tr><td>7</td><td>张三</td><td>12</td></tr>
+        <tr><td>8</td><td>张三</td><td>12</td></tr>
+        <tr><td>9</td><td>张三</td><td>12</td></tr>
+        <tr><td>10</td><td>张三</td><td>12</td></tr>
+        <tr><td>1</td><td>张三</td><td>12</td></tr>
+        <tr><td>2</td><td>张三</td><td>12</td></tr>
+        <tr><td>3</td><td>张三</td><td>12</td></tr>
+        <tr><td>4</td><td>张三</td><td>12</td></tr>
+        <tr><td>5</td><td>张三</td><td>12</td></tr>
+        <tr><td>6</td><td>张三</td><td>12</td></tr>
+        <tr><td>7</td><td>张三</td><td>12</td></tr>
+        <tr><td>8</td><td>张三</td><td>12</td></tr>
+        <tr><td>9</td><td>张三</td><td>12</td></tr>
+        <tr><td>10</td><td>张三</td><td>12</td></tr>
+        <tr><td>1</td><td>张三</td><td>12</td></tr>
+        <tr><td>2</td><td>张三</td><td>12</td></tr>
+        <tr><td>3</td><td>张三</td><td>12</td></tr>
+        <tr><td>4</td><td>张三</td><td>12</td></tr>
+        <tr><td>5</td><td>张三</td><td>12</td></tr>
+        <tr><td>6</td><td>张三</td><td>12</td></tr>
+        <tr><td>7</td><td>张三</td><td>12</td></tr>
+        <tr><td>8</td><td>张三</td><td>12</td></tr>
+        <tr><td>9</td><td>张三</td><td>12</td></tr>
+        <tr><td>10</td><td>张三</td><td>12</td></tr>
+        <tr><td>1</td><td>张三</td><td>12</td></tr>
+        <tr><td>2</td><td>张三</td><td>12</td></tr>
+        <tr><td>3</td><td>张三</td><td>12</td></tr>
+        <tr><td>4</td><td>张三</td><td>12</td></tr>
+        <tr><td>5</td><td>张三</td><td>12</td></tr>
+        <tr><td>6</td><td>张三</td><td>12</td></tr>
+        <tr><td>7</td><td>张三</td><td>12</td></tr>
+        <tr><td>8</td><td>张三</td><td>12</td></tr>
+        <tr><td>9</td><td>张三</td><td>12</td></tr>
+        <tr><td>10</td><td>张三</td><td>12</td></tr>
+        <tr><td>1</td><td>张三</td><td>12</td></tr>
+        <tr><td>2</td><td>张三</td><td>12</td></tr>
+        <tr><td>3</td><td>张三</td><td>12</td></tr>
+        <tr><td>4</td><td>张三</td><td>12</td></tr>
+        <tr><td>5</td><td>张三</td><td>12</td></tr>
+        <tr><td>6</td><td>张三</td><td>12</td></tr>
+        <tr><td>7</td><td>张三</td><td>12</td></tr>
+        <tr><td>8</td><td>张三</td><td>12</td></tr>
+        <tr><td>9</td><td>张三</td><td>12</td></tr>
+        <tr><td>10</td><td>张三</td><td>12</td></tr>
         <tr><td>1</td><td>张三</td><td>12</td></tr>
         <tr><td>2</td><td>张三</td><td>12</td></tr>
         <tr><td>3</td><td>张三</td><td>12</td></tr>
@@ -363,6 +421,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 </div>
 </body>
 </html>
+
 ```
 
 
