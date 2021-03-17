@@ -64,7 +64,7 @@ bookConfig = {
         positionSelector : '.nop-page-item-pagenum-1', //可选，目录位置，默认为第一个编号页前
     },
     
-    // 工具栏插件，可选（默认开启），所列选项为开启是的默认值
+    // 工具栏插件，可选（默认开启），所列选项为开启时的默认值
     toolBar : {
         webPrint : true,  // 可选，默认true,Web打印按钮功能
         saveHtml : false, // 可选，默认false,禁用保存HTML功能
