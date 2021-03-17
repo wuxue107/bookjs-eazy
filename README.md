@@ -87,7 +87,7 @@ bookConfig = {
     
     // 重要
     // 当这个值为true时，页面才开始渲染。如果你的页面是动态的，
-    // 就先将默认值设为false,当内容准备好后，在将其设为true，
+    // 就先将默认值设为false,当下节所述中的#content-box节点内容准备好后，在将其设为true，
     // bookConfig.start = true;
     start : true,
 }
