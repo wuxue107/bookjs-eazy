@@ -55,7 +55,9 @@ bookConfig = {
         // 从第几页开始编号，默认0为第一页开始，，没有页码,也可以为一个css选择器如：".first_page"，从包含选择器接点的页面开始编号
         pageBegin : 0, 
         // 从第几页结束编号，默认-1为最后一页结束，，没有页码,也可以为一个css选择器如：".end_page"，到包含选择器接点的页面结束编号
-        pageEnd : -1,  
+        pageEnd : -1,
+        // 页面部件， 可选
+        pendant : '<div class="page-num-simple"><span style="">${PAGE} / ${TOTAL_PAGE}</span></div>',
     }, 
 
     // 目录插件，可选（默认未开启），所列选项为开启是的默认值
@@ -63,7 +65,7 @@ bookConfig = {
         titlesSelector : 'h1,h2,h3,h4,h5,h6', // 作为目录标题的选择器，按目录级别依次
         positionSelector : '.nop-page-item-pagenum-1', //可选，目录位置，默认为第一个编号页前
     },
-    
+
     // 工具栏插件，可选（默认开启），所列选项为开启时的默认值
     toolBar : {
         webPrint : true,  // 可选，默认true,Web打印按钮功能
@@ -98,7 +100,7 @@ bookConfig = {
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
 - content-box下的每个节点都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
 ```
-block : 块：如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页（默认）
+block : 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
 
 block-box : 块盒子：块盒子内部nop-fill-box标记的节点包含的多个块，盒子内的多个块被分割到多个页面时，都会复制包裹块的外部节点。
     以下一个示例中的表格为例：
@@ -109,9 +111,9 @@ block-box : 块盒子：块盒子内部nop-fill-box标记的节点包含的多�
 text-box : 文本盒子：与块盒子类似，大文本内容跨多个页面时，会复制外部包裹文本的盒子的部分。
      文本盒子节点， 大文本的容器节点需用 class : nop-fill-box标记
 
-mix-box : 混合盒子：与块盒子类似超出页面自动还原，并复制容器外层，盒子内部放置的所有节点必须标记data-op-type属性，属性值： text或block 
+mix-box : 混合盒子：与块盒子类似超出页面自动分页，（容器使用class: nop-fill-box标记），并复制容器外层，盒子内部放置的所有节点必须标记data-op-type属性，属性值： text或block 
      text:允许跨页截断
-     block:不可跨页截断
+     block:（默认）不可跨页截断
 
 new-page : 标记从新页，开始插入
 
