@@ -466,7 +466,11 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
     如果使用官网api，建议使用短期授权码机制，携带在url上。只有在有授权码在一定时间段内才有访问bookjs-eazy创建的页面
 - 此插件适配了wkhtmltopdf和chrome headless。可使用本项目中配套封装的命令行工具，从后端生成精美PDF
 
-
+## 在线生成PDF
+    ```
+        参考bookConfig.toolBar.serverPrint选项，工具栏会多出下载按钮
+        配置值： { serverUrl: '//bookjs.zhouwuxue.com/' }
+    ```
 ## 使用chrome headless方式渲染
 
 ```bash
