@@ -99,6 +99,7 @@ bookConfig = {
 ## PDF内容设计
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
 - content-box下的每个节点都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
+
 ```
 block : 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
 
@@ -467,10 +468,12 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 - 此插件适配了wkhtmltopdf和chrome headless。可使用本项目中配套封装的命令行工具，从后端生成精美PDF
 
 ## 在线生成PDF
-    ```
-        参考bookConfig.toolBar.serverPrint选项，工具栏会多出下载按钮
-        配置值： { serverUrl: '//bookjs.zhouwuxue.com/' }
-    ```
+
+```
+    参考bookConfig.toolBar.serverPrint选项，工具栏会多出下载按钮
+    配置值： { serverUrl: '//bookjs.zhouwuxue.com/' }
+```
+
 ## 使用chrome headless方式渲染
 
 ```bash
