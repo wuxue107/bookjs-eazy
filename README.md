@@ -74,7 +74,7 @@ bookConfig = {
         // 服务端打印并下载, 可选，bool|object，默认false,true:使用官网的api接口,object:使用自定义的服务端打印
         // true等效的object的配置：serverPrint : { serverUrl : './' }, 官网可用serverUrl : '//bookjs.zhouwuxue.com/'
         // 要使用serverPrint,必须server能访问到你的网页。网页不要使用登录状态授权，建议通过URL参数传递临时授权
-        // 如果使用官方的server进行打印，则需公网上可正确访问
+        // 如果使用官方的server进行打印，则需公网上可正确访问你用bookjs-eazy构造的网页
         serverPrint : true,
         
         buttons : [
