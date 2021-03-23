@@ -9,11 +9,11 @@
 - bug: 苹果手机预览会出线分页和字体大小问题，在于插件依赖js动态计算高度，似乎是因为苹果为了优化，渲染不同步所带来的
 - <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a>
 
-![alt ](https://bookjs.zhouwuxue.com/js/bookjs/eazy-2-qrcode.png)
+![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-2-qrcode.png)
 
 - <a href="https://bookjs.zhouwuxue.com/simple-4.html" target="_blank" rel="noopener noreferrer">另一个小说案例</a>
 
-![alt ](https://bookjs.zhouwuxue.com/js/bookjs/simple-4-qrcode.png)
+![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/simple-4-qrcode.png)
 
 - [小票打印](https://gitee.com/wuxue107/nop-printer)
 
