@@ -72,7 +72,7 @@ bookConfig = {
         saveHtml : false, // 可选，默认false,禁用保存HTML功能
         
         // 服务端打印并下载, 可选，bool|object，默认false,true:使用官网的api接口,object:使用自定义的服务端打印
-        // true等效的object的配置：serverPrint : { serverUrl : './' }, 官网可用serverUrl : '//bookjs.zhouwuxue.com/'
+        // true等效的object的配置：serverPrint : { serverUrl : '/' }, 官网可用serverUrl : '//bookjs.zhouwuxue.com/'
         // 要使用serverPrint,必须server能访问到你的网页。网页不要使用登录状态授权，建议通过URL参数传递临时授权
         // 如果使用官方的server进行打印，则需公网上可正确访问你用bookjs-eazy构造的网页
         serverPrint : true,
@@ -469,10 +469,25 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
 ## 在线生成PDF
 
+- 使用官网打印服务
+
 ```
     参考bookConfig.toolBar.serverPrint选项，工具栏会多出下载按钮
     配置值： { serverUrl: '//bookjs.zhouwuxue.com/' }
 ```
+
+- 使用官网提供的docker打印服务镜像,自建打印服务
+
+```bash
+    docker pull wuxue107/screenshot-api-server
+    # 会已当前目录，为根目录，创建一个web站点。
+    # 对与bookConfig.toolBar.serverPrint 可以配置为 ： {serverUrl : '//your_host_name[:port]/'}
+    # 生成的pdf会存在./pdf/ 目录下。你的bookjs-eazy编写的页面也可以直接放在根目录下。
+    docker run -p 3000:3000 -td --rm -v ${PWD}:/screenshot-api-server/public --name=screenshot-api-server wuxue107/screenshot-api-server
+```
+
+详细内容见，<a href="https://gitee.com/wuxue107/screenshot-api-server" target="_blank">wuxue107/screenshot-api-server</a>项目
+
 
 ## 使用chrome headless方式渲染
 
