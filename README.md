@@ -502,7 +502,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 ```
 
 
-# 生成PDF，配套PDF生成命令行工具的使用
+# 生成PDF及配套PDF生成命令行工具的使用
 - 可以通过浏览器点击打印按钮，打印另存为PDF
 - (推荐) 也可以直接使用打开toolBar.serverPrint = true,使用官网docker镜像自建打印服务,进行生成下载PDF。
 - 此插件适配了wkhtmltopdf和chrome headless。可使用本项目中配套封装的命令行工具，从后端生成精美PDF
@@ -516,11 +516,12 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
     # 运行打印服务
     # 会已当前目录，为根目录，创建一个web站点。
-    # 对与bookConfig.toolBar.serverPrint 可以配置为 ：true 或 {serverUrl : '//your_host_name[:port]/'}
     # 生成的pdf会存在./pdf/ 目录下。你的bookjs-eazy编写的页面也可以直接放在根目录下。
     docker run -p 3000:3000 -td --rm -v ${PWD}:/screenshot-api-server/public --name=screenshot-api-server wuxue107/screenshot-api-server
-    
-    # 在当前目录，用bookjs-eazy创建book.html的文件。 http://your_host_name[:port]/book.html访问即可预览/打印下载
+
+    # 在根目录下用bookjs-eazy创建book.html的文件。
+    # bookConfig.toolBar.serverPrint 可以配置为 ：true 或 {serverUrl : '//your_host_name[:port]/'}
+    # http://your_host_name[:port]/book.html访问即可预览/打印下载
 ```
 
 详细内容见，<a href="https://gitee.com/wuxue107/screenshot-api-server" target="_blank">wuxue107/screenshot-api-server</a>项目
