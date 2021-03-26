@@ -68,13 +68,50 @@ bookConfig = {
 
     // 工具栏插件，可选（默认开启），所列选项为开启时的默认值
     toolBar : {
-        webPrint : true,  // 可选，默认true,Web打印按钮功能
-        saveHtml : false, // 可选，默认false,禁用保存HTML功能
-        
-        // 服务端打印并下载, 可选，bool|object，默认false,true:使用官网的api接口,object:使用自定义的服务端打印
-        // true等效的object的配置：serverPrint : { serverUrl : '/' }, 官网可用serverUrl : '//bookjs.zhouwuxue.com/'
-        // 要使用serverPrint,必须server能访问到你的网页。网页不要使用登录状态授权，建议通过URL参数传递临时授权
-        // 如果使用官方的server进行打印，则需公网上可正确访问你用bookjs-eazy构造的网页
+        // Web打印按钮功能可选，默认true
+        webPrint : true, 
+
+        /**
+         * HTML保存按钮，可选，bool|object，默认false,禁用保存HTML功能
+         * saveHtml : {
+         *     // 可选，保存的文件名，默认值: document.title + '.html'
+         *     fileName : 'output.html',
+         *     // 可选，自定义下载保存。可用于混合APP内下载时用
+         *     save : function(getStaticHtmlPromiseFunc,fileName){
+         *         getStaticHtmlPromiseFunc().then(function(htmlBlob){
+         *             
+         *         })
+         *     }
+         * }
+         */
+        saveHtml : false, 
+
+        /**
+         * 服务端打印下载按钮
+         * 可选，bool|object，默认false,true:使用官网的api接口,object:使用自定义的服务端打印
+         * true等效的object的配置：serverPrint : { serverUrl : '/' }, 
+         * 官网可用serverUrl : '//bookjs.zhouwuxue.com/'
+         * 要使用serverPrint,必须server能访问到你的网页。网页不要使用登录状态授权，建议通过URL参数传递临时授权
+         * 如果使用官方的server进行打印，则需公网上可正确访问你用bookjs-eazy构造的网页
+         * 
+         * serverPrint : {
+         *     // 可选，打印服务器地址
+         *     serverPrint : '/',
+         *     // 可选，保存的文件名，默认值 document.title + '.pdf'
+         *     fileName : 'output.pdf',
+         *     // 可选，打印附属参数
+         *     params : {
+         *         // 打印超时时间
+         *         timeout : 30000,
+         *         // 页面渲染完成后，打印前延时
+         *         delay : 1000,
+         *     }, 
+         *     // 可选，自定义下载。可用于混合APP内下载时用
+         *     save : function(pdfUrl, serverPrintOption){
+         *         
+         *     }
+         * }
+         */
         serverPrint : true,
         
         buttons : [
