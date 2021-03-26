@@ -72,14 +72,14 @@ bookConfig = {
         webPrint : true, 
 
         /**
-         * HTML保存按钮，可选，bool|object，默认false,禁用保存HTML功能
+         * HTML保存按钮，可选，bool|object，默认false:禁用保存HTML功能，true:启用并使用默认选项
          * saveHtml : {
          *     // 可选，保存的文件名，默认值: document.title + '.html'
          *     fileName : 'output.html',
          *     // 可选，自定义下载保存。可用于混合APP内下载时用
          *     save : function(getStaticHtmlPromiseFunc,fileName){
          *         getStaticHtmlPromiseFunc().then(function(htmlBlob){
-         *             
+         *             ...
          *         })
          *     }
          * }
@@ -88,7 +88,7 @@ bookConfig = {
 
         /**
          * 服务端打印下载按钮
-         * 可选，bool|object，默认false,true:使用官网的api接口,object:使用自定义的服务端打印
+         * 可选，bool|object，默认false:不启用,true:启用并使用默认选项,object:使用自定义的服务端打印
          * true等效的object的配置：serverPrint : { serverUrl : '/' }, 
          * 官网可用serverUrl : '//bookjs.zhouwuxue.com/'
          * 要使用serverPrint,必须server能访问到你的网页。网页不要使用登录状态授权，建议通过URL参数传递临时授权
@@ -112,7 +112,7 @@ bookConfig = {
          *     }
          * }
          */
-        serverPrint : true,
+        serverPrint : false,
         
         buttons : [
             // 这里可以自定义工具栏按钮
