@@ -504,7 +504,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
 # 生成PDF，配套PDF生成命令行工具的使用
 - 可以通过浏览器点击打印按钮，打印另存为PDF
-- (推荐) 也可以直接使用打开toolBar.serverPrint = true,使用官网镜像自己docker打印服务,进行生成下载PDF。
+- (推荐) 也可以直接使用打开toolBar.serverPrint = true,使用官网docker镜像自建打印服务,进行生成下载PDF。
 - 此插件适配了wkhtmltopdf和chrome headless。可使用本项目中配套封装的命令行工具，从后端生成精美PDF
 
 
