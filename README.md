@@ -501,34 +501,39 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
 # 生成PDF，配套PDF生成命令行工具的使用
 - 可以通过浏览器点击打印按钮，打印另存为PDF
-- (推荐) 也可以直接使用打开toolBar.serverPrint = true,直接使用官网api,进行生成下载。
-    前提是。你的页面外网可访问。也可以使用自定义自己的server。
-    如果使用官网api，建议使用短期授权码机制，携带在url上。只有在有授权码在一定时间段内才有访问bookjs-eazy创建的页面
+- (推荐) 也可以直接使用打开toolBar.serverPrint = true,使用官网镜像自己docker打印服务,进行生成下载PDF。
 - 此插件适配了wkhtmltopdf和chrome headless。可使用本项目中配套封装的命令行工具，从后端生成精美PDF
 
-## 在线生成PDF
 
-- 使用官网打印服务
+## 使用官网提供的docker打印服务镜像,自建打印服务
+
+```bash
+    # 下载镜像
+    docker pull wuxue107/screenshot-api-server
+
+    # 运行打印服务
+    # 会已当前目录，为根目录，创建一个web站点。
+    # 对与bookConfig.toolBar.serverPrint 可以配置为 ：true 或 {serverUrl : '//your_host_name[:port]/'}
+    # 生成的pdf会存在./pdf/ 目录下。你的bookjs-eazy编写的页面也可以直接放在根目录下。
+    docker run -p 3000:3000 -td --rm -v ${PWD}:/screenshot-api-server/public --name=screenshot-api-server wuxue107/screenshot-api-server
+    
+    # 在当前目录，用bookjs-eazy创建book.html的文件。 http://your_host_name[:port]/book.html访问即可预览/打印下载
+```
+
+详细内容见，<a href="https://gitee.com/wuxue107/screenshot-api-server" target="_blank">wuxue107/screenshot-api-server</a>项目
+
+## 使用官网打印服务
+
+前提是。您用bookjs-eazy创建的页面可外网访问。
+如果使用官网打印服务，页面需要不授权访问，或者 使用短期授权码机制（建议），携带在url上。只有在有授权码在一定时间段内才有访问您用
 
 ```
     参考bookConfig.toolBar.serverPrint选项，工具栏会多出下载按钮
     配置值： { serverUrl: '//bookjs.zhouwuxue.com/' }
 ```
 
-- 使用官网提供的docker打印服务镜像,自建打印服务
 
-```bash
-    docker pull wuxue107/screenshot-api-server
-    # 会已当前目录，为根目录，创建一个web站点。
-    # 对与bookConfig.toolBar.serverPrint 可以配置为 ： {serverUrl : '//your_host_name[:port]/'}
-    # 生成的pdf会存在./pdf/ 目录下。你的bookjs-eazy编写的页面也可以直接放在根目录下。
-    docker run -p 3000:3000 -td --rm -v ${PWD}:/screenshot-api-server/public --name=screenshot-api-server wuxue107/screenshot-api-server
-```
-
-详细内容见，<a href="https://gitee.com/wuxue107/screenshot-api-server" target="_blank">wuxue107/screenshot-api-server</a>项目
-
-
-## 使用chrome headless方式渲染
+## 命令行打印，使用chrome headless方式渲染
 
 ```bash
     # 首次使用时,安装bin/html2pdf的依赖包
@@ -556,7 +561,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
     #
 ```
 
-## 使用wkhtmltopdf渲染(会更据h1-h6生成PDF书签),需自己去下载命令行，放入PATH的环境变量所在目录下
+## 命令行打印，使用wkhtmltopdf渲染(会更据h1-h6生成PDF书签),需自己去下载命令行，放入PATH的环境变量所在目录下
     
 ```bash
 
@@ -568,10 +573,13 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
     #
     # 注意：如果使用wkhtmltopdf方式的自定义尺寸，不用担心，浏览器渲染完毕后，在Console上会输出wkhtmltopdf的PDF配套生成命令
 ```
-## 生成常见问题
+
+# 生成常见问题
+
 - 生成的PDF里全是框框,原因在于。在linux服务器环境下，通常没有安装所需字体。
 - 执行bin/pdf-xx-xx 相关命令，找不到wkhtmltopdf，需自己去下载wkhtmltopdf放置PATH目录下
 - bin/html2pdf --agent=chrome-headless参数启动时，报错。该agent使用的是本地已存在的chrome headless remote-debug服务
+
 ```bash
 :: 启动一个本地chrome headless
 "chrome.exe" --headless --disable-gpu --remote-debugging-port=9222 --disable-extensions --mute-audio
