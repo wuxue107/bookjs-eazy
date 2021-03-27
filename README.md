@@ -9,7 +9,7 @@
 4. docker镜像。可快速构件你的在线PDF的打印生成服务
 
 # 预览案例
-- bug: 苹果手机预览会出线分页和字体大小问题，在于插件依赖js动态计算高度，似乎是因为苹果为了优化，渲染不同步所带来的
+
 - <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a>
 
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-2-qrcode.png)
