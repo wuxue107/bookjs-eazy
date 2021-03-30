@@ -164,6 +164,8 @@ new-page : 标记从新页，开始插入
 pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对页面纸张固定的元素），在其定义后的每个页面都会显示，直到下一个pendants出现。
 ```
 
+- 来试试: <a href="https://codepen.io/wuxue107/pen/VwPKWvq">Code Pen Run It</a>
+
 - 使用样例
 
 ```html
