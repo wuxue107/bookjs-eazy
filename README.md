@@ -139,7 +139,6 @@ bookConfig = {
 ## PDF内容设计
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
 - content-box下的每个节点都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
-- 来试试: <a href="https://codepen.io/wuxue107/pen/VwPKWvq">Code Pen Run It</a>
 
 ```
 block : 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
