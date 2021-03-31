@@ -7,6 +7,7 @@
 2. 支持预览、WEB打印、页码/目录、自定义页眉页脚。
 3. 前后端皆可生成PDF,后端可配套使用chrome headless和wkhtmltopdf命令行PDF生成工具。
 4. docker镜像。可快速构件你的在线PDF的打印生成服务
+5. 兼容主流浏览器及移动端
 
 # 预览案例
 
@@ -65,8 +66,18 @@ bookConfig = {
 
     // 目录插件，可选（默认未开启），所列选项为开启是的默认值
     simpleCatalog : {
-        titlesSelector : 'h1,h2,h3,h4,h5,h6', // 作为目录标题的选择器，按目录级别依次
-        positionSelector : '.nop-page-item-pagenum-1', //可选，目录位置，默认为第一个编号页前
+        header : '<div class="catalog-title">目 录</div>', // 可选，目录页Header部分，放入你想加入的一切
+        titlesSelector : 'h1,h2,h3,h4,h5,h6', // 可选，作为目录标题的选择器，按目录级别依次
+        itemFillChar : '…', // 可选，目录项填充字符, ""空字符串，不填充，使用自定义makeItem时，忽略该选项配置
+        positionSelector : '.nop-page-item-pagenum-1', //可选，目录位置会插入在匹配页的之前，默认为第一个编号页前
+        // 可选，自定义目录项。
+        makeItem : function(itemEl,itemInfo) {
+           /** 
+            * @var itemEl jQuery Element 
+            * @var object itemInfo PS: {title, pageNum, level,linkId}
+            **/
+            return '<div>自定义的目录项html内容，根据itemInfo自己构造</div>';
+        }
     },
 
     // 工具栏插件，可选（默认开启），所列选项为开启时的默认值
@@ -150,7 +161,8 @@ block-box : 块盒子：块盒子内部nop-fill-box标记的节点包含的多�
     table节点定义为块盒子
     tbody节点定义为容纳块的容器节点（使用class: nop-fill-box标记）
     这样在填充行tr时，当前页空间不足时，换页并复制外部table（除去nop-fill-box标记的部分）继续填充。这样表头就得到复用
-    
+
+text : 文本，跨页内容自动分割,节点内直接放入文本内容。
 text-box : 文本盒子：与块盒子类似，大文本内容跨多个页面时，会复制外部包裹文本的盒子的部分。
      文本盒子节点， 大文本的容器节点需用 class : nop-fill-box标记
 
