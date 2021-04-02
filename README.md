@@ -54,7 +54,7 @@ bookConfig = {
     // 可选，边距，所列选项为默认值
     padding : "31.8mm 25.4mm 31.8mm 25.4mm", 
     
-    // 简易页码插件，可选（默认未开启），所列选项为开启是的默认值
+    // 简易页码插件，可选（默认未开启），所列选项为开启时的默认值
     simplePageNum : {
         // 从第几页开始编号，默认0为第一页开始，，没有页码,也可以为一个css选择器如：".first_page"，从包含选择器接点的页面开始编号
         pageBegin : 0, 
@@ -64,7 +64,7 @@ bookConfig = {
         pendant : '<div class="page-num-simple"><span style="">${PAGE} / ${TOTAL_PAGE}</span></div>',
     }, 
 
-    // 目录插件，可选（默认未开启），所列选项为开启是的默认值
+    // 目录插件，可选（默认未开启），所列选项为开启时的默认值
     simpleCatalog : {
         header : '<div class="catalog-title">目 录</div>', // 可选，目录页Header部分，放入你想加入的一切
         titlesSelector : 'h1,h2,h3,h4,h5,h6', // 可选，作为目录标题的选择器，按目录级别依次
