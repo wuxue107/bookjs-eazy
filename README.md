@@ -16,6 +16,7 @@
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-1-qrcode.png)
 
 - <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">另一个小说案例</a>
+
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-2-qrcode.png)
 
 
