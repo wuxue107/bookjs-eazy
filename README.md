@@ -221,6 +221,27 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
 - 动手来试试: <a href="https://codepen.io/pen/?template=VwPKWvq">CodePen在线测试</a>
 
+## 设计中的相关细节
+
+### 奇偶页实现
+
+- 在设置简易页面后，页面节点上会添加对应的class: nop-page-item-odd （奇数页）、 nop-page-item-even（偶数页） nop-page-item-pagenum-1（页编号）
+
+### 文本、盒子被分割到不同页后，被差分部分特殊样式处理
+
+- 同一段落文本，被分到下一页的文本部分节点，会被class:  nop-link-last 进行标记。可以根据此class,进行缩进特殊处理
+
+- text-box 、block-box、mix-box 内容被分割部分也同样会被class: nop-link-last 标记
+
+### 浏览器类型标记
+
+- Book节点。上会标记浏览器类型。class: chrome、firefox、safari 
+
+### 打印和预览时样式差异处理
+
+- Book节点。在不同模式下，会使用class: nop-book-preview（预览）、nop-book-print（打印） 进行标记
+
+
 # 生成PDF及配套PDF生成命令行工具的使用
 - 可以通过浏览器点击打印按钮，打印另存为PDF
 - (推荐) 也可以直接使用打开toolBar.serverPrint = true,使用官网docker镜像自建打印服务,进行生成下载PDF。
@@ -229,18 +250,20 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
 ## 使用官网docker镜像,自建打印服务
 
+
+- 可使用 ./docker-start.sh 进行部署
+
 ```bash
-    # 下载镜像
-    docker pull wuxue107/screenshot-api-server
+    # 自己docker打印服务的命令
+    # ./docker-start.sh [WEB_PORT=3000] [WEB_PATH=dist]
 
     # 运行打印服务
-    # 会已当前目录，为根目录，创建一个web站点。
+    # 会以dist为根目录，创建一个web站点。
     # 生成的pdf会存在./pdf/ 目录下。你的bookjs-eazy编写的页面也可以直接放在根目录下。
-    docker run -p 3000:3000 -td --rm -v ${PWD}:/screenshot-api-server/public --name=screenshot-api-server wuxue107/screenshot-api-server
-
+    
     # 在根目录下用bookjs-eazy创建book.html的文件。
-    # bookConfig.toolBar.serverPrint 可以配置为 ：true 或 {serverUrl : '//your_host_name[:port]/'}
-    # http://your_host_name[:port]/book.html访问即可预览/打印下载
+    # bookConfig.toolBar.serverPrint 可以配置为 ：true 或 {serverUrl : '//your_host_name[:WEB_PORT]/'}
+    # http://your_host_name[:WEB_PORT]/book.html访问即可预览/打印下载
 ```
 
 详细内容见，<a href="https://gitee.com/wuxue107/screenshot-api-server" target="_blank">wuxue107/screenshot-api-server</a>项目
