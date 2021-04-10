@@ -153,7 +153,12 @@
             pageBegin  : '#voucher-title-0'
         },
         toolBar : {
-            serverPrint : true,
+            serverPrint : {
+                params : {
+                     // 打印超时时间
+                     timeout : 30000,
+                },
+            },
             webPrint : true,
             saveHtml : true,
         },
