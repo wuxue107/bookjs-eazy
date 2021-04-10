@@ -5,7 +5,7 @@
 
 1. 只需专注用H5构件你的PDF内容,而无需关心分页及内容截断问题
 2. 支持预览、WEB打印、页码/目录、自定义页眉页脚。
-3. 前后端皆可生成PDF,后端可配套使用chrome headless和wkhtmltopdf命令行PDF生成工具。
+3. 前后端皆可生成PDF,前端打印另存为PDF,后端可配套使用chrome headless和wkhtmltopdf命令行PDF生成工具。
 4. docker镜像。可快速构件你的在线PDF的打印生成服务
 5. 兼容主流浏览器及移动端
 
