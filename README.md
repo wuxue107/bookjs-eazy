@@ -235,7 +235,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
 ### 浏览器类型标记
 
-- Book节点。上会标记浏览器类型。class: chrome、firefox、safari 
+- Book节点。上会标记浏览器类型。class: chrome、firefox、safari、ie、qq、wechat、wkhtmltopdf
 
 ### 打印和预览时样式差异处理
 
