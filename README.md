@@ -322,7 +322,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
 # 生成常见问题
 
-- 生成的PDF里全是框框或显示不出来,原因在于。在linux服务器环境下，通常没有安装所需字体。
+- 生成的PDF里全是框框或显示不出来,原因在于。在linux服务器环境下，通常没有安装所需字体。或使用web加载字体文件太大，加载超时
 - 执行bin/pdf-xx-xx 相关命令，找不到wkhtmltopdf，需自己去下载wkhtmltopdf放置PATH目录下
 - bin/html2pdf --agent=chrome-headless参数启动时，报错。该agent使用的是本地已存在的chrome headless remote-debug服务
 
