@@ -18,7 +18,6 @@
     <script src="./static/js/jquery.min.js"></script>
     <script src="./static/js/lodash.min.js"></script>
     <script src="./static/js/bookjs/latest/bookjs-eazy.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 </head>
 <body>
 <style>
@@ -143,10 +142,11 @@
         padding-left: 12px;
     }
 </style>
-<div id="content-box">
+<div id="content-box"></div>
+<script id="book-tpl" type="text/lodash-tpl">
     <!-- 封面 -->
     <div data-op-type="pendants">
-        <img :src="info.cover_url" style="position: absolute; top: 0; left: 0; right: 0;  bottom: 0;    width: 100%;  height: 100%;" alt="cover"/>
+        <img src="<%=info.cover_url%>" style="position: absolute; top: 0; left: 0; right: 0;  bottom: 0;    width: 100%;  height: 100%;" alt="cover"/>
     </div>
     <!-- 空白页 -->
     <div data-op-type="new-page"></div>
@@ -154,23 +154,27 @@
     <!-- 前言 -->
     <div data-op-type="new-page"></div>
     <h2>前言</h2>
-    <p v-for="(item,i) in preface.paragraphs" class="nop-text" data-op-type="text">{{item}}</p>
+    <% _.forEach(preface.paragraphs, function(item,i) { %>
+    <p class="nop-text" data-op-type="text"><%=item%></p>
+    <% }) %>
     <!-- 卷-章节 -->
-    <template  v-for="(volumeData,volumeIndex) in volumes">
+    <% _.forEach(volumes, function(volumeData,volumeIndex) { %>
         <div data-op-type="new-page"></div>
-        <h2 :id="'voucher-title-' + volumeIndex">第{{volumeData.number}}卷 {{volumeData.title}}</h2>
-        <template  v-for="(chapterData,chapterIndex) in volumeData.chapters">
+        <h2 id="voucher-title-<%=volumeIndex%>">第<%=volumeData.number%>卷 <%=volumeData.title%></h2>
+        <% _.forEach(volumeData.chapters, function(chapterData,chapterIndex) { %>
             <div data-op-type="pendants">
-                <div :class="'volume-mark volume-' + volumeIndex"><span class="">第{{volumeData.number}}卷</span></div>
+                <div class="volume-mark volume-<%=volumeIndex%>"><span class="">第<%=chapterData.number%>卷</span></div>
                 <div class="chapter-mark">
-                    <div>{{volumeData.title}} ● {{chapterData.title}} </div>
+                    <div><%=volumeData.title%> ● <%=chapterData.title%> </div>
                 </div>
             </div>
-            <h3 :id="'chapter-title-' + volumeIndex + '-' + chapterIndex">{{chapterData.title}}</h3>
-            <p v-for="(item,i) in chapterData.paragraphs" class="nop-text" data-op-type="text">{{item}}</p>
-        </template>
-    </template>
-</div>
+            <h3 id="chapter-title-<%=volumeIndex%>-<%=chapterIndex%>"><%=chapterData.title%></h3>
+            <% _.forEach(chapterData.paragraphs, function(item,i) { %>
+            <p class="nop-text" data-op-type="text"><%=item%></p>
+            <% }) %>
+        <% }) %>
+    <% }) %>
+</script>
 <script>
     bookConfig = {
         pageSize : 'ISO_A4',
@@ -197,17 +201,11 @@
 <script>
 </script>
 <script>
-
     $.getJSON('./eazy-2.json').then(function(data){
-        console.log(data);
-        document.title = data.info.book_name;
         var t1 = (new Date()).getTime();
-        new Vue({
-            el:"#content-box",
-            data : function(){
-                return data
-            }
-        });
+        document.title = data.info.book_name;
+        var tplRender = _.template($('#book-tpl').html());
+        $('#content-box').html(tplRender(data));
         var t2 = (new Date()).getTime();
         console.log(t2 - t1);
         bookConfig.start = true;

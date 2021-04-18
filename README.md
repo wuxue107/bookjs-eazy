@@ -16,7 +16,7 @@
 
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-1-qrcode.png)
 
-- <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">另一个小说案例</a>
+- 另一个小说案例 <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a> lodash模板:<a href="https://bookjs.zhouwuxue.com/eazy-4.html" target="_blank" rel="noopener noreferrer">eazy-4.html</a> vue模板:<a href="https://bookjs.zhouwuxue.com/eazy-3.html" target="_blank" rel="noopener noreferrer">eazy-3.html</a>
 
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-2-qrcode.png)
 
@@ -179,7 +179,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 - 使用样例
 
 ```html
-<template id="content-box" style="display: none">
+<div id="content-box" style="display: none">
     <div data-op-type="pendants"><!-- 定义页面部件（页眉/页脚/页标签/水印背景等） -->
         <div class='pendant-title'>第一章：块盒子</div>
     </div>
@@ -217,7 +217,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
             <span data-op-type='text' style='color: red'>ABCDEFGHIJKLMNOPQRSTUVWXYZ...</span>
         </div>
     </div>
-</template>
+</div>
 ```
 
 - 动手来试试: <a href="https://codepen.io/pen/?template=VwPKWvq">CodePen在线测试</a>
