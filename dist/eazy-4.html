@@ -207,7 +207,7 @@
         var tplRender = _.template($('#book-tpl').html());
         $('#content-box').html(tplRender(data));
         var t2 = (new Date()).getTime();
-        console.log(t2 - t1);
+        console.log("tpl render cost" + (t2 - t1) + "ms");
         bookConfig.start = true;
     });
 </script>

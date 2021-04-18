@@ -199,7 +199,6 @@
 <script>
 
     $.getJSON('./eazy-2.json').then(function(data){
-        console.log(data);
         document.title = data.info.book_name;
         var t1 = (new Date()).getTime();
         new Vue({
@@ -209,7 +208,7 @@
             }
         });
         var t2 = (new Date()).getTime();
-        console.log(t2 - t1);
+        console.log("tpl render cost" + (t2 - t1) + "ms");
         bookConfig.start = true;
     });
 </script>
