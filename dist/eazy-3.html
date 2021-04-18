@@ -142,7 +142,7 @@
         padding-left: 12px;
     }
 </style>
-<template id="content-box">
+<div id="content-box">
     <!-- 封面 -->
     <div data-op-type="pendants">
         <img :src="info.cover_url" style="position: absolute; top: 0; left: 0; right: 0;  bottom: 0;    width: 100%;  height: 100%;" alt="cover"/>
@@ -169,7 +169,7 @@
             <p v-for="(item,i) in chapterData.paragraphs" class="nop-text" data-op-type="text">{{item}}</p>
         </template>
     </template>
-</template>
+</div>
 <script>
     bookConfig = {
         pageSize : 'ISO_A4',
@@ -204,7 +204,7 @@
         new Vue({
             el:"#content-box",
             data : function(){
-                return data;
+                return data
             }
         });
         var t2 = (new Date()).getTime();
