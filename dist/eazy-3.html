@@ -18,7 +18,7 @@
     <script src="./static/js/jquery.min.js"></script>
     <script src="./static/js/lodash.min.js"></script>
     <script src="./static/js/bookjs/latest/bookjs-eazy.min.js"></script>
-</head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 <body>
 <style>
     h1,h2,h3,h4{
@@ -111,7 +111,7 @@
     .nop-page-item .volume-10.volume-mark{
         background-color: #1982dc;
     }
-    
+
     .nop-page-item.nop-page-item-even .volume-mark{
         right: 0;
         border-radius: 5px 0 0 5px;
@@ -142,7 +142,33 @@
         padding-left: 12px;
     }
 </style>
-<template id="content-box" style="display: none">
+<template id="content-box">
+    <!-- 封面 -->
+    <div data-op-type="pendants">
+        <img :src="info.cover_url" style="position: absolute; top: 0; left: 0; right: 0;  bottom: 0;    width: 100%;  height: 100%;" alt="cover"/>
+    </div>
+    <!-- 空白页 -->
+    <div data-op-type="new-page"></div>
+    <div data-op-type="pendants"></div>
+    <!-- 前言 -->
+    <div data-op-type="new-page"></div>
+    <h2>前言</h2>
+    <p v-for="(item,i) in preface.paragraphs" class="nop-text" data-op-type="text">{{item}}</p>
+    <!-- 前言 -->
+    <template  v-for="(volumeData,volumeIndex) in volumes">
+        <div data-op-type="new-page"></div>
+        <h2 :id="'voucher-title-' + volumeIndex">第{{volumeData.number}}卷 {{volumeData.title}}</h2>
+        <template  v-for="(chapterData,chapterIndex) in volumeData.chapters">
+            <div data-op-type="pendants">
+                <div :class="'volume-mark volume-' + volumeIndex"><span class="">第{{volumeData.number}}卷</span></div>
+                <div class="chapter-mark">
+                    <div>{{volumeData.title}} ● {{chapterData.title}} </div>
+                </div>
+            </div>
+            <h3 :id="'chapter-title-' + volumeIndex + '-' + chapterIndex">{{chapterData.title}}</h3>
+            <p v-for="(item,i) in chapterData.paragraphs" class="nop-text" data-op-type="text">{{item}}</p>
+        </template>
+    </template>
 </template>
 <script>
     bookConfig = {
@@ -157,8 +183,8 @@
         toolBar : {
             serverPrint : {
                 params : {
-                     // 打印超时时间
-                     timeout : 60000,
+                    // 打印超时时间
+                    timeout : 60000,
                 },
             },
             webPrint : true,
@@ -168,60 +194,21 @@
     }
 </script>
 <script>
-    $.getJSON('./eazy-2.json').then(function(data){
-        
-        var items = [];
-        var renderCover = function () {
-            document.title = data.info.book_name;
-            items.push('<div data-op-type="pendants"><img src="'+data.info.cover_url+'" style="\n' +
-                '    position: absolute;\n' +
-                '    top: 0;\n' +
-                '    left: 0;\n' +
-                '    right: 0;\n' +
-                '    bottom: 0;' +
-                '    width: 100%;\n' +
-                '    height: 100%;\n' +
-                '"/></div>');
-            items.push('<div data-op-type="new-page" />');
-        };
+</script>
+<script>
 
-        var renderPreface = function() {
-            items.push('<div data-op-type="pendants"></div>');
-            items.push('<div data-op-type="new-page" />');
-            items.push('<h2>前言</h2>');
-            var texts = data.preface.paragraphs;
-            for(var i in texts){
-                items.push('<p class="nop-text" data-op-type="text">'+texts[i]+'</p>');
+    $.getJSON('./eazy-2.json').then(data=>{
+        console.log(data);
+        document.title = data.info.book_name;
+        var t1 = (new Date()).getTime();
+        new Vue({
+            el:"#content-box",
+            data(){
+                return data;
             }
-        };
-
-        var renderVolume = function(volumeData,volumeIndex) {
-            items.push('<div data-op-type="new-page" />');
-            //this.book.addPage().getElem().addClass('volume-' + volumeIndex);
-            items.push('<h2 id="voucher-title-' + volumeIndex + '">' + volumeData.title + '</h2>');
-            for(var chapterIndex in volumeData.chapters){
-                var chapterData = volumeData.chapters[chapterIndex];
-                
-                items.push('<div data-op-type="pendants">' + 
-'<div class="volume-mark volume-' + volumeIndex + '"><span class="">第' + volumeData.number + '卷</span></div>' +
-'<div class="chapter-mark"><div>' + volumeData.title + ' ● ' + chapterData.title + '</div></div>' + 
-'</div>');
-                items.push('<h3 id="chapter-title-' + chapterIndex + '">' + chapterData.title + '</h3>');
-
-                var texts = chapterData.paragraphs;
-                for(var i in texts){
-                    items.push('<p class="nop-text" data-op-type="text">'+texts[i]+'</p>');
-                }
-            }
-        };
-     
-        renderCover();
-        renderPreface();
-        for(var i in data.volumes){
-            renderVolume(data.volumes[i],i);
-        }
-
-        $('#content-box').html(items.join(''));
+        });
+        var t2 = (new Date()).getTime();
+        console.log(t2 - t1);
         bookConfig.start = true;
     });
 </script>

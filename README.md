@@ -179,7 +179,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 - 使用样例
 
 ```html
-<div id="content-box" style="display: none">
+<template id="content-box" style="display: none">
     <div data-op-type="pendants"><!-- 定义页面部件（页眉/页脚/页标签/水印背景等） -->
         <div class='pendant-title'>第一章：块盒子</div>
     </div>
@@ -217,7 +217,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
             <span data-op-type='text' style='color: red'>ABCDEFGHIJKLMNOPQRSTUVWXYZ...</span>
         </div>
     </div>
-</div>
+</template>
 ```
 
 - 动手来试试: <a href="https://codepen.io/pen/?template=VwPKWvq">CodePen在线测试</a>
