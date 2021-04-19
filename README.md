@@ -256,15 +256,16 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
 ```bash
     # 自己docker打印服务的命令
-    # ./docker-start.sh [WEB_PORT=3000] [WEB_PATH=dist]
+    # ./docker-start.sh [WEB端口,默认3000]
 
+    ./docker-start.sh
     # 运行打印服务
-    # 会以dist为根目录，创建一个web站点。
+    # 会以dist为根目录，创建一个web站点。可通过http://127.0.0.1:3000/eazy-1.html访问示例，并可使用服务端打印
     # 生成的pdf会存在./pdf/ 目录下。你的bookjs-eazy编写的页面也可以直接放在根目录下。
     
     # 在根目录下用bookjs-eazy创建book.html的文件。
     # bookConfig.toolBar.serverPrint 可以配置为 ：true 或 {serverUrl : '//your_host_name[:WEB_PORT]/'}
-    # http://your_host_name[:WEB_PORT]/book.html访问即可预览/打印下载
+    # http://127.0.0.1:3000/book.html 访问即可预览/打印下载
 ```
 
 详细内容见，<a href="https://gitee.com/wuxue107/screenshot-api-server" target="_blank">wuxue107/screenshot-api-server</a>项目
