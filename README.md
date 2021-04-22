@@ -111,7 +111,7 @@ bookConfig = {
          * 
          * serverPrint : {
          *     // 可选，打印服务器地址
-         *     serverPrint : '/',
+         *     serverUrl : '/',
          *     // 可选，保存的文件名，默认值 document.title + '.pdf'
          *     fileName : 'output.pdf',
          *     // 可选，打印附属参数
