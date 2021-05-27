@@ -20,6 +20,10 @@
 
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-2-qrcode.png)
 
+- 发票案例
+
+- <a href="https://bookjs.zhouwuxue.com/eazy-5.html" target="_blank" rel="noopener noreferrer">eazy-5.html</a>
+
 
 # 使用方式：
     渲染机制：
