@@ -24,7 +24,7 @@
 - 注意，对于自定义纸张的页面，只有在web打印中只有在chrome“打印另存为PDF”或有安装并选择对应打印机和纸张时在能正确显示。否则有可能错乱。使用chrome headless和wkhtmltopdf不影响
 - <a href="https://bookjs.zhouwuxue.com/eazy-5.html" target="_blank" rel="noopener noreferrer">eazy-5.html</a>
 
-#使用docker快速开始(可以不使用docker，仅是提供web服务和在线生成下载PDF功能)
+# 使用docker快速开始(可以不使用docker，仅是提供web服务和在线生成下载PDF功能)
 - 下载或clone项目，命令行进入项目目录
 - 运行 ./docker-start.sh 或 docker-start.bat
 - 即可通过浏览器http://127.0.0.1:3000/eazy-1.html访问demo，打印并制作PDF
