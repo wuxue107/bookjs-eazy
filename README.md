@@ -30,6 +30,11 @@
     程序会检查全局变量window.bookConfig.start 的值。
     直到此值为true时，才开始渲染将 #content-box 节点的内容渲染为PDF样式。
     重要：如果你的页面是动态的，就先将默认值设为false,当内容准备好后，在将其设为true，
+    高度页面溢出检测原理：
+    页面内容节点.nop-page-content，是一个弹性高度的容器节点。
+    在向页面加入内容时会引起容器节点的高度变化。
+    计算页面的是否溢出，就时通过计算它高度得到的。
+    一些如： display: float, position: absolute; overflow样式的元素的插入不会页面容器高度变化。可能造成页面溢出而检测不到。
 ## 配置页面参数：
 
 - 定义一个全局配置变量 bookConfig
@@ -155,7 +160,7 @@ bookConfig = {
 ## PDF内容设计
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
 - content-box下的每个节点都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
-
+- 注意：block-box、text-box、mix-box到.nop-fill-box直接的元素不可以设置height、max-height样式，会影响页面溢出检测
 ```
 block : 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
     注意：这里的块,仅是内容不跨页。与css中的display无关，也就可以display: inline样式。
@@ -179,6 +184,7 @@ new-page : 标记从新页，开始插入
 
 pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对页面纸张固定的元素），在其定义后的每个页面都会显示，直到下一个pendants出现。
 ```
+
 
 - 使用样例
 
@@ -328,6 +334,7 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 
 # 生成常见问题
 
+- 内容超出页面：一些如： display: float, position: absolute; overflow样式的元素可能不会页面容器高度变化。因而表现出超出页面。
 - 生成的PDF里全是框框或显示不出来,原因在于。在linux服务器环境下，通常没有安装所需字体。或使用web加载字体文件太大，加载超时
 - 执行bin/pdf-xx-xx 相关命令，找不到wkhtmltopdf，需自己去下载wkhtmltopdf放置PATH目录下
 - bin/html2pdf --agent=chrome-headless参数启动时，报错。该agent使用的是本地已存在的chrome headless remote-debug服务
