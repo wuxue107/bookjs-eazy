@@ -24,7 +24,7 @@
 
 - <a href="https://bookjs.zhouwuxue.com/eazy-5.html" target="_blank" rel="noopener noreferrer">eazy-5.html</a>
 
-#使用docker快速开始
+#使用docker快速开始(可以不使用docker，仅是提供web服务和在线打印PDF功能)
 - 下载或clone项目，命令行进入项目目录
 - 运行 ./docker-start.sh 或 docker-start.bat
 - 即可通过浏览器http://127.0.0.1:3000/eazy-1.html访问demo，打印并制作PDF
