@@ -352,4 +352,4 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对
 ```
 
 - ************ 都看到这里了，给个Star再走呗 ****************
-
+- 仓库地址： [GITEE](https://gitee.com/wuxue107/bookjs-eazy) | [GITHUB](https://github.com/wuxue107/bookjs-eazy)
