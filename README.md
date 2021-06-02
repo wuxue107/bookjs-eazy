@@ -21,7 +21,7 @@
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-2-qrcode.png)
 
 - 发票案例
-- 注意，对于自定义纸张的页面，只有在web打印中只有在chrome“打印另存为PDF”或有安装并选择对应打印机和纸张时在能正确显示。否则有可能错乱
+- 注意，对于自定义纸张的页面，只有在web打印中只有在chrome“打印另存为PDF”或有安装并选择对应打印机和纸张时在能正确显示。否则有可能错乱。使用chrome headless和wkhtmltopdf不影响
 - <a href="https://bookjs.zhouwuxue.com/eazy-5.html" target="_blank" rel="noopener noreferrer">eazy-5.html</a>
 
 #使用docker快速开始(可以不使用docker，仅是提供web服务和在线生成下载PDF功能)
@@ -166,6 +166,7 @@ bookConfig = {
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
 - content-box下的每个节点都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
 - 注意：block-box、text-box、mix-box到.nop-fill-box直接的元素不可以设置height、max-height样式，会影响页面溢出检测
+
 ```
 block : 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
     注意：这里的块,仅是内容不跨页。与css中的display无关，也就可以display: inline样式。
