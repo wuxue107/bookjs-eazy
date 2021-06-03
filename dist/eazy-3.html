@@ -18,7 +18,7 @@
     <script src="./static/js/jquery.min.js"></script>
     <script src="./static/js/lodash.min.js"></script>
     <script src="./static/js/bookjs/latest/bookjs-eazy.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
 </head>
 <body>
 <style>
@@ -143,7 +143,7 @@
         padding-left: 12px;
     }
 </style>
-<div id="content-box">
+<div id="content-box" style="display: none">
     <!-- 封面 -->
     <div data-op-type="pendants">
         <img :src="info.cover_url" style="position: absolute; top: 0; left: 0; right: 0;  bottom: 0;    width: 100%;  height: 100%;" alt="cover"/>
