@@ -81,8 +81,12 @@ bookConfig = {
 
     // 目录插件，可选（默认未开启），所列选项为开启时的默认值
     simpleCatalog : {
-        header : '<div class="catalog-title">目 录</div>', // 可选，目录页Header部分，放入你想加入的一切
         titlesSelector : 'h1,h2,h3,h4,h5,h6', // 可选，作为目录标题的选择器，按目录级别依次
+        showSlide : true, // 可选，是否显示侧边栏，目录导航
+        slideOn : false, // 目录导航，默认是否打开状态
+        
+        showOnPage : true, // 是否在页面中插入目录，默认，插入目录到页面
+        header : '<div class="catalog-title">目 录</div>', // 可选，目录页Header部分，放入你想加入的一切
         itemFillChar : '…', // 可选，目录项填充字符, ""空字符串，不填充，使用自定义makeItem时，忽略该选项配置
         positionSelector : '.nop-page-item-pagenum-1', //可选，目录位置会插入在匹配页的之前，默认为第一个编号页前
         // 可选，自定义目录项。

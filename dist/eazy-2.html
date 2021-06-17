@@ -206,7 +206,7 @@
 '<div class="volume-mark volume-' + volumeIndex + '"><span class="">第' + volumeData.number + '卷</span></div>' +
 '<div class="chapter-mark"><div>' + volumeData.title + ' ● ' + chapterData.title + '</div></div>' + 
 '</div>');
-                items.push('<h3 id="chapter-title-' + chapterIndex + '">' + chapterData.title + '</h3>');
+                items.push('<h3 id="chapter-title-' + volumeIndex + '-' + chapterIndex + '">' + chapterData.title + '</h3>');
 
                 var texts = chapterData.paragraphs;
                 for(var i in texts){
