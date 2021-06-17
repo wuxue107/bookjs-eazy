@@ -82,7 +82,7 @@ bookConfig = {
     // 目录插件，可选（默认未开启），所列选项为开启时的默认值
     simpleCatalog : {
         titlesSelector : 'h1,h2,h3,h4,h5,h6', // 可选，作为目录标题的选择器，按目录级别依次
-        showSlide : true, // 可选，是否显示侧边栏，目录导航
+        showSlide : true, // 可选，是否显示侧边栏，目录导航，工具栏按钮顺序index: 200
         slideOn : false, // 目录导航，默认是否打开状态
         
         showOnPage : true, // 是否在页面中插入目录，默认，插入目录到页面
@@ -101,11 +101,12 @@ bookConfig = {
 
     // 工具栏插件，可选（默认开启），所列选项为开启时的默认值
     toolBar : {
-        // Web打印按钮功能可选，默认true
+        // Web打印按钮功能可选，默认true, 按钮顺序index: 100
         webPrint : true, 
 
         /**
          * HTML保存按钮，可选，bool|object，默认false:禁用保存HTML功能，true:启用并使用默认选项
+         * 按钮顺序index: 300
          * saveHtml : {
          *     // 可选，保存的文件名，默认值: document.title + '.html'
          *     fileName : 'output.html',
@@ -117,10 +118,10 @@ bookConfig = {
          *     }
          * }
          */
-        saveHtml : false, 
+        saveHtml : false,
 
         /**
-         * 服务端打印下载按钮
+         * 服务端打印下载按钮，按钮顺序index: 400
          * 可选，bool|object，默认false:不启用,true:启用并使用默认选项,object:使用自定义的服务端打印
          * true等效的object的配置：serverPrint : { serverUrl : '/' }, 
          * 官网可用serverUrl : '//bookjs.zhouwuxue.com/'
@@ -128,7 +129,7 @@ bookConfig = {
          * 如果使用官方的server进行打印，则需公网上可正确访问你用bookjs-eazy构造的网页
          * 
          * serverPrint : {
-         *     // 可选，打印服务器地址
+         *     // 可选，打印服务器地址,按钮顺序index: 400
          *     serverUrl : '/',
          *     // 可选，保存的文件名，默认值 document.title + '.pdf'
          *     fileName : 'output.pdf',
@@ -151,6 +152,7 @@ bookConfig = {
             // 这里可以自定义工具栏按钮
             // {
             //    id : 'cloudPrint',
+            //    index : 1, // 按钮位置顺序，小的显示在前面，系统内置按钮index值，见各配置项说明。
             //    icon : 'https://xxxx.../aa.png'
             //    onClick : function(){ console.log("...do some thing"); }
             // }
