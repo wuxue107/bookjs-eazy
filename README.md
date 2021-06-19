@@ -1,4 +1,5 @@
 # WEB打印，HTML转PDF工具。bookjs-eazy
+
 - 仓库地址： [GITEE](https://gitee.com/wuxue107/bookjs-eazy) | [GITHUB](https://github.com/wuxue107/bookjs-eazy)
 - 主要解决，HTML生成PDF，分页可控的问题
 - 依赖js库：polyfill、jquery、lodash、bookjs-eazy
@@ -21,10 +22,12 @@
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-2-qrcode.png)
 
 - 发票案例
-- 注意，对于自定义纸张的页面，只有在web打印中只有在chrome“打印另存为PDF”或有安装并选择对应打印机和纸张时在能正确显示。否则有可能错乱。使用chrome headless和wkhtmltopdf不影响
 - <a href="https://bookjs.zhouwuxue.com/eazy-5.html" target="_blank" rel="noopener noreferrer">eazy-5.html</a>
+- 注意，对于自定义纸张的页面，只有在web打印中只有在chrome“打印另存为PDF”或有安装并选择对应打印机和纸张时在能正确显示。否则有可能错乱。使用chrome headless和wkhtmltopdf不影响
+
 
 # 使用docker快速体验(可以不使用docker，仅是提供web服务和在线生成下载PDF功能)
+
 - 下载或clone项目，命令行进入项目目录
 - 运行 ./docker-start.sh 或 docker-start.bat
 - 即可通过浏览器http://127.0.0.1:3000/eazy-1.html访问demo，打印并制作PDF
@@ -67,6 +70,8 @@ bookConfig = {
 
     // 可选，边距，所列选项为默认值
     padding : "31.8mm 25.4mm 31.8mm 25.4mm", 
+    // 可选，强制打印背景页，所列选项为默认值
+    forcePrintBackground : true,
     // 可选，文本内容在跨页差分时，不会出现在段首的字符，所列选项为默认值
     textNoBreakChars : ['，','。','：','”','！','？','、','；','》','】','…','.',',','!',']','}','｝'],
     // 简易页码插件，可选（默认未开启），所列选项为开启时的默认值
@@ -169,6 +174,7 @@ bookConfig = {
 ```
 
 ## PDF内容设计
+
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
 - content-box下的每个节点都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
 - 注意：block-box、text-box、mix-box到.nop-fill-box直接的元素不可以设置height、max-height样式，会影响页面溢出检测
