@@ -62,7 +62,7 @@ bookConfig = {
     // 定义纸张大小,两种方式,可选，默认：ISO_A4
     pageSize : 'ISO_A4', 
     orientation :  'landscape', // portrait/landscape 定义纸张是竖屏/横屏放置
-    /** pageSizeConfig 和 pageSize/orientation组合 ，只选一即可 **/
+    /** pageSizeConfig 和 pageSize/orientation组合 ，只选其一即可 **/
     pageSizeOption : {
         width : '15cm', // 自定义宽高
         height : '20cm',
