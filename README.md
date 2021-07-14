@@ -169,7 +169,10 @@ bookConfig = {
             //    icon : 'https://xxxx.../aa.png'
             //    onClick : function(){ console.log("...do some thing"); }
             // }
-        ]
+        ],
+
+        className: '', // 额外自定义的class属性
+        position : 'right',// 位置：right、left
     }
     
     // 重要
