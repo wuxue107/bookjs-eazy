@@ -211,7 +211,11 @@ mix-box : 混合盒子：与块盒子类似超出页面自动分页，（容器�
 
 new-page : 标记从新页，开始插入
 
-pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对页面纸张固定的元素），在其定义后的每个页面都会显示，直到下一个pendants出现。
+pendants : 页面部件列表（页眉/页脚/页标签/水印背景等）
+    部件：pendants内部的子节点，会自动标记class:nop-page-pendants，在其定义后的每个页面都会显示，直到下一个pendants出现。
+    部件nop-page-pendants包含css: {position: absolute}属性，相对页面纸张位置固定。
+    在页面设计时需要为部件节点设置css: left/right/top/bottom/width/height等属性来控制部件位置和大小。
+
 ```
 
 
