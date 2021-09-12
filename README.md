@@ -25,12 +25,16 @@
 - <a href="https://bookjs.zhouwuxue.com/eazy-5.html" target="_blank" rel="noopener noreferrer">eazy-5.html</a>
 - 注意，对于自定义纸张的页面，只有在web打印中只有在chrome“打印另存为PDF”或有安装并选择对应打印机和纸张时在能正确显示。否则有可能错乱。使用chrome headless和wkhtmltopdf不影响
 
+- 合并单元格的表格(分页差分)
+
+- （参考实例：<a href="https://bookjs.zhouwuxue.com/eazy-6.html" target="_blank" rel="noopener noreferrer">eazy-6.html</a>
+
 
 # 使用docker快速体验(可以不使用docker，仅是提供web服务和在线生成下载PDF功能)
 
 - 下载或clone项目，命令行进入项目目录
 - 运行 ./docker-start.sh 或 docker-start.bat
-- 即可通过浏览器http://127.0.0.1:3000/eazy-1.html访问demo，打印并制作PDF
+- 即可通过浏览器 http://127.0.0.1:3000/eazy-1.html 访问demo，打印并制作PDF
 - 在下dist下可以尝试写自己的pdf页面。
 
 # 使用方式：
@@ -211,7 +215,17 @@ mix-box : 混合盒子：与块盒子类似超出页面自动分页，（容器�
 
 new-page : 标记从新页，开始插入
 
-pendants : 页面部件列表（页眉/页脚/页标签/水印背景等，相对页面纸张固定的元素），在其定义后的每个页面都会显示，直到下一个pendants出现。
+pendants : 页面部件列表（页眉/页脚/页标签/水印背景等）
+    部件：pendants内部的子节点，会自动标记class:nop-page-pendants，在其定义后的每个页面都会显示，直到下一个pendants出现。
+    部件nop-page-pendants包含css: {position: absolute}属性，相对页面纸张位置固定。
+    在页面设计时需要为部件节点设置css: left/right/top/bottom/width/height等属性来控制部件位置和大小。
+
+table : 对表格遇到分页时，出现的一些显示问题（注意：列一定要固定宽度），做了些优化处理，（参考：ezay-6 示例）
+    对于合并单元格：td上标记属性 data-split-repeat="true" ，在分页时在新页中也会显示。
+    td : 内部不要直接使用文本，用标签包裹，直接子节点，需使用data-op-type属性标记（同mix-box）
+         text:允许跨页截断
+         block:（默认）不可跨页截断
+
 ```
 
 
