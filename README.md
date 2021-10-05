@@ -25,9 +25,9 @@
 - <a href="https://bookjs.zhouwuxue.com/eazy-5.html" target="_blank" rel="noopener noreferrer">eazy-5.html</a>
 - 注意，对于自定义纸张的页面，只有在web打印中只有在chrome“打印另存为PDF”或有安装并选择对应打印机和纸张时在能正确显示。否则有可能错乱。使用chrome headless和wkhtmltopdf不影响
 
-- 合并单元格的表格(分页差分)
 
-- （参考实例：<a href="https://bookjs.zhouwuxue.com/eazy-6.html" target="_blank" rel="noopener noreferrer">eazy-6.html</a>
+- 表格: 合并单元格
+- 参考实例：<a href="https://bookjs.zhouwuxue.com/eazy-6.html" target="_blank" rel="noopener noreferrer">eazy-6.html</a>
 
 
 # 使用docker快速体验(可以不使用docker，仅是提供web服务和在线生成下载PDF功能)
@@ -78,6 +78,9 @@ bookConfig = {
     forcePrintBackground : true,
     // 可选，文本内容在跨页差分时，不会出现在段首的字符，所列选项为默认值
     textNoBreakChars : ['，','。','：','”','！','？','、','；','》','】','…','.',',','!',']','}','｝'],
+    // 可选，毫秒，生成PDF延时时间，（此配置项不影响预览）。有些页面包含一些异步不可控因素。调整此值保证页面打印正常。可以适当调节此值以优化服务端生成PDF的速度
+    printDelay : 1000, 
+
     // 简易页码插件，可选（默认未开启），所列选项为开启时的默认值
     simplePageNum : {
         // 从第几页开始编号，默认0为第一页开始，，没有页码,也可以为一个css选择器如：".first_page"，从包含选择器接点的页面开始编号
@@ -177,7 +180,7 @@ bookConfig = {
 
         className: '', // 额外自定义的class属性
         position : 'right',// 位置：right、left
-    }
+    },
     
     // 重要
     // 当这个值为true时，页面才开始渲染。如果你的页面是动态的，
