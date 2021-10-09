@@ -276,8 +276,6 @@ table : 对表格遇到分页时，出现的一些显示问题（注意：列一
 </div>
 ```
 
-- 动手来试试: <a href="https://codepen.io/pen/?template=VwPKWvq">CodePen在线测试</a>
-
 ## 设计中的相关细节
 
 ### 打印时不显示和强制打印背景
@@ -303,6 +301,10 @@ table : 对表格遇到分页时，出现的一些显示问题（注意：列一
 
 - Book节点。在不同模式下，会使用class: nop-book-preview（预览）、nop-book-print（打印） 进行标记
 
+# 在线体验 
+    
+- <a href="https://bookjs.zhouwuxue.com/static/book-tpl/editor.html">在线模板编辑</a>
+- 动手来试试: <a href="https://codepen.io/pen/?template=VwPKWvq">CodePen在线测试</a>
 
 # 生成PDF及配套PDF生成命令行工具的使用
 
