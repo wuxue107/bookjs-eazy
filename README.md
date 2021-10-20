@@ -278,6 +278,23 @@ table : 对表格遇到分页时，出现的一些显示问题（注意：列一
 
 ## 设计中的相关细节
 
+### 页面渲染完成前，事件回调
+```javascript
+    /**
+    * BOOK渲染完成前		book.before-complete
+    **/
+    $(document).on('book.before-complete',function (e,info) {
+        /**
+         * info: 
+         * {
+         *    "PAGE_BEGIN_INDEX": 0,  // 开始页码标记的页面序号
+         *    "PAGE_END_INDEX": 2,    // 结束页码标记的页面序号
+         *    "TOTAL_PAGE": 3         // 总页数
+         * }
+         **/
+    });
+```
+
 ### 打印时不显示和强制打印背景
 
   class: nop-no-print   被标记的节点在打印时不显示
@@ -311,7 +328,6 @@ table : 对表格遇到分页时，出现的一些显示问题（注意：列一
 ## 通过浏览器点击打印按钮，打印另存为PDF
 
 - 点击WEB打印按钮 打印选择“另存为PDF” 
-
 
 ## 使用官网docker镜像,自建打印服务(推荐) 
 
