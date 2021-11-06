@@ -281,9 +281,9 @@ table : 对表格遇到分页时，出现的一些显示问题（注意：列一
 - <a href="https://bookjs.zhouwuxue.com/static/book-tpl/editor.html">在线模板编辑</a>
 - 动手来试试: <a href="https://codepen.io/pen/?template=VwPKWvq">CodePen在线测试</a>
 
-## 设计中的相关细节
+# 设计中的相关细节
 
-### 页面渲染完成前，事件回调
+## 页面渲染完成前，事件回调
 ```javascript
     /**
     * BOOK渲染完成前		book.before-complete
@@ -300,26 +300,26 @@ table : 对表格遇到分页时，出现的一些显示问题（注意：列一
     });
 ```
 
-### 打印时不显示和强制打印背景
+## 打印时不显示和强制打印背景
 
   class: nop-no-print   被标记的节点在打印时不显示
   class: nop-force-background 被标记的节点强制打印背景，在forcePrintBackground选项为false时可用
 
-### 奇偶页实现
+## 奇偶页实现
 
 - 在设置简易页面后，页面节点上会添加对应的class: nop-page-item-odd （奇数页）、 nop-page-item-even（偶数页） nop-page-item-pagenum-1（页编号）
 
-### 文本、盒子被分割到不同页后，被差分部分特殊样式处理
+## 文本、盒子被分割到不同页后，被差分部分特殊样式处理
 
 - 同一段落文本，被分到下一页的文本部分节点，会被class:  nop-link-last 进行标记。可以根据此class,进行缩进特殊处理
 
 - text-box 、block-box、mix-box 内容被分割部分也同样会被class: nop-link-last 标记
 
-### 浏览器类型标记
+## 浏览器类型标记
 
 - Book节点。上会标记浏览器类型。class: chrome、firefox、safari、ie、qq、wechat、wkhtmltopdf
 
-### 打印和预览时样式差异处理
+## 打印和预览时样式差异处理
 
 - Book节点。在不同模式下，会使用class: nop-book-preview（预览）、nop-book-print（打印） 进行标记
 
