@@ -46,7 +46,10 @@
     页面内容节点.nop-page-content，是一个弹性高度的容器节点。
     在向页面加入内容时会引起容器节点的高度变化。
     计算页面的是否溢出，就时通过计算它高度得到的。
-    一些如： display: float, position: absolute; overflow样式的元素的插入不会页面容器高度变化。可能造成页面溢出而检测不到。
+    注意： 
+    1. display: float, position: absolute; overflow样式的元素的插入不会页面容器高度变化。可能造成页面溢出而检测不到。
+    2. 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
+    
 ## 配置页面参数：
 
 - 定义一个全局配置变量 bookConfig
