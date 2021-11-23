@@ -160,7 +160,7 @@
     <!-- 卷-章节 -->
     <% _.forEach(volumes, function(volumeData,volumeIndex) { %>
         <div data-op-type="new-page"></div>
-        <h2 id="voucher-title-<%=volumeIndex%>">第<%=volumeData.number%>卷 <%=volumeData.title%></h2>
+        <h2 id="voucher-title-<%=volumeIndex%>"><%=volumeData.title%></h2>
         <% _.forEach(volumeData.chapters, function(chapterData,chapterIndex) { %>
             <div data-op-type="pendants">
                 <div class="volume-mark volume-<%=volumeIndex%>"><span class="">第<%=chapterData.number%>卷</span></div>
