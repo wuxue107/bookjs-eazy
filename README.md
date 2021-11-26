@@ -154,6 +154,8 @@ bookConfig = {
          * serverPrint : {
          *     // 可选，打印服务器地址,按钮顺序index: 400
          *     serverUrl : '/',
+         *     // 可选，true时使用wkHtmlPdf制作，false：默认使用chrome headless
+         *     wkHtmlToPdf : false, 
          *     // 可选，保存的文件名，默认值 document.title + '.pdf'
          *     fileName : 'output.pdf',
          *     // 可选，打印附属参数
