@@ -36,22 +36,6 @@
         font-weight:700;
     }
 
-    .simple-table {
-        width: 100%;
-        border-spacing: 0;
-        border-collapse: collapse;
-        border-top: #000 1px solid;
-        border-right: #000 1px solid;
-        font-size: 1rem;
-        line-height: 1rem;
-    }
-
-    .simple-table th,
-    .simple-table td {
-        border-left: #000 1px solid;
-        border-bottom: #000 1px solid;
-    }
-
     h1,h2,h3,h4{
         font-weight: 600;
         padding-bottom: 1.5em;
@@ -87,14 +71,14 @@
         <div class='pendant-title'>第一章：Echart图表</div>
     </div>
     <h1  data-op-type='block'>第1章 Echart图表</h1><!-- 块 -->
-    <div data-op-type="block" id="chart1" style="height: 500px;width: 1000px;"></div>
+    <div data-op-type="block" id="chart1" style="height: 450px;width: 1000px;"></div>
     <div data-op-type="block" id="chart2" style="height: 500px;width: 1000px;"></div>
     <div data-op-type='new-page'></div>
     <div data-op-type="pendants"><!-- 定义页面部件（页眉/页脚/书签/水印背景等） -->
         <div class='pendant-title'>第二章：块盒子示例</div>
     </div>
     <h1 data-op-type='block'>第2章 块盒子示例</h1>
-    <table data-op-type="block-box" class="simple-table" border="1">
+    <table data-op-type="block-box" class="nop-simple-table" border="1">
         <thead>
         <tr><th>ID</th><th>姓名</th><th>年龄</th></tr>
         </thead>
@@ -254,7 +238,9 @@
             "pendant": "<div class=\"page-num-simple\"><span style=\"\">第${PAGE}页 / 共${TOTAL_PAGE}页</span></div>"
         },
         "toolBar": {
-            "serverPrint": true,
+            "serverPrint": {
+                "wkHtmlToPdf" : true
+            },
             "webPrint": true,
             "saveHtml": true
         },
