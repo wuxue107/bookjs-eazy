@@ -412,13 +412,14 @@ table : 对表格遇到分页时，出现的一些显示问题（注意：列一
 
 # 生成常见问题
 
+- 服务端打印失效， 启动的打印服务（screenshot-api-server） 必须要能够访问到你要打印的HTML制作的PDF预览页面。
 - 内容超出页面：一些如： display: float, position: absolute; overflow样式的元素可能不会页面容器高度变化。因而表现出超出页面。
 - 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
 - 生成的PDF里全是框框或显示不出来,原因在于。在linux服务器环境下，通常没有安装所需字体。或使用web加载字体文件太大，加载超时
 - 通过iframe 嵌入网页后，不能点击无法下载打印： 需要在iframe上加入 sandbox="allow-downloads allow-top-navigation allow-scripts allow-modals" 属性
 - 经过bookjs-eazy渲染后，事件绑定失效： 如果失效，原绑定可能被分割到不同页面，请尝试在PDF渲染完成事件后处理事件绑定。
 - 执行bin/pdf-xx-xx 相关命令，找不到wkhtmltopdf，需自己去下载wkhtmltopdf放置PATH目录下
-- bin/html2pdf --agent=chrome-headless参数启动时，报错。该agent使用的是本地已存在的chrome headless remote-debug服务
+
 
 ```bash
 :: 启动一个本地chrome headless
