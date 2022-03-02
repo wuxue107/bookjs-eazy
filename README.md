@@ -334,37 +334,38 @@ table : 对表格遇到分页时，出现的一些显示问题（注意：列一
 
 - 点击WEB打印按钮 打印选择“另存为PDF” 
 
-## 使用官网docker镜像,自建打印服务(推荐) 
+## 使用官网docker镜像,自建打印服务、点击直接下载PDF(服务端打印、推荐) 
 
-
-- 可使用 ./docker-start.sh 进行部署
+- 可使用 ./docker-start.sh 进行快速部署
+- 参考 ： bookConfig.toolBar.serverPrint 服务端打印选项
+- 可以配置值为 ：true （和 {serverUrl : '/'}等效） 或 {serverUrl : '//your_screenshot_api_server_host[:WEB_PORT]/'}
 
 ```bash
     # 自己docker打印服务的命令
     # ./docker-start.sh [WEB端口,默认3000]
-
+    
     ./docker-start.sh
     # 运行打印服务
     # 会以dist为根目录，创建一个web站点。可通过http://127.0.0.1:3000/eazy-1.html访问示例，并可使用服务端打印
-    # 生成的pdf会存在./pdf/ 目录下。你的bookjs-eazy编写的页面也可以直接放在根目录下。
-    
-    # 在根目录下用bookjs-eazy创建book.html的文件。
-    # bookConfig.toolBar.serverPrint 可以配置为 ：true 或 {serverUrl : '//your_host_name[:WEB_PORT]/'}
-    # http://127.0.0.1:3000/book.html 访问即可预览/打印下载
+    # 
+    # 你可以在dist根目录下用bookjs-eazy创建book.html（参考示例：eazy-1.html）。
+    # 即可访问 http://127.0.0.1:3000/book.html 进行预览/打印下载
+    # 生成的pdf会存在dist/pdf/ 目录下。
 ```
 
 详细内容见，<a href="https://gitee.com/wuxue107/screenshot-api-server" target="_blank">wuxue107/screenshot-api-server</a>项目
 
 ## 使用官网打印服务
 
-- 也可以直接使用打开toolBar.serverPrint = true,使用官网docker镜像打印服务,进行生成下载PDF。
-- 前提是。您用bookjs-eazy创建的页面可外网访问。
-- 如果使用官网打印服务，页面需要不授权访问，或者 使用短期授权码机制（建议），携带在url上。只有在有授权码在一定时间段内才有访问您用
+- 使用官网打印服务服务，同自建打印服务
 
 ```
-    参考bookConfig.toolBar.serverPrint选项，工具栏会多出下载按钮
-    配置值： { serverUrl: '//bookjs.zhouwuxue.com/' }
+    指定配置bookConfig.toolBar.serverPrint.serverUrl值为： '//bookjs.zhouwuxue.com/'
 ```
+
+- 使用官网的打印服务地址时,：用bookjs-eazy创建的页面必须外网访问。
+- 页面需要不授权访问，或者 使用短期授权码机制（建议），携带在url上。只有在有授权码有效时间段内才访问你的页面
+
 
 
 ## 命令行打印，使用chrome headless方式渲染
