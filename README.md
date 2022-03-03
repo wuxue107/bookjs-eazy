@@ -429,5 +429,10 @@ table : 对表格遇到分页时，出现的一些显示问题（注意：列一
 :: 默认的 --agent=puppeteer 则不需,以上操作，会启动自带的浏览器。
 ```
 
+# QQ交流群
+
+![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/qq-group-1.png)
+
+
 - ************ 都看到这里了，给个Star再走呗 ****************
 - 仓库地址： [GITEE](https://gitee.com/wuxue107/bookjs-eazy) | [GITHUB](https://github.com/wuxue107/bookjs-eazy)
