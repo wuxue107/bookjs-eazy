@@ -199,27 +199,39 @@ bookConfig = {
 ## PDF内容设计
 
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
-- content-box下的每个节点都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
+- content-box下的每个节点（指的是一级子节点）都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
 - 注意：block-box、text-box、mix-box到.nop-fill-box直接的元素不可以设置height、max-height样式，会影响页面溢出检测
 
 ```
-block : 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
+block （常用）: 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
     注意：这里的块,仅是内容不跨页。与css中的display无关，也就可以display: inline样式。
     前面有用户问到这个问题。从而限制了他对PDF内容设计的思维。
+    例如：<div data-op-type="block">...</div>
 
-block-box : 块盒子：块盒子内部nop-fill-box标记的节点包含的多个块，盒子内的多个块被分割到多个页面时，都会复制包裹块的外部节点。
-    以下一个示例中的表格为例：
-    table节点定义为块盒子
-    tbody节点定义为容纳块的容器节点（使用class: nop-fill-box标记）
-    这样在填充行tr时，当前页空间不足时，换页并复制外部table（除去nop-fill-box标记的部分）继续填充。这样表头就得到复用
+text : 文本，跨页内容自动分割,节点内直接放入文本内容。(内部只能为文本，如果包含子节点，子节点标签将被删除)
+    例如：<p data-op-type="text"> long text...</p>
 
-text : 文本，跨页内容自动分割,节点内直接放入文本内容。
-text-box : 文本盒子：与块盒子类似，大文本内容跨多个页面时，会复制外部包裹文本的盒子的部分。
-     文本盒子节点， 大文本的容器节点需用 class : nop-fill-box标记
-
-mix-box : 混合盒子：与块盒子类似超出页面自动分页，（容器使用class: nop-fill-box标记），并复制容器外层，盒子内部放置的所有节点必须标记data-op-type属性，属性值： text或block 
+mix-box（常用） : 混合盒子：与块盒子类似超出页面自动分页，（容器使用class: nop-fill-box标记），并复制容器外层，盒子内部放置的所有节点必须标记data-op-type属性，属性值： text或block
      text:允许跨页截断
      block:（默认）不可跨页截断
+      
+     例如：下面的一段HTML，包含很长的内容，多到会超出几页的长度，那么bookjs-eazy会对其自动分页将会
+            
+    <div data-op-type="mix-box"><!-- 跨页时：这个节点会被复制到下一页，除nop-fill-box内所有的内容都会被复用,一个data-op-type里只可以有一个容器节点（class:nop-fill-box）,容器节点可以在data-op-type="mix-box"里的任意位置 -->
+        <div class="title">布局1</div>
+        <div class="nop-fill-box">
+            <!-- 跨页时，class: nop-fill-box 里的内容会接着上一页页继续填充 -->
+            <span data-op-type="text">在报告中，栗战书指出，</span>
+            <span data-op-type="text" sytle="color:red">2022年</span>
+            <span data-op-type="text">全国人大常委会工作的总体要求是：</span>
+            <span data-op-type="block" sytle="color:red;display:inline;">新时代中国特色社会主义思想</span><!-- 跨页时 block节点截断不会被打断，不会被分割到不同的页 -->
+            <span data-op-type="text">为指导，全面贯彻落实党的十九大和十九届历次全会精神，弘扬伟大建党精神，深刻领会“两个确立”的决定性意义，增强“四个意识”、坚定“四个自信”、做到“两个维护”，坚持党的领导、人民当家作主、依法治国有机统一，坚持稳字当头、稳中求进，按照中央人大工作会议部署，不断发展全过程人民民主，推动立法、监督、代表、对外工作高质量发展，加强常委会自身建设，切实提升人大工作质量和水平，为实现第二个百年奋斗目标、全面建设社会主义现代化国家作出新的贡献。</span>
+            
+            <a data-op-type="text" target="_blank" href="https://baijiahao.baidu.com/s?id=1726750581584920901&wfr=spider&for=pc">文章链接...</a><!-- 这里的链接文字：如果跨页最两页里都会有超链接 -->
+        </div>
+        <div class="title">布局2</div>
+        <div class="title">布局3</div>
+    </div>
 
 new-page : 标记从新页，开始插入
 
@@ -233,6 +245,16 @@ table : 对表格遇到分页时，出现的一些显示问题（注意：列一
     td : 内部不要直接使用文本，用标签包裹，直接子节点，需使用data-op-type属性标记（同mix-box）
          text:允许跨页截断
          block:（默认）不可跨页截断
+
+block-box : 块盒子（其功能已完全被mix-box替代）：块盒子内部nop-fill-box标记的节点包含的多个块，盒子内的多个块被分割到多个页面时，都会复制包裹块的外部节点。
+    以下一个示例中的表格为例：
+    table节点定义为块盒子
+    tbody节点定义为容纳块的容器节点（使用class: nop-fill-box标记）
+    这样在填充行tr时，当前页空间不足时，换页并复制外部table（除去nop-fill-box标记的部分）继续填充。这样表头就得到复用
+
+
+text-box : 文本盒子（其功能已完全被mix-box替代）：与块盒子类似，大文本内容跨多个页面时，会复制外部包裹文本的盒子的部分。
+     文本盒子节点， 大文本的容器节点需用 class : nop-fill-box标记
 
 ```
 
