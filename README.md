@@ -218,11 +218,11 @@ text : 文本，跨页内容自动分割,节点内直接放入文本内容。(�
         [data-op-type=mix-box] .nop-fill-box>  混合盒子容器节点下的一级节点
 
 
-new-page : 标记从新页，开始插入, 
+new-page : 标记从新页开始插入
     * 使用在符合下列选择器规则的位置之一： 
         #content-box> 下的一级节点
         [data-op-type=mix-box] .nop-fill-box>  混合盒子容器节点下的一级节点
-        [data-op-type=table] tbody>  表格的tbody 下的一级节点
+        [data-op-type=table] tbody>tr  表格的tbody下的tr节点,(与被标记到其他位置不同，被标记的tr节点会保留不会从页面删除)
 
 pendants : 页面部件列表（页眉/页脚/页标签/水印背景等）
     部件：pendants内部的子节点，会自动标记class:nop-page-pendants，在其定义后的每个页面都会显示，直到下一个pendants出现。
