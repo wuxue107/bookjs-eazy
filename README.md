@@ -367,6 +367,17 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 
 - Book节点。在不同模式下，会使用class: nop-book-preview（预览）、nop-book-print（打印） 进行标记
 
+## PDF的属性信息生成
+
+- 可以在页面中加入meta标签，bookjs-eazy会将其生成到pdf的属性信息中
+- 从1.12.0 版本开始，服务端生成有效。
+
+```html
+<meta name="author" content="nop">
+<meta name="description" content="bookjs-eazy so eazy!!">
+<meta name="keywords" content="PDF、bookjs">
+```
+
 # 生成PDF及配套PDF生成命令行工具的使用
 
 ## 通过浏览器点击打印按钮，打印另存为PDF
