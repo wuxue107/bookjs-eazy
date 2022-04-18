@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+
+PAGE_SIZE=$1
+ORIENTATION=$2
+URL=$3
+OUTPUT=$4
+
+[ "${PAGE_SIZE}" == "" ] && PAGE_SIZE=A4
+[ "${ORIENTATION}" != "Landscape" ] && ORIENTATION=Portrait
+[ "${OUTPUT}" == "" ] && OUTPUT=output.pdf
+
+wkhtmltopdf --window-status "PDFComplete" \
+--disable-smart-shrinking \
+--margin-left 0 --margin-right 0 --margin-top 0 --margin-bottom 0 --page-size "${PAGE_SIZE}" \
+--orientation "${ORIENTATION}" \
+--no-stop-slow-scripts \
+--enable-internal-links \
+--debug-javascript \
+--print-media-type \
+--outline --outline-depth 3 \
+--log-level info \
+"${URL}" "${OUTPUT}"

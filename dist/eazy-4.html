@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>NOP BOOK TEST</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--<meta name="screen-orientation" content="portrait">-->
+    <!--<meta name="x5-orientation" content="portrait">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="author" content="nop">
+    <meta name="generator" content="wkhtmltopdf">
+    <link rel="shortcut icon" href="./static/img/nop.jpg" type="image/x-icon">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <script src="./static/js/polyfill.min.js"></script>
+    <script src="./static/js/jquery.min.js"></script>
+    <script src="./static/js/lodash.min.js"></script>
+    <script src="./static/js/bookjs/latest/bookjs-eazy.min.js"></script>
+</head>
+<body>
+<style>
+    h1,h2,h3,h4{
+        font-weight: 600;
+        padding-bottom: 1.5em;
+        padding-top: 2.5em;
+    }
+    h1 {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+    h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    h3 {
+        font-size: 1.4rem;
+    }
+    h4 {
+        font-size: 1.3rem;
+    }
+    p {
+        text-indent : 2em;
+        letter-spacing: 0.1em;
+        font-weight: 400;
+        line-height: 1.5;
+        padding: 0.3em 0 0.3em 0;
+    }
+    p.nop-link-last {
+        text-indent: 0;
+    }
+
+    .nop-page-item .chapter-mark {
+        padding-top: 3rem;
+        font-size: 0.9rem;
+        color: #666;
+        padding-left : 2.5cm;
+        padding-right : 2.5cm;
+        position: absolute;
+        top: 0;
+    }
+
+    .nop-page-item.nop-page-item-even .chapter-mark {
+        right :0;
+    }
+
+    .nop-page-item.nop-page-item-odd .chapter-mark {
+        left: 0;
+    }
+
+    .nop-page-item .volume-mark{
+        position: absolute;
+        width: 50px;
+        height: 120px;
+        top: 300px;
+        background-color: crimson;
+        line-height: 1.2;
+    }
+
+    .nop-page-item .volume-0.volume-mark{
+        background-color: #1922dc;
+    }
+    .nop-page-item .volume-1.volume-mark{
+        background-color: #dc6f0d;
+    }
+    .nop-page-item .volume-2.volume-mark{
+        background-color: #09dc18;
+    }
+    .nop-page-item .volume-3.volume-mark{
+        background-color: #b114dc;
+    }
+    .nop-page-item .volume-4.volume-mark{
+        background-color: #dadc2b;
+    }
+    .nop-page-item .volume-5.volume-mark{
+        background-color: #26dca9;
+    }
+    .nop-page-item .volume-6.volume-mark{
+        background-color: #5652dc;
+    }
+    .nop-page-item .volume-7.volume-mark{
+        background-color: #1f89dc;
+    }
+    .nop-page-item .volume-8.volume-mark{
+        background-color: #dc160d;
+    }
+    .nop-page-item .volume-9.volume-mark{
+        background-color: #4edc0e;
+    }
+    .nop-page-item .volume-10.volume-mark{
+        background-color: #1982dc;
+    }
+
+    .nop-page-item.nop-page-item-even .volume-mark{
+        right: 0;
+        border-radius: 5px 0 0 5px;
+    }
+
+    .nop-page-item.nop-page-item-odd .volume-mark{
+        left: 0;
+        border-radius: 0 5px 5px 0;
+    }
+
+    .nop-page-item .volume-mark>span {
+        text-align: center;
+        font-weight: 600;
+        color: #FFF;
+        width: 100%;
+        justify-content: center;
+        font-size: 0.9rem;
+        letter-spacing: 0.3em;
+        height: auto;
+        display: block;
+        padding: 1.8em;
+        line-height: 1.5em;
+    }
+    .nop-page-item.nop-page-item-odd .volume-mark>span {
+        padding-right: 12px;
+    }
+    .nop-page-item.nop-page-item-even .volume-mark>span {
+        padding-left: 12px;
+    }
+</style>
+<div id="content-box"></div>
+<script id="book-tpl" type="text/lodash-tpl">
+    <!-- 封面 -->
+    <div data-op-type="pendants">
+        <img src="<%=info.cover_url%>" style="position: absolute; top: 0; left: 0; right: 0;  bottom: 0;    width: 100%;  height: 100%;" alt="cover"/>
+    </div>
+    <!-- 空白页 -->
+    <div data-op-type="new-page"></div>
+    <div data-op-type="pendants"></div>
+    <!-- 前言 -->
+    <div data-op-type="new-page"></div>
+    <h2>前言</h2>
+    <% _.forEach(preface.paragraphs, function(item,i) { %>
+    <p class="nop-text" data-op-type="text"><%=item%></p>
+    <% }) %>
+    <!-- 卷-章节 -->
+    <% _.forEach(volumes, function(volumeData,volumeIndex) { %>
+        <div data-op-type="new-page"></div>
+        <h2 id="voucher-title-<%=volumeIndex%>"><%=volumeData.title%></h2>
+        <% _.forEach(volumeData.chapters, function(chapterData,chapterIndex) { %>
+            <div data-op-type="pendants">
+                <div class="volume-mark volume-<%=volumeIndex%>"><span class="">第<%=chapterData.number%>卷</span></div>
+                <div class="chapter-mark">
+                    <div><%=volumeData.title%> ● <%=chapterData.title%> </div>
+                </div>
+            </div>
+            <h3 id="chapter-title-<%=volumeIndex%>-<%=chapterIndex%>"><%=chapterData.title%></h3>
+            <% _.forEach(chapterData.paragraphs, function(item,i) { %>
+            <p class="nop-text" data-op-type="text"><%=item%></p>
+            <% }) %>
+        <% }) %>
+    <% }) %>
+</script>
+<script>
+    bookConfig = {
+        pageSize : 'ISO_A4',
+        orientation :  'portrait',
+        simpleCatalog : {
+            titlesSelector : 'h2,h3'
+        },
+        simplePageNum : {
+            pageBegin  : '#voucher-title-0'
+        },
+        toolBar : {
+            serverPrint : {
+                params : {
+                    // 打印超时时间
+                    timeout : 60000,
+                },
+            },
+            webPrint : true,
+            saveHtml : true,
+        },
+        start : false,
+    }
+</script>
+<script>
+</script>
+<script>
+    $.getJSON('./eazy-2.json').then(function(data){
+        var t1 = (new Date()).getTime();
+        document.title = data.info.book_name;
+        var tplRender = _.template($('#book-tpl').html());
+        $('#content-box').html(tplRender(data));
+        var t2 = (new Date()).getTime();
+        console.log("tpl render cost" + (t2 - t1) + "ms");
+        bookConfig.start = true;
+    });
+</script>
+</body>
+</html>
