@@ -198,9 +198,8 @@ bookConfig = {
 
 ## PDF内容设计
 
-- 定义一个id为节点内放入要插入到文档里的内容；
+- 定义一个id为content-box节点内放入要插入到文档里的内容；
 - content-box下的每个节点（指的是一级子节点）都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
-- 注意：block-box、text-box、mix-box到.nop-fill-box直接的元素不可以设置height、max-height样式，会影响页面溢出检测
 
 ```
 block （常用）: 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
@@ -210,12 +209,14 @@ block （常用）: 块：（默认）如果当前页空间充足则整体插入
     * 使用在符合下列选择器规则的位置之一：
         #content-box> 下的一级节点
         [data-op-type=mix-box] .nop-fill-box>  混合盒子容器节点下的一级节点
+        [data-op-type=table] tbody td> 表格的单元格的一级节点
 
 text : 文本，跨页内容自动分割,节点内直接放入文本内容。(内部只能为文本，如果包含子节点，子节点标签将被删除)
     例如：<p data-op-type="text"> long text...</p>
     * 使用在符合下列选择器规则的位置之一：
         #content-box> 下的一级节点
         [data-op-type=mix-box] .nop-fill-box>  混合盒子容器节点下的一级节点
+        [data-op-type=table] tbody td> 表格的单元格的一级节点
 
 
 new-page : 标记从新页开始插入
@@ -237,7 +238,6 @@ mix-box（常用） : 混合盒子：内部容器节点使用class: nop-fill-box
      block:（默认）不可跨页截断
      * 使用在符合下列选择器规则的位置之一： 
              #content-box> 下的一级节点
-             [data-op-type=table] tbody td> 表格的单元格的一级节点
 
      例如：下面的一段HTML，包含很长的内容，多到会超出几页的长度，那么bookjs-eazy会对其自动分页将会
             
@@ -256,7 +256,7 @@ mix-box（常用） : 混合盒子：内部容器节点使用class: nop-fill-box
 
 table : 对表格遇到分页时，出现的一些显示问题（注意：列一定要固定宽度），做了些优化处理，（参考：ezay-6 示例）
     对于合并单元格：td上标记属性 data-split-repeat="true" ，在分页时在新页中也会显示。
-    td : 内部不要直接使用文本，用标签包裹，直接子节点，需使用data-op-type属性标记（同mix-box）
+    td : 内部不要直接使用文本，用标签包裹，直接子td>节点可以是text或block
          text:允许跨页截断
          block:（默认）不可跨页截断
 
@@ -270,6 +270,8 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
      文本盒子节点， 大文本的容器节点需用 class : nop-fill-box标记
 
 ```
+
+- 注意：block-box、text-box、mix-box到.nop-fill-box直接的元素不可以设置height、max-height样式，会影响页面溢出检测
 
 
 - 使用样例
