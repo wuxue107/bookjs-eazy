@@ -11,6 +11,13 @@
 4. docker镜像。可快速构件你的在线PDF的打印生成服务
 5. 兼容主流浏览器及移动端
 
+- 缺陷：
+
+不支持现代js框架 VUE、React等多路由场景
+PDF页面需要单独的html文件入口，
+如果想嵌入应用网页内部，可使用iframe方式
+
+
 # 预览案例(./dist)
 
 - <a href="https://bookjs.zhouwuxue.com/eazy-1.html" target="_blank" rel="noopener noreferrer">eazy-1.html</a>
