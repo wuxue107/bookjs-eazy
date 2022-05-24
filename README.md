@@ -240,7 +240,8 @@ pendants : 页面部件列表（页眉/页脚/页标签/水印背景等）
     * 使用在符合下列选择器规则的位置之一： 
         #content-box> 下的一级节点
 
-mix-box（常用） : 混合盒子：内部容器节点使用class: nop-fill-box标记，超出一页时，会复制容器外层节点，插入下一页，继续想新页容器插入内容。
+mix-box（常用） : 混合盒子：盒子内部class:nop-fill-box标记的节点的可以包含多个[data-op-type="text"],[data-op-type="block"]元素
+     盒子内的元素被超出一页时，会根据text/block的规则，自动分割到下一页，并会复制携带包裹元素的外部节点。
      容器节点内的一级节点必须标记data-op-type属性，属性值： text或block
      text:允许跨页截断
      block:（默认）不可跨页截断
@@ -262,9 +263,9 @@ mix-box（常用） : 混合盒子：内部容器节点使用class: nop-fill-box
         <div class="title">布局3</div>
     </div>
 
-table : 对表格遇到分页时，出现的一些显示问题（注意：列一定要固定宽度），做了些优化处理，（参考：ezay-6 示例）
-    对于合并单元格：td上标记属性 data-split-repeat="true" ，在分页时在新页中也会显示。
-    td : 内部不要直接使用文本，用标签包裹，直接子td>节点可以是text或block
+table : 对表格遇到分页时，出现的一些显示问题，做了些优化处理（注意：列一定要固定宽度），（参考：ezay-6 示例）
+    对于合并单元格：td上标记属性 data-split-repeat="true" ，在分页td里的文本会在在新页中也会显示。
+    td : 内部不要直接使用文本，用标签包裹，直接子td>节点可以是[data-op-type="text"],[data-op-type="block"]元素，(相当于mix-box的.nop-fill-box )
          text:允许跨页截断
          block:（默认）不可跨页截断
 
