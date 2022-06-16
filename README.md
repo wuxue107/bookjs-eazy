@@ -65,7 +65,14 @@
 ```html
 <script>
 bookConfig = {
-    
+        
+    // 重要！！重要！！ 
+    // 当这个值为true时，页面才开始渲染。如果你的页面是动态的，
+    // 就先将默认值设为false,当下节所述中的#content-box节点内容准备好后，在将其设为true，
+    // bookConfig.start = true;
+    // 除了这个配置项外其他参数都是可选的！！！
+    start : true,
+
     /**  全部纸张类型，未全量测试，常用ISO_A4
     ISO_A0、ISO_A1、ISO_A2、ISO_A3、ISO_A4、ISO_A5
     ISO_B0、ISO_B1、ISO_B2、ISO_B3、ISO_B4、ISO_B5、ISO_B6、ISO_B7、ISO_B8、ISO_B9、ISO_B10
@@ -85,6 +92,11 @@ bookConfig = {
 
     // 可选，边距，所列选项为默认值
     padding : "31.8mm 25.4mm 31.8mm 25.4mm", 
+
+    //
+    // --  !!!!  看到这里可以先去《PDF内容设计》章节，有需要时再来详细了解下面的参数  !!!! --//
+    //
+
     // 可选，强制打印背景页，所列选项为默认值
     forcePrintBackground : true,
     // 可选，文本内容在跨页差分时，不会出现在段首的字符，所列选项为默认值
@@ -193,13 +205,7 @@ bookConfig = {
 
         className: '', // 额外自定义的class属性
         position : 'right',// 位置：right、left
-    },
-    
-    // 重要
-    // 当这个值为true时，页面才开始渲染。如果你的页面是动态的，
-    // 就先将默认值设为false,当下节所述中的#content-box节点内容准备好后，在将其设为true，
-    // bookConfig.start = true;
-    start : true,
+    }
 }
 </script>
 ```
@@ -207,7 +213,7 @@ bookConfig = {
 ## PDF内容设计
 
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
-- content-box下的每个节点（指的是一级子节点）都需定义属性 data-op-type,表示其在文档中的插入方式 其值含义如下：
+- content-box下的每个一级子节点都需定义属性 data-op-type表示其在文档中的插入方式 其值含义如下：
 
 ```
 block （常用）: 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
@@ -265,7 +271,7 @@ mix-box（常用） : 混合盒子：盒子内部class:nop-fill-box标记的节�
 
 table : 对表格遇到分页时，出现的一些显示问题，做了些优化处理（注意：列一定要固定宽度），（参考：ezay-6 示例）
     对于合并单元格：td上标记属性 data-split-repeat="true" ，在分页td里的文本会在在新页中也会显示。
-    td : 内部不要直接使用文本，用标签包裹，直接子td>节点可以是[data-op-type="text"],[data-op-type="block"]元素，(相当于mix-box的.nop-fill-box )
+    td : td>直接子节点可以是[data-op-type="text"],[data-op-type="block"]元素
          text:允许跨页截断
          block:（默认）不可跨页截断
 
@@ -280,7 +286,7 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 
 ```
 
-- 注意：block-box、text-box、mix-box到.nop-fill-box直接的元素不可以设置height、max-height样式，会影响页面溢出检测
+- 注意：.nop-fill-box的所有父节点直到到data-op-type节点之间的节点不可以设置height、max-height样式，会影响页面溢出检测
 
 
 - 使用样例
