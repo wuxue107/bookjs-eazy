@@ -498,5 +498,4 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/qq-group-1.png)
 
 
-- ************ 都看到这里了，给个Star再走呗 ****************
 - 仓库地址： [GITEE](https://gitee.com/wuxue107/bookjs-eazy) | [GITHUB](https://github.com/wuxue107/bookjs-eazy)
