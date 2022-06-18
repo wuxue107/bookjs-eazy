@@ -515,15 +515,25 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
     - 执行bin/pdf-xx-xx 相关命令，找不到wkhtmltopdf，需自己去下载wkhtmltopdf放置PATH目录下
     
 - 使用data-op-type="table" 表格合并单元格分页显示不正确。建议：
-    - 将表格画好  先使用data-op-type="block"  表格不写任何东西，使保持在一个页面里，看看不经过拆分的表格是否布局正确。 如果不正确，就是你自己table写的有问题，和bookjs-eazy的无关。
+    - 将表格布局写好  先使用data-op-type="block"  表格不写任何东西，使保持在一个页面里，看看不经过拆分的表格是否布局正确。 如果不正确，就是你自己table写的有问题，和bookjs-eazy的无关。
     - 在将数据填充进去，改用data-op-type="table" ,此时如出现问题。可以在这里重现场景<a href="https://codepen.io/pen/?template=VwPKWvq">表格测试</a>，保存并复制链接。提交issue
 
+- 页面卡死，CPU超高
+    - bookjs-eazy 不能经过了import引入和再编译 解决： 需要在html中通过script标签引入。
+    - 使用的block块元素，超出一页内容，即使换页也放置不下。
+    常见于“[data-op-type="table"] td>[data-op-type="block"]”中
+    td里的下元素如果未指定data-op-type也会默认视为block
+    请合理的拆分，block块元素大小，使其可以在一页内放置。
+   
+    
+<!--
     ```bash
     :: 启动一个本地chrome headless
     "chrome.exe" --headless --disable-gpu --remote-debugging-port=9222 --disable-extensions --mute-audio
     :: 然后再使用 --agent=chrome-headless 则会成功。
     :: 默认的 --agent=puppeteer 则不需,以上操作，会启动自带的浏览器。
     ```
+-->
 
 # QQ交流群
 
