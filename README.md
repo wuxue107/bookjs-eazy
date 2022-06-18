@@ -214,6 +214,7 @@ bookConfig = {
 
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
 - content-box下的每个一级子节点都需定义属性 data-op-type表示其在文档中的插入方式 其值含义如下：
+- 注意：不要限定容器节点（mix-box、.nop-fill-box、 table>td） 高度，影响溢出检测，出现未知结果
 
 ```
 block （常用）: 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
@@ -274,6 +275,21 @@ table : 对表格遇到分页时，出现的一些显示问题，做了些优化
     td : td>直接子节点可以是[data-op-type="text"],[data-op-type="block"]元素
          text:允许跨页截断
          block:（默认）不可跨页截断
+
+        <table data-op-type="table">
+            <thead><tr><td width="100">序号<td><td width="500">内容<td></tr></thead>
+            <tbody>
+                <tr>
+                    <td data-split-repeat="true">1<td>
+                    <td>
+                        <p data-op-type="text">long text1 ...<p>
+                        <img data-op-type="block" src="..." /> 
+                        <p data-op-type="text">long text2 ...<p>
+                        <div data-op-type="block">... </div> 
+                    <td>
+                </tr>
+           </tbody>
+        </div>
 
 block-box : 块盒子（@deprecated 其功能已完全被mix-box替代）：块盒子内部nop-fill-box标记的节点包含的多个块，盒子内的多个块被分割到多个页面时，都会复制包裹块的外部节点。
     以下一个示例中的表格为例：
