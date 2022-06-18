@@ -13,7 +13,7 @@
 
 - 缺陷提示：
 
-1. 不支持现代js框架 VUE、React等单页面多路由场景
+1. 不支持现代js框架 VUE、React等单页面多路由场景，需要在html中用script标签直接引入，不能在import引入再经过编译
 2. 不支持动态刷新，重新渲染需要刷新整个页面
 3. PDF页面需要单独的html文件入口
 4. 如果想嵌入应用网页内部，可使用iframe方式
@@ -476,22 +476,38 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 
 # 生成常见问题
 
-- 服务端打印失效， 启动的打印服务（screenshot-api-server） 必须要能够访问到你要打印的HTML制作的PDF预览页面。
-- 内容超出页面：一些如： display: float, position: absolute; overflow样式的元素可能不会页面容器高度变化。因而表现出超出页面。
-- 页面出现多余空白： 不要手动对html、body、.nop-book、.nop-page、.nop-page-items、nop-page-item元素做任何的border/width/height/margin/padding等样式调整
-- 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
-- 生成的PDF里全是框框或显示不出来,原因在于。在linux服务器环境下，通常没有安装所需字体。或使用web加载字体文件太大，加载超时
-- 通过iframe 嵌入网页后，不能点击无法下载打印： 需要在iframe上加入 sandbox="allow-downloads allow-top-navigation allow-scripts allow-modals" 属性
-- 经过bookjs-eazy渲染后，事件绑定失效： 如果失效，原绑定可能被分割到不同页面，请尝试在PDF渲染完成事件后处理事件绑定。
-- 执行bin/pdf-xx-xx 相关命令，找不到wkhtmltopdf，需自己去下载wkhtmltopdf放置PATH目录下
+- 服务端打印失效：
+    - 启动的打印服务（screenshot-api-server） 必须要能够访问到你要打印的HTML制作的PDF预览页面。
 
+- 内容超出页面：
+    - 一些如： display: float, position: absolute; overflow样式的元素可能不会页面容器高度变化。因而表现出超出页面。
+    - 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
 
-```bash
-:: 启动一个本地chrome headless
-"chrome.exe" --headless --disable-gpu --remote-debugging-port=9222 --disable-extensions --mute-audio
-:: 然后再使用 --agent=chrome-headless 则会成功。
-:: 默认的 --agent=puppeteer 则不需,以上操作，会启动自带的浏览器。
-```
+- 页面出现多余空白：
+    - 不要手动对html、body、.nop-book、.nop-page、.nop-page-items、nop-page-item元素做任何的border/width/height/margin/padding等样式调整
+    
+- 字体无法显示：
+    - 生成的PDF里全是框框或显示不出来,原因在于。在linux服务器环境下，通常没有安装所需字体。或使用web加载字体文件太大，加载超时
+    
+- iframe 嵌入网页失效：不能点击无法下载打印：
+    - 需要在iframe上加入 sandbox="allow-downloads allow-top-navigation allow-scripts allow-modals" 属性
+    
+- 页面事件绑定失效：
+    - 经过bookjs-eazy渲染后，： 如果失效，原绑定可能被分割到不同页面，请尝试在PDF渲染完成事件后处理事件绑定。
+    
+- 找不到wkhtmltopdf
+    - 执行bin/pdf-xx-xx 相关命令，找不到wkhtmltopdf，需自己去下载wkhtmltopdf放置PATH目录下
+    
+- 使用data-op-type="table" 表格合并单元格分页显示不正确。建议：
+    - 将表格画好  先使用data-op-type="block"  表格不写任何东西，使保持在一个页面里，看看不经过拆分的表格是否布局正确。 如果不正确，就是你自己table写的有问题，和bookjs-eazy的无关。
+    - 在将数据填充进去，改用data-op-type="table" ,此时如出现问题。可以在这里重现场景<a href="https://codepen.io/pen/?template=VwPKWvq">表格测试</a>，保存并复制链接。提交issue
+
+    ```bash
+    :: 启动一个本地chrome headless
+    "chrome.exe" --headless --disable-gpu --remote-debugging-port=9222 --disable-extensions --mute-audio
+    :: 然后再使用 --agent=chrome-headless 则会成功。
+    :: 默认的 --agent=puppeteer 则不需,以上操作，会启动自带的浏览器。
+    ```
 
 # QQ交流群
 
