@@ -355,6 +355,17 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 - <a href="https://bookjs.zhouwuxue.com/static/book-tpl/editor.html">在线模板编辑</a>
 - 动手来试试: <a href="https://codepen.io/pen/?template=VwPKWvq">CodePen在线测试</a>
 
+# 使用示例
+
+## 页面背景图片
+
+- <a href="https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=5R4E4EJU">页面背景图片示例</a>
+
+## 页面水印
+
+- <a href="https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=ESWDZ5G2">页面水印示例</a>
+
+
 # 设计中的相关细节
 
 ## 页面渲染完成前，事件回调
@@ -491,7 +502,7 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
     # 注意：如果使用wkhtmltopdf方式的自定义尺寸，不用担心，浏览器渲染完毕后，在Console上会输出wkhtmltopdf的PDF配套生成命令
 ```
 
-# 生成常见问题
+# 生成常见问题（踩坑备忘录）
 
 - 服务端打印失效：
     - 启动的打印服务（screenshot-api-server） 必须要能够访问到你要打印的HTML制作的PDF预览页面。
@@ -526,7 +537,11 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
     td里的下元素如果未指定data-op-type也会默认视为block
     请合理的拆分，block块元素大小，使其可以在一页内放置。
    
-    
+- 部件无法显示
+    - 页边距 bookConfig.padding = "0 0 0 0" 时，在火狐浏览器的打印预览中，空白页部件无法显示。
+    调整bookConfig.padding = "1px 0 0 0"
+    或者可以尝试在页面中补一个``` <span>&nbsp<span>``` 的空文本节点。
+
 <!--
     ```bash
     :: 启动一个本地chrome headless
