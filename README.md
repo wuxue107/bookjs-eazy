@@ -519,6 +519,9 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 - 页面出现多余空白：
     - 不要手动对html、body、.nop-book、.nop-page、.nop-page-items、nop-page-item元素做任何的border/width/height/margin/padding等样式调整
     
+- 每页都多出一个空白页
+    - 见bookConfig.pageFixedHeightOffset 选项，进行调节
+    
 - 字体无法显示：
     - 生成的PDF里全是框框或显示不出来,原因在于。在linux服务器环境下，通常没有安装所需字体。或使用web加载字体文件太大，加载超时
     
