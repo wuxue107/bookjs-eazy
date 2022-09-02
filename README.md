@@ -181,6 +181,7 @@ bookConfig = {
          *     // 可选，打印服务器地址,按钮顺序index: 400
          *     serverUrl : '/',
          *     // 可选，true时使用wkHtmlPdf制作，false：默认使用chrome headless
+         *     // 注意：wkhtmltopdf不支持es6,缺失一些web新特性，好处在于可以生成PDF目录书签。
          *     wkHtmlToPdf : false, 
          *     // 可选，保存的文件名，默认值 document.title + '.pdf'
          *     fileName : 'output.pdf',
