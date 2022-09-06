@@ -523,6 +523,9 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 - 每页都多出一个空白页
     - 见bookConfig.pageFixedHeightOffset 选项，进行调节
     
+- 打印出来是空白页
+    - 有用户反映，页面引入polyfill.min.js后出现空白页。引入此js是为了wkhtmltopdf,对部分js特性的兼容问题。 如果去除后测试发现对打印无影响，可将此js去除。
+
 - 字体无法显示：
     - 生成的PDF里全是框框或显示不出来,原因在于。在linux服务器环境下，通常没有安装所需字体。或使用web加载字体文件太大，加载超时
     
