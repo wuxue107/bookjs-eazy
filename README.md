@@ -180,9 +180,16 @@ bookConfig = {
          * serverPrint : {
          *     // 可选，打印服务器地址,按钮顺序index: 400
          *     serverUrl : '/',
+         *
          *     // 可选，true时使用wkHtmlPdf制作，false：默认使用chrome headless
          *     // 注意：wkhtmltopdf不支持es6,缺失一些web新特性，好处在于可以生成PDF目录书签。
+         *     // 为了更好的调试发现问题：请下载QtWeb浏览器,其内核于wkhtmltopdf是一样的。
+         *     // 菜单->工具->启用网页检查器，右键页面内容，选择检查 进入debug工具栏
+         *     // 以便发现各种兼容问题
+         *     // 在QtWeb浏览器中默认为打印模式的样式。不显示页间隔，及工具栏
+         *     // 下载链接：http://www.qtweb.net/download.html
          *     wkHtmlToPdf : false, 
+         *
          *     // 可选，保存的文件名，默认值 document.title + '.pdf'
          *     fileName : 'output.pdf',
          *     // 可选，打印附属参数
