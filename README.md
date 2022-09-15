@@ -539,49 +539,49 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 
 # 生成常见问题（踩坑备忘录）
 
-## 服务端打印失效：
+- 服务端打印失效：
     - 启动的打印服务（screenshot-api-server） 必须要能够访问到你要打印的HTML制作的PDF预览页面。
 
-## 内容超出页面：
+- 内容超出页面：
     - 一些如： display: float, position: absolute; overflow样式的元素可能不会页面容器高度变化。因而表现出超出页面。
     - 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
 
-## 页面出现多余空白：
+- 页面出现多余空白：
     - 不要手动对html、body、.nop-book、.nop-page、.nop-page-items、nop-page-item元素做任何的border/width/height/margin/padding等样式调整
     
-## 每页都多出一个空白页
+- 每页都多出一个空白页
     - 见bookConfig.pageFixedHeightOffset 选项，进行调节
     
-## 打印出来是空白页
+- 打印出来是空白页
     - 有用户反映，页面引入polyfill.min.js后出现空白页。引入此js是为了wkhtmltopdf,对部分js特性的兼容问题。 如果去除后测试发现对打印无影响，可将此js去除。
 
-## 字体无法显示：
+- 字体无法显示：
     - 生成的PDF里全是框框或显示不出来,原因在于。在linux服务器环境下，通常没有安装所需字体。或使用web加载字体文件太大，加载超时
     
-## 生成的PDF与预览有一些差异
+- 生成的PDF与预览有一些差异
     - 对于服务端生成PDF,可能时由于字体原因，可以指定页面的的字体。并在生成服务器安装对应字体。见：设计中的相关细节->字体相关
 
-## iframe 嵌入网页失效：不能点击无法下载打印：
+- iframe 嵌入网页失效：不能点击无法下载打印：
     - 需要在iframe上加入 sandbox="allow-downloads allow-top-navigation allow-scripts allow-modals" 属性
     
-## 页面事件绑定失效：
+- 页面事件绑定失效：
     - 经过bookjs-eazy渲染后，： 如果失效，原绑定可能被分割到不同页面，请尝试在PDF渲染完成事件后处理事件绑定。
     
-## 找不到wkhtmltopdf
+- 找不到wkhtmltopdf
     - 执行bin/pdf-xx-xx 相关命令，找不到wkhtmltopdf，需自己去下载wkhtmltopdf放置PATH目录下
     
-## 使用data-op-type="table" 表格合并单元格分页显示不正确。建议：
+- 使用data-op-type="table" 表格合并单元格分页显示不正确。建议：
     - 将表格布局写好  先使用data-op-type="block"  表格不写任何东西，使保持在一个页面里，看看不经过拆分的表格是否布局正确。 如果不正确，就是你自己table写的有问题，和bookjs-eazy的无关。
     - 在将数据填充进去，改用data-op-type="table" ,此时如出现问题。可以在这里重现场景<a href="https://codepen.io/pen/?template=VwPKWvq">表格测试</a>，保存并复制链接。提交issue
 
-## 页面卡死，CPU超高
+- 页面卡死，CPU超高
     - bookjs-eazy 不能经过了import引入和再编译 解决： 需要在html中通过script标签引入。
     - 使用的block块元素，超出一页内容，即使换页也放置不下。
     常见于“[data-op-type="table"] td>[data-op-type="block"]”中
     td里的下元素如果未指定data-op-type也会默认视为block
     请合理的拆分，block块元素大小，使其可以在一页内放置。
    
-## 部件无法显示
+- 部件无法显示
     - 页边距 bookConfig.padding = "0 0 0 0" 时，在火狐浏览器的打印预览中，空白页部件无法显示。
     调整bookConfig.padding = "1px 0 0 0"
     或者可以尝试在页面中补一个``` <span>&nbsp<span>``` 的空文本节点。
