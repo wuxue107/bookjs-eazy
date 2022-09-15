@@ -22,13 +22,6 @@
 </head>
 <body>
 <style>
-    /** 编辑器中的生成的目录内联链接会失效，请忽略 **/
-    body {
-        color: #000;
-        font-family: "Microsoft YaHei UI", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-        font-weight: 400;
-    }
-
     .cover-title{
         color:#3f00ff;
         padding:240px 220px;
@@ -224,7 +217,7 @@
     </table>
 </div>
 <script>
-    
+
     bookConfig = {
         "pageSize": "ISO_A4",
         "orientation": "landscape",
@@ -238,7 +231,6 @@
             "pendant": "<div class=\"page-num-simple\"><span style=\"\">第${PAGE}页 / 共${TOTAL_PAGE}页</span></div>"
         },
         "toolBar": {
-            //"serverPrint" : true,
             "serverPrint": {
                 "wkHtmlToPdf" : true
             },
@@ -249,7 +241,7 @@
     }
 </script>
 <script type="text/javascript">
-    
+
     var d1 = $.Deferred();
     initChart1().on('rendered', function () {
         d1.resolve();
@@ -259,7 +251,7 @@
     initChart2().on('rendered', function () {
         d2.resolve();
     });
-    
+
     $.when(d1,d2).then(function(){
         /** 2个图表渲染完毕后，执行PDF Book渲染 **/
         bookConfig.start = true;
@@ -410,7 +402,7 @@
 
         return myChart;
     }
-    
+
     function initChart2() {
         var dom = document.getElementById("chart2");
         var myChart = echarts.init(dom);
