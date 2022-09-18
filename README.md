@@ -454,6 +454,8 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 <meta name="keywords" content="PDF、bookjs">
 ```
 
+## 辅助函数,见 BookJsHelper.md
+
 # 生成PDF及配套PDF生成命令行工具的使用
 
 ## 通过浏览器点击打印按钮，打印另存为PDF
