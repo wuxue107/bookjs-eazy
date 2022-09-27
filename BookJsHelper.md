@@ -45,15 +45,13 @@ ret = BookJsHelper.tag(
 
 ```
 
-### BookHelper.dataPath(path,sourceData,defaultValue) 从多层级数据中取值，不存在的返回默认值
+### BookJsHelper.dataPath(path,sourceData,defaultValue) 从多层级数据中取值，不存在的返回默认值
 ```javascript
 data = {a1:{a2:111},b1:[{b2:222}]};
 
-
-
-// BookHelper.dataPath('a1.a2',data) => 111
-// BookHelper.dataPath('a1.a2.a3',data) => null
-// BookHelper.dataPath('a1.a2.a3',data,123) => 123
-// BookHelper.dataPath('b1[0].b2',data) => 222
+// BookJsHelper.dataPath('a1.a2',data) => 111
+// BookJsHelper.dataPath('a1.a2.a3',data) => null
+// BookJsHelper.dataPath('a1.a2.a3',data,123) => 123
+// BookJsHelper.dataPath('b1[0].b2',data) => 222
 
 ```

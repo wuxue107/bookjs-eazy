@@ -460,7 +460,7 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 <meta name="keywords" content="PDF、bookjs">
 ```
 
-## 辅助函数,见 BookJsHelper.md
+## 辅助函数,见 [BookJsHelper.md](BookJsHelper.md)
 
 # 生成PDF及配套PDF生成命令行工具的使用
 
