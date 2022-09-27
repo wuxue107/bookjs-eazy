@@ -37,6 +37,7 @@
 - 发票案例
 - <a href="https://bookjs.zhouwuxue.com/eazy-5.html" target="_blank" rel="noopener noreferrer">eazy-5.html</a>
 - 注意，对于自定义纸张的页面，只有在web打印中只有在chrome“打印另存为PDF”或有安装并选择对应打印机和纸张时在能正确显示。否则有可能错乱。使用chrome headless和wkhtmltopdf不影响
+
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-5-qrcode.png)
 
 - 表格: 合并单元格
