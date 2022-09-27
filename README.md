@@ -26,14 +26,18 @@
 
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-1-qrcode.png)
 
-- 另一个小说案例 <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a> lodash模板:<a href="https://bookjs.zhouwuxue.com/eazy-4.html" target="_blank" rel="noopener noreferrer">eazy-4.html</a> vue模板:<a href="https://bookjs.zhouwuxue.com/eazy-3.html" target="_blank" rel="noopener noreferrer">eazy-3.html</a>
+- 另一个小说案例 
+- JS : <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a> 
+- Lodash模板:<a href="https://bookjs.zhouwuxue.com/eazy-4.html" target="_blank" rel="noopener noreferrer">eazy-4.html</a> 
+- Vue模板:   <a href="https://bookjs.zhouwuxue.com/eazy-3.html" target="_blank" rel="noopener noreferrer">eazy-3.html</a>
+
 
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-2-qrcode.png)
 
 - 发票案例
 - <a href="https://bookjs.zhouwuxue.com/eazy-5.html" target="_blank" rel="noopener noreferrer">eazy-5.html</a>
 - 注意，对于自定义纸张的页面，只有在web打印中只有在chrome“打印另存为PDF”或有安装并选择对应打印机和纸张时在能正确显示。否则有可能错乱。使用chrome headless和wkhtmltopdf不影响
-
+![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-5-qrcode.png)
 
 - 表格: 合并单元格
 - 参考实例：<a href="https://bookjs.zhouwuxue.com/eazy-6.html" target="_blank" rel="noopener noreferrer">eazy-6.html</a>
@@ -48,16 +52,17 @@
 
 # 使用方式：
     渲染机制：
-    程序会检查全局变量window.bookConfig.start 的值。
+    1. 将PDF页面内容元素放置body>#content-box节点下（参考：PDF内容设计）
+    2. 程序会检查全局变量window.bookConfig.start 的值（参考：配置页面参数）
     直到此值为true时，才开始渲染将 #content-box 节点的内容渲染为PDF样式。
-    重要：如果你的页面是动态的，就先将默认值设为false,当内容准备好后，在将其设为true，
-    高度页面溢出检测原理：
+    重要：如果你的页面是动态的，就先将默认值设为false,当内容准备好后，在将其设为true。
+    3. 高度页面溢出检测原理：
     页面内容节点.nop-page-content，是一个弹性高度的容器节点。
     在向页面加入内容时会引起容器节点的高度变化。
     计算页面的是否溢出，就时通过计算它高度得到的。
     注意： 
-    1. display: float, position: absolute; overflow样式的元素的插入不会页面容器高度变化。可能造成页面溢出而检测不到。
-    2. 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
+    a. display: float, position: absolute; overflow样式的元素的插入不会页面容器高度变化。可能造成页面溢出而检测不到。
+    b. 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
     
 ## 配置页面参数：
 
