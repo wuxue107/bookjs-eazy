@@ -36,7 +36,7 @@
 
 - 发票案例
 - <a href="https://bookjs.zhouwuxue.com/eazy-5.html" target="_blank" rel="noopener noreferrer">eazy-5.html</a>
-- 注意，对于自定义纸张的页面，只有在web打印中只有在chrome“打印另存为PDF”或有安装并选择对应打印机和纸张时在能正确显示。否则有可能错乱。使用chrome headless和wkhtmltopdf不影响
+- **注意**：对于自定义纸张的页面，只有在web打印中只有在chrome“打印另存为PDF”或有安装并选择对应打印机和纸张时在能正确显示。否则有可能错乱。使用chrome headless和wkhtmltopdf不影响
 
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-5-qrcode.png)
 
@@ -56,12 +56,12 @@
     1. 将PDF页面内容元素放置body>#content-box节点下（参考：PDF内容设计）
     2. 程序会检查全局变量window.bookConfig.start 的值（参考：配置页面参数）
     直到此值为true时，才开始渲染将 #content-box 节点的内容渲染为PDF样式。
-    重要：如果你的页面是动态的，就先将默认值设为false,当内容准备好后，在将其设为true。
+    <fontcolor="#dd0000">**重要**：如果你的页面是动态的，就先将默认值设为false,当内容准备好后，在将其设为true。</font>
     3. 高度页面溢出检测原理：
     页面内容节点.nop-page-content，是一个弹性高度的容器节点。
     在向页面加入内容时会引起容器节点的高度变化。
     计算页面的是否溢出，就时通过计算它高度得到的。
-    注意： 
+    **注意**： 
     a. display: float, position: absolute; overflow样式的元素的插入不会页面容器高度变化。可能造成页面溢出而检测不到。
     b. 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
     
@@ -73,7 +73,7 @@
 <script>
 bookConfig = {
         
-    // 重要！！重要！！ 
+    // ！！重要！！重要！！ 
     // 当这个值为true时，页面才开始渲染。如果你的页面是动态的，
     // 就先将默认值设为false,当下节所述中的#content-box节点内容准备好后，在将其设为true，
     // bookConfig.start = true;
@@ -188,7 +188,7 @@ bookConfig = {
          *     serverUrl : '/',
          *
          *     // 可选，true时使用wkHtmlPdf制作，false：默认使用chrome headless
-         *     // 注意：wkhtmltopdf不支持es6,缺失一些web新特性，好处在于可以生成PDF目录书签。
+         *     // **注意**：wkhtmltopdf不支持es6,缺失一些web新特性，好处在于可以生成PDF目录书签。
          *     // 为了更好的调试发现问题：请下载QtWeb浏览器,其内核于wkhtmltopdf是一样的。
          *     // 菜单->工具->启用网页检查器，右键页面内容，选择检查 进入debug工具栏
          *     // 以便发现各种兼容问题
@@ -234,11 +234,11 @@ bookConfig = {
 
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
 - content-box下的每个一级子节点都需定义属性 data-op-type表示其在文档中的插入方式 其值含义如下：
-- 注意：不要限定容器节点（mix-box、.nop-fill-box、 table>td） 高度，影响溢出检测，出现未知结果
+- **注意**：不要限定容器节点（mix-box、.nop-fill-box、 table>td） 高度，影响溢出检测，出现未知结果
 
 ```
 block （常用）: 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
-    注意：这里的块,仅是内容不跨页。与css中的display无关，也就可以display: inline样式。
+    **注意**：这里的块,仅是内容不跨页。与css中的display无关，也就可以display: inline样式。
     前面有用户问到这个问题。从而限制了他对PDF内容设计的思维。
     例如：<div data-op-type="block">...</div>
     * 使用在符合下列选择器规则的位置之一：
@@ -290,7 +290,7 @@ mix-box（常用） : 混合盒子：盒子内部class:nop-fill-box标记的节�
         <div class="title">布局3</div>
     </div>
 
-table : 对表格遇到分页时，出现的一些显示问题，做了些优化处理（注意：列一定要固定宽度），（参考：ezay-6 示例）
+table : 对表格遇到分页时，出现的一些显示问题，做了些优化处理（**注意**：列一定要固定宽度），（参考：ezay-6 示例）
     对于合并单元格：td上标记属性 data-split-repeat="true" ，在分页td里的文本会在在新页中也会显示。
     td : td>直接子节点可以是[data-op-type="text"],[data-op-type="block"]元素
          text:允许跨页截断
@@ -322,7 +322,7 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 
 ```
 
-- 注意：.nop-fill-box的所有父节点直到到data-op-type节点之间的节点不可以设置height、max-height样式，会影响页面溢出检测
+- **注意**：.nop-fill-box的所有父节点直到到data-op-type节点之间的节点不可以设置height、max-height样式，会影响页面溢出检测
 
 
 - 使用样例
@@ -542,7 +542,7 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
     # 
     # bin/pdf-[纸张]-[纸张方向]  [预览的链接] [输出文件]
     #
-    # 注意：如果使用wkhtmltopdf方式的自定义尺寸，不用担心，浏览器渲染完毕后，在Console上会输出wkhtmltopdf的PDF配套生成命令
+    # **注意**：如果使用wkhtmltopdf方式的自定义尺寸，不用担心，浏览器渲染完毕后，在Console上会输出wkhtmltopdf的PDF配套生成命令
 ```
 
 # 生成常见问题（踩坑备忘录）
