@@ -52,23 +52,20 @@
 - 在下dist下可以尝试写自己的pdf页面。
 
 # 使用方式：
-##渲染机制：
 
-1. 将PDF页面内容元素放置body>#content-box节点下（参考：PDF内容设计）
-2. 程序会检查全局变量window.bookConfig.start 的值（参考：配置页面参数）
-
-直到此值为true时，才开始渲染将 #content-box 节点的内容渲染为PDF样式。
-
-<font color="#dd0000">**重要**：如果你的页面是动态的，就先将默认值设为false,当内容准备好后，在将其设为true。</font>
-3. 高度页面溢出检测原理：
-页面内容节点.nop-page-content，是一个弹性高度的容器节点。
-在向页面加入内容时会引起容器节点的高度变化。
-计算页面的是否溢出，就时通过计算它高度得到的。
-
-**注意**： 
-a. display: float, position: absolute; overflow样式的元素的插入不会页面容器高度变化。可能造成页面溢出而检测不到。
-b. 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
-    
+    渲染机制：
+    1. 将PDF页面内容元素放置body>#content-box节点下（参考：PDF内容设计）
+    2. 程序会检查全局变量window.bookConfig.start 的值（参考：配置页面参数）
+    直到此值为true时，才开始渲染将 #content-box 节点的内容渲染为PDF样式。
+    **重要**：如果你的页面是动态的，就先将默认值设为false,当内容准备好后，在将其设为true。
+    3. 高度页面溢出检测原理：
+    页面内容节点.nop-page-content，是一个弹性高度的容器节点。
+    在向页面加入内容时会引起容器节点的高度变化。
+    计算页面的是否溢出，就时通过计算它高度得到的。
+    **注意**： 
+    a. display: float, position: absolute; overflow样式的元素的插入不会页面容器高度变化。可能造成页面溢出而检测不到。
+    b. 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
+        
 ## 配置页面参数：
 
 - 定义一个全局配置变量 bookConfig
