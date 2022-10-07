@@ -57,7 +57,7 @@
 1. 将PDF页面内容元素放置body>#content-box节点下（参考：PDF内容设计）
 2. 程序会检查全局变量window.bookConfig.start 的值（参考：配置页面参数）
 直到此值为true时，才开始渲染将 #content-box 节点的内容渲染为PDF样式。
-<fontcolor="#dd0000">**重要**：如果你的页面是动态的，就先将默认值设为false,当内容准备好后，在将其设为true。</font>
+<font color="#dd0000">**重要**：如果你的页面是动态的，就先将默认值设为false,当内容准备好后，在将其设为true。</font>
 3. 高度页面溢出检测原理：
 页面内容节点.nop-page-content，是一个弹性高度的容器节点。
 在向页面加入内容时会引起容器节点的高度变化。
