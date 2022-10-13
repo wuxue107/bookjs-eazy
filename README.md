@@ -44,7 +44,7 @@
 - 参考实例：<a href="https://bookjs.zhouwuxue.com/eazy-6.html" target="_blank" rel="noopener noreferrer">eazy-6.html</a>
 
 
-# 使用docker快速体验(可以不使用docker，请参考，[PDF生成服务安装](#自建打印服务、本机安装PDF生成服务)章节)
+# 使用docker快速体验(可以不使用docker，请参考，[PDF生成服务安装](#自建打印服务本机安装pdf生成服务)章节)
 
 - 下载或clone项目，命令行进入项目目录
 - 运行 ./docker-start.sh 或 docker-start.bat
