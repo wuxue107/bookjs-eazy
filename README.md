@@ -44,7 +44,7 @@
 - 参考实例：<a href="https://bookjs.zhouwuxue.com/eazy-6.html" target="_blank" rel="noopener noreferrer">eazy-6.html</a>
 
 
-# 使用docker快速体验(可以不使用docker，仅是提供web服务和在线生成下载PDF功能)
+# 使用docker快速体验(可以不使用docker，请参考，[PDF生成服务安装](#自建打印服务、本机安装PDF生成服务)章节)
 
 - 下载或clone项目，命令行进入项目目录
 - 运行 ./docker-start.sh 或 docker-start.bat
@@ -469,12 +469,13 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 
 - 点击WEB打印按钮 打印选择“另存为PDF” 
 
-## 使用官网docker镜像,自建打印服务、点击直接下载PDF(服务端打印、推荐) 
-
-- 可使用 ./docker-start.sh 进行快速部署
+## 服务端打印
 - 参考 ： bookConfig.toolBar.serverPrint 服务端打印选项
 - 可以配置值为 ：true （和 {serverUrl : '/'}等效） 或 {serverUrl : '//your_screenshot_api_server_host[:WEB_PORT]/'}
 
+### 自建打印服务、使用官网docker镜像,点击直接下载PDF(服务端打印、推荐) 
+
+- 可使用 ./docker-start.sh 进行快速部署
 ```bash
     # 自己docker打印服务的命令
     # ./docker-start.sh [WEB端口,默认3000]
@@ -490,16 +491,24 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 
 详细内容见，<a href="https://gitee.com/wuxue107/screenshot-api-server" target="_blank">wuxue107/screenshot-api-server</a>项目
 
-## 使用官网打印服务
+### 自建打印服务、本机安装PDF生成服务
 
-- 使用官网打印服务服务，同自建打印服务
-
+```shell script
+    # 需预先先安装nodejs 环境，并安装yarn
+    git clone https://gitee.com/wuxue107/screenshot-api-server.git
+    cd screenshot-api-server
+    # 安装依赖
+    yarn
+    # 启动服务，默认服务端口号3000
+    # 指定端口号启动
+    # 启动时可指定的环境变量
+    # MAX_BROWSER=1     最大的puppeteer实例数，忽略选项则默认值： [可用内存]/200M
+    # PDF_KEEP_DAY=0    自动删除num天之前产生的文件目录,默认0: 不删除文件
+    # PORT=3001         监听端口，默认：3000
+    yarn start
 ```
-    指定配置bookConfig.toolBar.serverPrint.serverUrl值为： '//bookjs.zhouwuxue.com/'
-```
 
-- 使用官网的打印服务地址时,：用bookjs-eazy创建的页面必须外网访问。
-- 页面需要不授权访问，或者 使用短期授权码机制（建议），携带在url上。只有在有授权码有效时间段内才访问你的页面
+指定配置bookConfig.toolBar.serverPrint.serverUrl值为： '//your-screenshot-api-server[:PORT]/'
 
 
 
