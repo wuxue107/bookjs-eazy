@@ -76,8 +76,9 @@ bookConfig = {
         
     // ！！重要！！重要！！ 
     // 当这个值为true时，页面才开始渲染。如果你的页面是动态的，
-    // 就先将默认值设为false,当下节所述中的#content-box节点内容准备好后，在将其设为true，
-    // bookConfig.start = true;
+    // 就先将默认值设为false,当下节所述中的#content-box节点内容**准备好**后，在将其设为true
+    // **准备好**是指：所有html渲染完毕。例如：有多个异步请求，有图表等。参考：eazy-1.html
+    // bookConfig.start = true; // 开始bookjs渲染，差分页面。
     // 除了这个配置项外其他参数都是可选的！！！
     start : true,
 
@@ -234,8 +235,11 @@ bookConfig = {
 ## PDF内容设计
 
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
-- content-box下的每个一级子节点都需定义属性 data-op-type表示其在文档中的插入方式 其值含义如下：
+- content-box下的每个一级子节点都需定义属性 data-op-type表示其在文档中的插入方式
 - **注意**：不要限定容器节点（mix-box、.nop-fill-box、 table>td） 高度，影响溢出检测，出现未知结果
+- 除block和text可以嵌套在容器类型的节点（mix-box、table）内,其他类型并不支持相互嵌套。
+- 具体注意查看每种类型“使用在符合下列选择器规则的位置”说明
+ - data-op-type其可选值, 其含义如下： 
 
 ```
 block （常用）: 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
