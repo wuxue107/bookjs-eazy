@@ -49,7 +49,7 @@
 - 下载或clone项目，命令行进入项目目录
 - 运行 ./docker-start.sh 或 docker-start.bat
 - 即可通过浏览器 http://127.0.0.1:3000/eazy-1.html 访问demo，打印并制作PDF
-- 在下dist下可以尝试写自己的pdf页面。
+- 在dist目录下可以尝试写自己的pdf页面。
 
 # 使用方式：
 
@@ -567,6 +567,7 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 - 内容超出页面：
     - 一些如： display: float, position: absolute; overflow样式的元素可能不会页面容器高度变化。因而表现出超出页面。
     - 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
+    - 在设置bookConfig.start = true ，之前#content-box下的页面内容没有经其他程序（Vue、React、Ajax..）加载完毕。导致bookjs重新分页后,其他程序在又去操作相应dom，导致节点原始大小发生改变，从而表现为内容溢出页面
 
 - 页面出现多余空白：
     - 不要手动对html、body、.nop-book、.nop-page、.nop-page-items、nop-page-item元素做任何的border/width/height/margin/padding等样式调整
