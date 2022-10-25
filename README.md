@@ -148,7 +148,7 @@ bookConfig = {
         },
 
         /** 侧边栏相关选项 **/
-        showSlide : true, // 可选，是否显示侧边栏，目录导航，工具栏按钮顺序index: 200
+        showSlide : true, // 可选，是否显示侧边栏，目录导航，工具栏按钮顺序index: 200, 在bookConfig.toolBar选项为false时无效
         slideOn : false, // 可选，目录导航，默认是否打开状态
         slideHeader : '<div class="title">目&nbsp;&nbsp;录</div>', // 可选，侧边栏标题
         slideClassName : '', // 可选，侧边栏自定义class
@@ -156,7 +156,7 @@ bookConfig = {
         slideMakeContent : null, // 自定义侧边栏内容处理函数，为null时,默认行为：使用目录内容填充， function(){ return '侧边栏内容';}
     },
 
-    // 工具栏插件，可选（默认开启），所列选项为开启时的默认值
+    // 工具栏插件，可选（默认开启），object|false, false会不显示工具栏， 所列选项为开启时的默认值
     toolBar : {
         // Web打印按钮功能可选，默认true, 按钮顺序index: 100
         webPrint : true, 
