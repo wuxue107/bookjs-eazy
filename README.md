@@ -596,7 +596,10 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 - 使用data-op-type="table" 表格合并单元格分页显示不正确。建议：
     - 将表格布局写好  先使用data-op-type="block"  表格不写任何东西，使保持在一个页面里，看看不经过拆分的表格是否布局正确。 如果不正确，就是你自己table写的有问题，和bookjs-eazy的无关。
     - 在将数据填充进去，改用data-op-type="table" ,此时如出现问题。可以在这里重现场景<a href="https://codepen.io/pen/?template=VwPKWvq">表格测试</a>，保存并复制链接。提交issue
-
+- 下载PDF超时
+    - 服务端制作PDF超时，你的页面可能需要token和session才能访问，后端程序无法正确访问你的页面
+    - 如果使用wkhtmltopdf方式生成，可能你的页面使用了wkhtmltopdf不支持的特性，如es6
+    
 - 页面卡死，CPU超高
     - bookjs-eazy 不能经过了import引入和再编译 解决： 需要在html中通过script标签引入。
     - 使用的block块元素，超出一页内容，即使换页也放置不下。
