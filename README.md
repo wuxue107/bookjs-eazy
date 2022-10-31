@@ -236,10 +236,7 @@ bookConfig = {
 
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
 - content-box下的每个一级子节点都需定义属性 data-op-type表示其在文档中的插入方式
-- **注意**：不要限定容器节点（mix-box、.nop-fill-box、 table>td） 高度，影响溢出检测，出现未知结果
-- 除block和text可以嵌套在容器类型的节点（mix-box、table）内,其他类型并不支持相互嵌套。
-- 具体注意查看每种类型“使用在符合下列选择器规则的位置”说明
- - data-op-type其可选值, 其含义如下： 
+- data-op-type其可选值, 其含义如下： 
 
 ```
 block （常用）: 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
@@ -327,7 +324,17 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 
 ```
 
-- **注意**：.nop-fill-box的所有父节点直到到data-op-type节点之间的节点不可以设置height、max-height样式，会影响页面溢出检测
+- **注意**：不要限定容器节点高度，影响溢出检测，出现未知结果
+```
+    [data-op-type=mix-box]
+    [data-op-type=block-box]
+    [data-op-type=text-box]
+    [data-op-type=table] 
+    .nop-fill-box
+    [data-op-type=table] body td
+```
+- 除block和text可以嵌套在容器类型的节点（mix-box、table）内,其他类型并不支持相互嵌套。
+- 具体注意查看每种类型“使用在符合下列选择器规则的位置”说明
 
 
 - 使用样例
