@@ -324,7 +324,7 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 
 ```
 
-- **注意**：不要限定容器节点高度，影响溢出检测，出现未知结果
+- **注意**：不要限定容器节点高度(如height、max-height样式)，影响溢出检测，出现未知结果
 ```
     [data-op-type=mix-box]
     [data-op-type=block-box]
@@ -395,6 +395,11 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
 ## 页面水印
 
 - <a href="https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=ESWDZ5G2">页面水印示例</a>
+
+## 不分页PDF
+
+- 不分页PDF，仅支持后端生成
+- <a href="https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=W83KPQXV">不分页PDF</a>
 
 
 # 设计中的相关细节
