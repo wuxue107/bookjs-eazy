@@ -319,10 +319,11 @@ bookConfig = {
 
 
 ### 盒子， 可差分，并携带布局样式
-- **注意**：不要限定容器节点高度(如height、max-height样式)，影响溢出检测，出现未知结果
+- 包含mix-box、table、block-box、text-box 多种类型详见具体
+- **注意**：不要限定盒子及容器节点高度(如height、max-height样式)，影响溢出检测，出现未知结果
 
 #### mix-box: 混合盒子（常用）
-- 盒子内部class:nop-fill-box标记的节点的可以包含多个[data-op-type="text"],[data-op-type="block"]元素
+- 盒子内部class:nop-fill-box标记的容器节点的可以包含多个[data-op-type="text"],[data-op-type="block"]元素
 - 盒子内的元素被超出一页时，会根据text/block的规则，自动分割到下一页，并会复制携带包裹元素的外部节点。
 - 例如： 见示例：[混合盒子示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=EM8ANL97)
 ```html
