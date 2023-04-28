@@ -97,7 +97,7 @@ bookConfig = {
     pageSizeOption : {
         width : '15cm', // 自定义宽高
         height : '20cm',
-    },
+    }
 
     // 可选，边距，所列选项为默认值
     padding : "31.8mm 25.4mm 31.8mm 25.4mm", 
@@ -222,7 +222,7 @@ bookConfig = {
             // {
             //    id : 'cloudPrint',
             //    index : 1, // 按钮位置顺序，小的显示在前面，系统内置按钮index值，见各配置项说明。
-            //    icon : 'https://xxxx.../aa.png',
+            //    icon : 'https://xxxx.../aa.png'
             //    onClick : function(){ console.log("...do some thing"); }
             // }
         ],
@@ -256,7 +256,7 @@ bookConfig = {
 - 如果当前页空间充足则整体插入，空间不足，则会自动创建新页，整体插入到下一页
 - **注意**：这里的块,仅是内容不跨页。与css中的display无关，也就可以display: inline样式。
       前面有用户问到这个问题。从而限制了他对PDF内容设计的思维。
-- 例如：
+- 例如：[块示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=4ELVR92Y)
 ```html
 <div data-op-type="block">...</div>
 ```
@@ -270,7 +270,7 @@ bookConfig = {
 ### text: 文本，可分割到不同页
 
 - 跨页内容自动分割,节点内直接放入文本内容。(内部只能为文本，如果包含子节点，子节点标签将被删除)
-- 例如：
+- 例如：[文本示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=D8PBJHC5)
 ```html
 <p data-op-type="text"> long text...</p>
 <p data-op-type="text"> long text2...</p>
@@ -286,7 +286,7 @@ bookConfig = {
         
 ### new-page: 新页，手动控制添加新页
 - 在标记的节点后的内容，将从新的一页开始写入
-- 例如：
+- 例如：[新页示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=R992XN88)
 ```html
 <div data-op-type="new-page">仅仅是一个标记节点，这里的内容是不会渲染的</div>
 ```
