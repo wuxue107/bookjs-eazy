@@ -97,7 +97,7 @@ bookConfig = {
     pageSizeOption : {
         width : '15cm', // 自定义宽高
         height : '20cm',
-    }
+    },
 
     // 可选，边距，所列选项为默认值
     padding : "31.8mm 25.4mm 31.8mm 25.4mm", 
@@ -222,7 +222,7 @@ bookConfig = {
             // {
             //    id : 'cloudPrint',
             //    index : 1, // 按钮位置顺序，小的显示在前面，系统内置按钮index值，见各配置项说明。
-            //    icon : 'https://xxxx.../aa.png'
+            //    icon : 'https://xxxx.../aa.png',
             //    onClick : function(){ console.log("...do some thing"); }
             // }
         ],
