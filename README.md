@@ -6,7 +6,7 @@
 - 优势：
 
 1. 只需专注用H5构件你的PDF内容,而无需关心分页及内容截断问题，按规则自动分页。
-2. 支持预览，所见即所得。支持WEB打印、页码/目录、自定义页眉页脚。
+2. 支持预览，所见即所得。支持WEB打印、支持自定义页码/目录/页眉/页脚。
 3. 前后端皆可生成PDF,前端打印另存为PDF,后端可配套使用chrome headless和wkhtmltopdf命令行PDF生成工具。
 4. docker镜像。可快速构件你的在线PDF的打印生成服务
 5. 兼容主流浏览器及移动端
@@ -128,8 +128,10 @@ bookConfig = {
         pendant : '<div class="page-num-simple"><span style="">${PAGE} / ${TOTAL_PAGE}</span></div>',
     }, 
 
-    // 目录插件，可选（默认未开启），所列选项为开启时的默认值
+    // 目录/书签插件，可选（默认未开启），所列选项为开启时的默认值
     simpleCatalog : {
+        // 当前版本，如果需要生成PDF书签，toolBar.serverPrint.wkHtmlToPdf 必须为true
+        // titlesSelector不要修改，使用h1-h6标记书签
         titlesSelector : 'h1,h2,h3,h4,h5,h6', // 可选，作为目录标题的选择器，按目录级别依次
 
         
@@ -147,7 +149,7 @@ bookConfig = {
             return '<div>自定义的目录项html内容，根据itemInfo自己构造</div>';
         },
 
-        /** 侧边栏相关选项 **/
+        /** 侧边栏（PDF书签）相关选项 **/
         showSlide : true, // 可选，是否显示侧边栏，目录导航，工具栏按钮顺序index: 200, 在bookConfig.toolBar选项为false时无效
         slideOn : false, // 可选，目录导航，默认是否打开状态
         slideHeader : '<div class="title">目&nbsp;&nbsp;录</div>', // 可选，侧边栏标题
@@ -232,53 +234,98 @@ bookConfig = {
 </script>
 ```
 
-## PDF内容设计
+## PDF内容设计（约定页面内容分页方式）
 
 - 定义一个id为content-box节点内放入要插入到文档里的内容；
 - content-box下的每个一级子节点都需定义属性 data-op-type表示其在文档中的插入方式
-- data-op-type其可选值, 其含义如下： 
+- 示例： 
+
+```html
+<body>
+    <div id="content-box">
+        <p data-op-type="text">Hello World!</p>
+    </div>
+</body>
+```
+
+- 除block和text可以嵌套在盒子类型（mix-box、table、block-box、text-box）的容器节点内内,其他类型并不支持相互嵌套。
+- 具体注意查看每种类型“使用在符合下列选择器规则的位置”说明
+
+### block：块，不可分割（默认）
+
+- 如果当前页空间充足则整体插入，空间不足，则会自动创建新页，整体插入到下一页
+- **注意**：这里的块,仅是内容不跨页。与css中的display无关，也就可以display: inline样式。
+      前面有用户问到这个问题。从而限制了他对PDF内容设计的思维。
+- 例如：
+```html
+<div data-op-type="block">...</div>
+```
+- 使用在符合下列选择器规则的位置之一：
+```
+#content-box> 下的一级节点
+[data-op-type=mix-box] .nop-fill-box>  混合盒子容器节点下的一级节点
+[data-op-type=table] tbody td> 表格的单元格的
+```
+
+### text: 文本，可分割到不同页
+
+- 跨页内容自动分割,节点内直接放入文本内容。(内部只能为文本，如果包含子节点，子节点标签将被删除)
+- 例如：
+```html
+<p data-op-type="text"> long text...</p>
+<p data-op-type="text"> long text2...</p>
+```
+
+- 使用在符合下列选择器规则的位置之一：
+```
+#content-box> 下的一级节点
+[data-op-type=mix-box] .nop-fill-box>  混合盒子容器节点下的一级节点
+[data-op-type=table] tbody td> 表格的单元格的一级节点
+```
+
+        
+### new-page: 新页，手动控制添加新页
+- 在标记的节点后的内容，将从新的一页开始写入
+- 例如：
+```html
+<div data-op-type="new-page">仅仅是一个标记节点，这里的内容是不会渲染的</div>
+```
+- 使用在符合下列选择器规则的位置之一： 
+```
+#content-box> 下的一级节点
+[data-op-type=mix-box] .nop-fill-box>  混合盒子容器节点下的一级节点
+[data-op-type=table] tbody>tr  表格的tbody下的tr节点,(与被标记到其他位置不同，被标记的tr节点会保留不会从页面删除)
 
 ```
-block （常用）: 块：（默认）如果当前页空间充足则整体插入，空间不足，则会整体插入到下一页
-    **注意**：这里的块,仅是内容不跨页。与css中的display无关，也就可以display: inline样式。
-    前面有用户问到这个问题。从而限制了他对PDF内容设计的思维。
-    例如：<div data-op-type="block">...</div>
-    * 使用在符合下列选择器规则的位置之一：
-        #content-box> 下的一级节点
-        [data-op-type=mix-box] .nop-fill-box>  混合盒子容器节点下的一级节点
-        [data-op-type=table] tbody td> 表格的单元格的一级节点
-
-text : 文本，跨页内容自动分割,节点内直接放入文本内容。(内部只能为文本，如果包含子节点，子节点标签将被删除)
-    例如：<p data-op-type="text"> long text...</p>
-    * 使用在符合下列选择器规则的位置之一：
-        #content-box> 下的一级节点
-        [data-op-type=mix-box] .nop-fill-box>  混合盒子容器节点下的一级节点
-        [data-op-type=table] tbody td> 表格的单元格的一级节点
 
 
-new-page : 标记从新页开始插入
-    * 使用在符合下列选择器规则的位置之一： 
-        #content-box> 下的一级节点
-        [data-op-type=mix-box] .nop-fill-box>  混合盒子容器节点下的一级节点
-        [data-op-type=table] tbody>tr  表格的tbody下的tr节点,(与被标记到其他位置不同，被标记的tr节点会保留不会从页面删除)
 
-pendants : 页面部件列表（页眉/页脚/页标签/水印背景等）
-    部件：pendants内部的子节点，会自动标记class:nop-page-pendants，在其定义后的每个页面都会显示，直到下一个pendants出现。
-    部件nop-page-pendants包含css: {position: absolute}属性，相对页面纸张位置固定。
-    在页面设计时需要为部件节点设置css: left/right/top/bottom/width/height等属性来控制部件位置和大小。
-    * 使用在符合下列选择器规则的位置之一： 
-        #content-box> 下的一级节点
+### pendants: 页面部件，相对于页面位置固定的元素（页眉、页脚、页标签...）
 
-mix-box（常用） : 混合盒子：盒子内部class:nop-fill-box标记的节点的可以包含多个[data-op-type="text"],[data-op-type="block"]元素
-     盒子内的元素被超出一页时，会根据text/block的规则，自动分割到下一页，并会复制携带包裹元素的外部节点。
-     容器节点内的一级节点必须标记data-op-type属性，属性值： text或block
-     text:允许跨页截断
-     block:（默认）不可跨页截断
-     * 使用在符合下列选择器规则的位置之一： 
-             #content-box> 下的一级节点
+- pendants内部的子节点，会自动标记class:nop-page-pendants，在其定义后的每个页面都会显示，直到下一个pendants出现。
+- 部件nop-page-pendants包含css: {position: absolute}属性，相对页面纸张位置固定。
+- 在页面设计时需要为部件节点设置css: left/right/top/bottom/width/height等属性来控制部件位置和大小。
+- 使用在符合下列选择器规则的位置之一： 
+```
+#content-box> 下的一级节点
+```
+- 例如： [部件示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=V86PPDPA)
+```html
+<div data-op-type="pendants">
+    <div style="top: 50px;left: 100px;width: 100px;height: 100px"><img src="...." alt="logo"></div>
+    <div style="bottom: 50px;left: 400px;width: 100%;height: 30px"><span>页尾：章节：xxx</span></div>
+</div>
+```
 
-     例如：下面的一段HTML，包含很长的内容，多到会超出几页的长度，那么bookjs-eazy会对其自动分页将会
-            
+
+### 盒子， 可差分，并携带布局样式
+- **注意**：不要限定容器节点高度(如height、max-height样式)，影响溢出检测，出现未知结果
+
+#### mix-box: 混合盒子（常用）
+- 盒子内部class:nop-fill-box标记的节点的可以包含多个[data-op-type="text"],[data-op-type="block"]元素
+- 盒子内的元素被超出一页时，会根据text/block的规则，自动分割到下一页，并会复制携带包裹元素的外部节点。
+- 例如： 见示例：[混合盒子示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=EM8ANL97)
+```html
     <div data-op-type="mix-box"><!-- 跨页时：这个节点会被复制到下一页，除nop-fill-box内所有的内容都会被复用,一个data-op-type里只可以有一个容器节点（class:nop-fill-box）,容器节点可以在data-op-type="mix-box"里的任意位置 -->
         <div class="title">布局1</div>
         <div class="nop-fill-box">
@@ -291,52 +338,93 @@ mix-box（常用） : 混合盒子：盒子内部class:nop-fill-box标记的节�
         <div class="title">布局2</div>
         <div class="title">布局3</div>
     </div>
-
-table : 对表格遇到分页时，出现的一些显示问题，做了些优化处理（**注意**：列一定要固定宽度），（参考：ezay-6 示例）
-    对于合并单元格：td上标记属性 data-split-repeat="true" ，在分页td里的文本会在在新页中也会显示。
-    td : td>直接子节点可以是[data-op-type="text"],[data-op-type="block"]元素
-         text:允许跨页截断
-         block:（默认）不可跨页截断
-
-        <table data-op-type="table">
-            <thead><tr><td width="100">序号<td><td width="500">内容<td></tr></thead>
-            <tbody>
-                <tr>
-                    <td data-split-repeat="true">1<td>
-                    <td>
-                        <p data-op-type="text">long text1 ...<p>
-                        <img data-op-type="block" src="..." /> 
-                        <p data-op-type="text">long text2 ...<p>
-                        <div data-op-type="block">... </div> 
-                    <td>
-                </tr>
-           </tbody>
-        </div>
-
-block-box : 块盒子（@deprecated 其功能已完全被mix-box替代）：块盒子内部nop-fill-box标记的节点包含的多个块，盒子内的多个块被分割到多个页面时，都会复制包裹块的外部节点。
-    以下一个示例中的表格为例：
-    table节点定义为块盒子
-    tbody节点定义为容纳块的容器节点（使用class: nop-fill-box标记）
-    这样在填充行tr时，当前页空间不足时，换页并复制外部table（除去nop-fill-box标记的部分）继续填充。这样表头就得到复用
-
-text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：与块盒子类似，大文本内容跨多个页面时，会复制外部包裹文本的盒子的部分。
-     文本盒子节点， 大文本的容器节点需用 class : nop-fill-box标记
-
+```
+- 使用在符合下列选择器规则的位置之一：
+```
+ #content-box> 下的一级节点
 ```
 
-- **注意**：不要限定容器节点高度(如height、max-height样式)，影响溢出检测，出现未知结果
+#### table: 表格，也是一种特殊的盒子
+- 对表格遇到分页时，出现的一些显示问题，做了些优化处理（**注意**：列一定要固定宽度），（参考：ezay-6 示例）
+- 对于合并单元格：td上标记属性 data-split-repeat="true" ，在分页td里的文本会在在新页中也会显示。
+- td : td>直接子节点可以是[data-op-type="text"],[data-op-type="block"]元素
+- 使用在符合下列选择器规则的位置之一：
 ```
-    [data-op-type=mix-box]
-    [data-op-type=block-box]
-    [data-op-type=text-box]
-    [data-op-type=table] 
-    .nop-fill-box
-    [data-op-type=table] body td
+ #content-box> 下的一级节点
 ```
-- 除block和text可以嵌套在容器类型的节点（mix-box、table）内,其他类型并不支持相互嵌套。
-- 具体注意查看每种类型“使用在符合下列选择器规则的位置”说明
 
+- 例如： 见示例：[表格示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=J2QR8NGC)
+```html
+<table data-op-type="table" class="nop-simple-table-2">
+    <thead>
+        <tr>
+            <td width="100">生物种类</td>
+            <td width="100">子类别</td>
+            <td width="500">详解介绍</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td data-split-repeat="true" rowspan="2">动物</td>
+            <td data-split-repeat="true">爬行动物</td>
+            <td>
+                <p data-op-type="text">long text1 ...<p>
+                <img data-op-type="block" src="..." /> 
+                <p data-op-type="text">long text2 ...</p>
+                <div data-op-type="block">... </div> 
+            </td>
+        </tr>
+        <tr>
+            <td data-split-repeat="true">哺乳动物</td>
+            <td>
+                <p data-op-type="text">long text1 ...</p>
+                <img data-op-type="block" src="..." /> 
+                <p data-op-type="text">long text2 ...</p>
+                <div data-op-type="block">... </div> 
+            </td>
+        </tr>
+        <tr>
+            <td>植物</td>
+            <td>蕨类</td>
+            <td>
+                <p>long text...</p>
+            </td>
+        </tr>
+   </tbody>
+</table>
+```
 
+#### block-box: 块盒子，（@deprecated 其功能已完全被mix-box替代）
+- 块盒子内部nop-fill-box标记的节点内部的一级子节点都被视作"块"，盒子内的多个块被分割到多个页面时，都会复制包裹块的外部节点。
+-  以下一个示例中的简易表格为例：
+-  table节点定义为块盒子
+-  tbody节点定义为容纳块的容器节点（使用class: nop-fill-box标记）
+-  这样在填充行tr时，当前页空间不足时，换页并复制外部table（除去nop-fill-box标记的部分）继续填充。这样表头就得到复用
+- 使用在符合下列选择器规则的位置之一：
+```
+ #content-box> 下的一级节点
+```
+
+- 例如：见示例：[块示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=6AYD2RET)
+```html
+<table data-op-type="block-box" style="font-size: 16px">
+<thead>
+    <tr><th>ID</th><th>name</th></tr>
+</thead>
+<tbody class="nop-fill-box">
+    <tr><td>1</td><td>name1</td></tr>
+    <tr><td>2</td><td>name2</td></tr>
+    <tr><td>...</td><td>...</td></tr>
+</tbody>
+</table>
+```
+
+#### text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）
+- 与块盒子类似，大文本内容跨多个页面时，会复制外部包裹文本的盒子的部分。
+- 文本盒子内部nop-fill-box标记的节点内部的一级子节点都被视作"文本"
+
+### 示例
+```
 - 使用样例
 
 ```html
@@ -345,7 +433,7 @@ text-box : 文本盒子（@deprecated 其功能已完全被mix-box替代）：�
         <div class='pendant-title'>第一章：块盒子</div>
     </div>
     <h1 data-op-type='block'>第1章 块盒子</h1><!-- 块 -->
-    <table data-op-type="block-box" class="simple-table" border="1"><!-- 块盒子 -->
+    <table data-op-type="block-box" class="nop-simple-table-2" border="1"><!-- 块盒子 -->
         <thead>
             <tr><th>ID</th><th>姓名</th><th>年龄</th></tr>
         </thead>
