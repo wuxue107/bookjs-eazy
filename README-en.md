@@ -1,7 +1,7 @@
 # WEB print, HTML to PDF tool. bookjs-eazy
 
 - Readme: [中文](./README.md) | [English](./README-en.md)
-- Warehouse address: [GITEE](https://gitee.com/wuxue107/bookjs-eazy) | [GITHUB](https://github.com/wuxue107/bookjs-eazy)
+- Repository: [GITEE](https://gitee.com/wuxue107/bookjs-eazy) | [GITHUB](https://github.com/wuxue107/bookjs-eazy)
 - Mainly solve the problem of HTML generating PDF and paging control. From then on, it is no longer difficult to generate high-quality PDF.
 - Dependent js libraries: polyfill, jquery, lodash, bookjs-eazy
 - Advantages:
