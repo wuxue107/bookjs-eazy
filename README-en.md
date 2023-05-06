@@ -426,7 +426,7 @@ The-tbody node is defined as the container node that holds the block (using the 
 - The first-level child nodes inside nop-fill-box marked nodes inside the text box are treated as "text"
 
 ### Example
-```
+
 - Use sample
 
 ```html
