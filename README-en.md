@@ -6,9 +6,9 @@
 - Dependent js libraries: polyfill, jquery, lodash, bookjs-eazy
 - Advantages:
 
-1. Just focus on using H5 to construct your PDF content, without worrying about paging and content truncation, and automatically paging according to rules. 
-2. Support preview, WYSIWYG. Support WEB printing, support custom page number/directory/header/footer. 
-3. Both the front and back ends can generate PDF, the front end can print and save as PDF, and the back end can use chrome headless and wkhtmltopdf command line PDF generation tools. 
+1. Just focus on using H5 to construct your PDF content, without worrying about paging and content truncation, and automatically paging according to rules.
+2. Support preview, WYSIWYG. Support WEB printing, support custom page number/directory/header/footer.
+3. Both the front and back ends can generate PDF, the front end can print and save as PDF, and the back end can use chrome headless and wkhtmltopdf command line PDF generation tools.
 4. Docker mirror. A print generation service that can quickly build your online PDF
 5. Compatible with mainstream browsers and mobile terminals
 
@@ -27,9 +27,9 @@
 
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-1-qrcode.png)
 
-- Another novel case 
-- JS : <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a> 
-- Lodash template:<a href = "https://bookjs.zhouwuxue.com/eazy-4.html" target = "_blank" rel = "noopener noreferrer">eazy-4.html</a> 
+- Another novel case
+- JS : <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a>
+- Lodash template:<a href = "https://bookjs.zhouwuxue.com/eazy-4.html" target = "_blank" rel = "noopener noreferrer">eazy-4.html</a>
 - Vue template: <a href = "https://bookjs.zhouwuxue.com/eazy-3.html" target = "_blank" rel = "noopener noreferrer">eazy-3.html</a>
 
 
@@ -50,7 +50,7 @@
 - Download or clone the project, the command line into the project directory.
 - Run./docker-start.sh or docker-start.bat
 - You can access demo through the browser http:// 127.0.0.1:3000/eazy-1.html, print and create PDF
-- You can try to write your own pdf page in the dist directory. 
+- You can try to write your own pdf page in the dist directory.
 
 # Usage:
 
@@ -66,7 +66,7 @@
     **NOTE * *: 
     a. display: float, position: absolute; Insertion of overflow-style elements does not change the height of the page container. May cause page overflow to go undetected. 
     B because margin style elements cannot be stretched out. nop-page-content size, resulting in. nop-page-content position offset, it is easy to cause page overflow phenomenon, so control the relative position as far as possible to use padding
-        
+
 ## Configure page parameters:
 
 - Define a global configuration variable bookConfig
@@ -239,7 +239,7 @@ bookConfig = {
 
 - Define the content to be inserted into the document in an id content-box node;
 - Each first-level child node under the content-box needs to define attributes data-op-type indicate how it is inserted in the document.
-- Example: 
+- Example:
 
 ```html
 <body>
@@ -249,14 +249,14 @@ bookConfig = {
 </body>
 ```
 
-- Except that block and text can be nested in container nodes of box types (mix-box, table, block-box, text-box), other types do not support nesting each other. 
+- Except that block and text can be nested in container nodes of box types (mix-box, table, block-box, text-box), other types do not support nesting each other.
 - Specific attention to view each type of "use in locations that meet the following selector rules" description
 
 ### block: block, indivisible (default)
 
 - If the current page has enough space, it will be inserted as a whole, and if the space is insufficient, a new page will be automatically created and inserted as a whole to the next page
-- **Note**: The block here is only the content and does not span pages. Regardless of the display in css, you can display the: inline style. 
-      A previous user asked this question. Thus limiting his thinking on PDF content design. 
+- **Note**: The block here is only the content and does not span pages. Regardless of the display in css, you can display the: inline style.
+  A previous user asked this question. Thus limiting his thinking on PDF content design.
 - Example: [Block Example](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=4ELVR92Y)
 ```html
 <div data-op-type="block">...</div>
@@ -284,14 +284,14 @@ bookConfig = {
 [data-op-type = table] tbody td> The first-level node of the cell of the table
 ```
 
-        
+
 ### new-page: new page, manual control to add new page
 - The content after the marked node will be written starting from the new 1 page
 - Example: [New Page Example](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=R992XN88)
 ```html
 <div data-op-type = "new-page"> is just a tag node, the content here is not rendered </div>
 ```
-- Use in one of the positions that meet the following selector rules: 
+- Use in one of the positions that meet the following selector rules:
 ```
 # content-box> next level node
 [data-op-type = mix-box] .nop-fill-box> Level 1 node under the mixed box container node
@@ -303,10 +303,10 @@ bookConfig = {
 
 ### pendants: page parts, elements that are fixed relative to the page position (header, footer, page label,...)
 
-- The child node inside the pendants will be automatically marked with class:nop-page-pendants, and every page after its definition will be displayed until the next pendants appears. 
-- The widget nop-page-pendants contains the css: {position: absolute} attribute, which is fixed relative to the page paper position. 
-- When designing the page, you need to set css: left/right/top/bottom/width/height and other properties for the part node to control the position and size of the part. 
-- Use in one of the positions that meet the following selector rules: 
+- The child node inside the pendants will be automatically marked with class:nop-page-pendants, and every page after its definition will be displayed until the next pendants appears.
+- The widget nop-page-pendants contains the css: {position: absolute} attribute, which is fixed relative to the page paper position.
+- When designing the page, you need to set css: left/right/top/bottom/width/height and other properties for the part node to control the position and size of the part.
+- Use in one of the positions that meet the following selector rules:
 ```
 # content-box> next level node
 ```
@@ -325,17 +325,17 @@ bookConfig = {
 
 #### mix-box: mix box (commonly used)
 - box internal class:nop-fill-box marked container node can contain multiple [data-op-type = "text"],[data-op-type = "block"] elements
-- When the element in the box is beyond the 1 page, it will be automatically divided to the next page according to the rules of text/block, and the external node carrying the package element will be copied. 
+- When the element in the box is beyond the 1 page, it will be automatically divided to the next page according to the rules of text/block, and the external node carrying the package element will be copied.
 - Example: See Example: [Mixed Box Example](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=EM8ANL97)
 ```html
-    <div data-op-type="mix-box"><! -when crossing pages: this node will be copied to the next page, except that all contents in the nop-fill-box page will be reused. there can only be one container node (class:nop-fill-box) in a data-op-type page, and the container node can be anywhere in the data-op-type = "mix-box"->
+    <div data-op-type="mix-box"><!-- when crossing pages: this node will be copied to the next page, except that all contents in the nop-fill-box page will be reused. there can only be one container node (class:nop-fill-box) in a data-op-type page, and the container node can be anywhere in the data-op-type = "mix-box" -->
         <div class = "title"> Layout 1</div>
         <div class="nop-fill-box">
-            <! -when crossing pages, the contents of class: nop-fill-box will continue to fill in the previous page->
+            <!-- when crossing pages, the contents of class: nop-fill-box will continue to fill in the previous page -->
             <span data-op-type="text">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
-            <span data-op-type="new-page"></span><! -- Insert New Page -->
+            <span data-op-type="new-page"></span><!--  Insert New Page -->
             <span data-op-type="text" sytle="color:red">BBBBBBBBBBBBBBBBBBBBBBB</span>
-            <a data-op-type = "text" target = "_blank" href = "https://baijiahao.baidu.com/s?id=1726750581584920901&wfr=spider&for=pc"> Article link...</a><! -link text here: if there are hyperlinks in the last two pages of the spread->
+            <a data-op-type = "text" target = "_blank" href = "https://baijiahao.baidu.com/s?id=1726750581584920901&wfr=spider&for=pc"> Article link...</a><!-- link text here: if there are hyperlinks in the last two pages of the spread -->
         </div>
         <div class = "title"> Layout 2</div>
         <div class = "title"> Layout 3</div>
@@ -348,7 +348,7 @@ bookConfig = {
 
 #### table: table, also 1 kind of special box
 - some display problems occurred when paging was encountered in the table, and some optimization treatment was made (* * note * *: the column must have a fixed width),(reference: ezay-6 example)
-- For merged cells: the tag attribute data-split-repeat = "true" on td, the text in the pagination td will also be displayed on the new page. 
+- For merged cells: the tag attribute data-split-repeat = "true" on td, the text in the pagination td will also be displayed on the new page.
 - td : td> Direct child nodes can be [data-op-type = "text"],[data-op-type = "block"] elements
 - Use in one of the positions that meet the following selector rules:
 ```
@@ -397,10 +397,10 @@ bookConfig = {
 ```
 
 #### block-box: block box,(@ deprecated its function has been completely replaced by mix-box)
-- The first-level child nodes inside the nop-fill-box marked nodes in the block box are all regarded as "blocks". When multiple blocks in the box are divided into multiple pages, the external nodes of the wrapped block are copied. 
+- The first-level child nodes inside the nop-fill-box marked nodes in the block box are all regarded as "blocks". When multiple blocks in the box are divided into multiple pages, the external nodes of the wrapped block are copied.
 - Take the simple table in the next example:
 - table node defined as a block box
-The-tbody node is defined as the container node that holds the block (using the class: nop-fill-box notation)
+  The-tbody node is defined as the container node that holds the block (using the class: nop-fill-box notation)
 - In this way, when filling the line tr, when the current page is short of space, page change and copy the external table (excluding the part marked by the nop-fill-box) to continue filling. In this way, the header is reused.
 - Use in one of the positions that meet the following selector rules:
 ```
@@ -422,7 +422,7 @@ The-tbody node is defined as the container node that holds the block (using the 
 ```
 
 #### text-box: text box (@ deprecated its function has been completely replaced by mix-box)
-- Similar to block boxes, when large text content spans multiple pages, the part of the box that wraps the text outside is copied. 
+- Similar to block boxes, when large text content spans multiple pages, the part of the box that wraps the text outside is copied.
 - The first-level child nodes inside nop-fill-box marked nodes inside the text box are treated as "text"
 
 ### Example
@@ -431,15 +431,15 @@ The-tbody node is defined as the container node that holds the block (using the 
 
 ```html
 <div id="content-box" style="display: none">
-    <div data-op-type="pendants"><! -- Define page parts (header/footer/page label/watermark background, etc.) -->
+    <div data-op-type="pendants"><!--  Define page parts (header/footer/page label/watermark background, etc.) -->
         <div class = 'pendant-title'> Chapter 1: Block Box </div>
     </div>
-    <h1 data-op-type = 'block'> Chapter 1 Block Box </h1><! -- Block -->
-    <table data-op-type="block-box" class="nop-simple-table-2" border="1"><! -- Block Box -->
+    <h1 data-op-type = 'block'> Chapter 1 Block Box </h1><!--  Block -->
+    <table data-op-type="block-box" class="nop-simple-table-2" border="1"><!--  Block Box -->
         <thead>
             <tr><th>ID</th><th> Name </th><th> Age </th></tr>
         </thead>
-        <tbody class="nop-fill-box"><! -- list of sub-blocks, the program will automatically differential -->
+        <tbody class="nop-fill-box"><!--  list of sub-blocks, the program will automatically differential -->
             <tr><td>1</td><td> Zhang San </td><td>12</td></tr>
             It's...
         </tbody>
@@ -447,21 +447,21 @@ The-tbody node is defined as the container node that holds the block (using the 
             <tr><td colspan = "3"> Tail of table </td></tr>
         </tfoot>
     </table>
-    <div data-op-type="new-page"></div><! -- New page tag, force start from new page -->
-    <div data-op-type="pendants"><! -- Define page parts (header/footer/bookmark/watermark background, etc.) -->
+    <div data-op-type="new-page"></div><!--  New page tag, force start from new page -->
+    <div data-op-type="pendants"><!--  Define page parts (header/footer/bookmark/watermark background, etc.) -->
         <div class = 'pendant-title'> Chapter 2: Text Box </div>
     </div>
-    <h1 data-op-type = 'block'> Chapter 2 Text Box </h1><! -- Block -->
-    <p data-op-type="text-box"><! -- Text Box -->
-        <span class = "nop-fill-box">1234566 .... </span><! -- large text, the program will automatically differential -->
+    <h1 data-op-type = 'block'> Chapter 2 Text Box </h1><!--  Block -->
+    <p data-op-type="text-box"><!--  Text Box -->
+        <span class = "nop-fill-box">1234566 .... </span><!--  large text, the program will automatically differential -->
     </p>
-    <div data-op-type="new-page"></div><! -- New page tag, force start from new page -->
-    <div data-op-type="pendants"><! -- Define page parts (header/footer/bookmark/watermark background, etc.) -->
+    <div data-op-type="new-page"></div><!--  New page tag, force start from new page -->
+    <div data-op-type="pendants"><!--  Define page parts (header/footer/bookmark/watermark background, etc.) -->
         <div class = 'pendant-title'> Chapter 3: Mixing Boxes </div>
     </div>
-    <h1 data-op-type = 'block'> Chapter 3 Mixed Box </h1><! -- Block -->
-    <div data-op-type="mix-box"><! -- Mixing Box -->
-        <div class="nop-fill-box" style='font-size: 14px;line-height: 1.5;color: white'><! -- Text or block list, the program will automatically differential -->
+    <h1 data-op-type = 'block'> Chapter 3 Mixed Box </h1><!--  Block -->
+    <div data-op-type="mix-box"><!--  Mixing Box -->
+        <div class="nop-fill-box" style='font-size: 14px;line-height: 1.5;color: white'><!--  Text or block list, the program will automatically differential -->
             <div data-op-type='block' style='background-color: red;height: 300px;'>red</div>
             <div data-op-type='block' style='background-color: green;height: 300px;'>green</div>
             <div data-op-type='block' style='background-color: blue;height: 300px;'>blue</div>
@@ -471,8 +471,8 @@ The-tbody node is defined as the container node that holds the block (using the 
 </div>
 ```
 
-# Online Experience 
-    
+# Online Experience
+
 - <a href = "https://bookjs.zhouwuxue.com/static/book-tpl/editor.html"> Online template editing </a>
 - Try it: <a href = "https://codepen.io/pen/?template=VwPKWvq">CodePen online test </a>
 
@@ -496,8 +496,8 @@ The-tbody node is defined as the container node that holds the block (using the 
 
 ## Font Related
 
-- If the PDF is generated on the server, it is recommended that the fonts used be pre-installed on the server that generates the PDF to ensure the consistency of the experience between the generated PDF and the browser preview. 
-- If docker starts, you can put the font file into./dist/fonts, and the font file will be automatically loaded when docker starts. 
+- If the PDF is generated on the server, it is recommended that the fonts used be pre-installed on the server that generates the PDF to ensure the consistency of the experience between the generated PDF and the browser preview.
+- If docker starts, you can put the font file into./dist/fonts, and the font file will be automatically loaded when docker starts.
 - In order to speed up the screenshot or PDF generation, the font file is usually large and time-consuming to download. To prevent font inconsistency in rendered screenshots or PDF, it is recommended that when setting fonts in css, the original font name should be used first, and then the network font alias should be used. For example:
 
 ```html
@@ -535,8 +535,8 @@ The-tbody node is defined as the container node that holds the block (using the 
 
 ## Do not display and force printing background when printing
 
-  class: nop-no-print marked nodes are not displayed when printing
-  class: nop-force-background the marked node to force the printing background, available when the forcePrintBackground option is false
+class: nop-no-print marked nodes are not displayed when printing
+class: nop-force-background the marked node to force the printing background, available when the forcePrintBackground option is false
 
 ## parity page implementation
 
@@ -559,7 +559,7 @@ The-tbody node is defined as the container node that holds the block (using the 
 ## PDF attribute information generation
 
 - You can add meta tags to the page, and the bookjs-eazy will generate them into the attribute information of the pdf.
-- Starting from version 1.12.0, server generation is valid. 
+- Starting from version 1.12.0, server generation is valid.
 
 ```html
 <meta name="author" content="nop">
@@ -573,13 +573,13 @@ The-tbody node is defined as the container node that holds the block (using the 
 
 ## Click the print button through the browser to print and save as PDF
 
-- Click the WEB print button to print and select "Save as PDF" 
+- Click the WEB print button to print and select "Save as PDF"
 
 ## Server-side printing
 - Reference: bookConfig.toolBar.serverPrint server-side printing options
 - can be configured as: true (and {serverUrl : '/'} equivalent) or {serverUrl : '// your_screenshot_api_server_host[:WEB_PORT]/'}
 
-### Self-built printing service, use official website docker image, click to download PDF directly (server-side printing, recommended) 
+### Self-built printing service, use official website docker image, click to download PDF directly (server-side printing, recommended)
 
 - Can be quickly deployed using./docker-start.sh
 ```bash
@@ -649,7 +649,7 @@ Specify the configuration bookConfig.toolBar.serverPrint.serverUrl value as: '//
 ```
 
 ## Command line printing, using wkhtmltopdf rendering (PDF bookmarks will be generated according to h1-h6), you need to download the command line yourself and put it into the directory where the PATH environment variable is located.
-    
+
 ```bash
 
     bin/pdf-a4-landscape "https://bookjs.zhouwuxue.com/eazy-2.html" eazy-2-2.pdf
@@ -664,55 +664,55 @@ Specify the configuration bookConfig.toolBar.serverPrint.serverUrl value as: '//
 # Generate FAQ (Pit Stamping Memo)
 
 - Server printing failure:
-    -Starting the print service (screenshot-api-server) must be able to access the PDF preview page you want to print from HTML. 
+  -Starting the print service (screenshot-api-server) must be able to access the PDF preview page you want to print from HTML.
 
 - Content beyond the page:
-    -Some such as: display: float, position: absolute; overflow style elements may not change the height of the page container. Thus showing beyond the page. 
-    -because margin style elements cannot be stretched out. nop-page-content size, resulting in. nop-page-content position offset, it is easy to cause page overflow phenomenon, so control the relative position as far as possible to use padding
-    -Before setting bookConfig.start = true, the page content under# content-box has not been loaded by other programs (Vue, React, Ajax ..). After bookjs is re-paginated, other programs are operating the corresponding dom again, resulting in a change in the original size of the node, thus showing that the content overflows the page.
+  -Some such as: display: float, position: absolute; overflow style elements may not change the height of the page container. Thus showing beyond the page.
+  -because margin style elements cannot be stretched out. nop-page-content size, resulting in. nop-page-content position offset, it is easy to cause page overflow phenomenon, so control the relative position as far as possible to use padding
+  -Before setting bookConfig.start = true, the page content under# content-box has not been loaded by other programs (Vue, React, Ajax ..). After bookjs is re-paginated, other programs are operating the corresponding dom again, resulting in a change in the original size of the node, thus showing that the content overflows the page.
 
 - Extra blank space on the page:
-    -do not manually make any border/width/height/margin/padding style adjustments to html, body,. nop-book,. nop-page,. nop-page-items, and nop-page-item elements
-    
+  -do not manually make any border/width/height/margin/padding style adjustments to html, body,. nop-book,. nop-page,. nop-page-items, and nop-page-item elements
+
 - One more blank page per page
-    -See bookConfig.pageFixedHeightOffset option for adjustment
-    
+  -See bookConfig.pageFixedHeightOffset option for adjustment
+
 - Print out is a blank page
-    -Some users reflected that a blank page appeared after the page was introduced into polyfill.min.js. The introduction of this js is to wkhtmltopdf the compatibility of some js features.  If the test finds no effect on printing after removal, this js can be removed. 
+  -Some users reflected that a blank page appeared after the page was introduced into polyfill.min.js. The introduction of this js is to wkhtmltopdf the compatibility of some js features.  If the test finds no effect on printing after removal, this js can be removed.
 
 - Font cannot be displayed:
-    -The generated PDF is full of frames or cannot be displayed because. In linux server environments, the required fonts are usually not installed. Or use web load font file too large, load timeout
-    
+  -The generated PDF is full of frames or cannot be displayed because. In linux server environments, the required fonts are usually not installed. Or use web load font file too large, load timeout
+
 - The generated PDF has some differences from the preview
-    -For PDF generated by the server, the font of the page can be specified if possible due to the font. And install the corresponding font on the build server. See: Related Details in Design-> Font Related
+  -For PDF generated by the server, the font of the page can be specified if possible due to the font. And install the corresponding font on the build server. See: Related Details in Design-> Font Related
 
 - iframe embedded web page invalid: cannot click cannot download print:
-    -need to add sandbox = "allow-downloads allow-top-navigation allow-scripts allow-modals" attribute to iframe
-    
+  -need to add sandbox = "allow-downloads allow-top-navigation allow-scripts allow-modals" attribute to iframe
+
 - page event binding failure:
-    -After bookjs-eazy rendering,: If it fails, the original binding may be split into different pages. Please try to post the event binding after the PDF rendering is completed. 
-    
+  -After bookjs-eazy rendering,: If it fails, the original binding may be split into different pages. Please try to post the event binding after the PDF rendering is completed.
+
 - Can't find wkhtmltopdf
-    -Execute bin/pdf-xx-xx related commands. No wkhtmltopdf can be found. You need to download the wkhtmltopdf yourself and place it in the PATH directory.
-    
+  -Execute bin/pdf-xx-xx related commands. No wkhtmltopdf can be found. You need to download the wkhtmltopdf yourself and place it in the PATH directory.
+
 - Merged cells with data-op-type = "table" are not displayed correctly. Recommendations:
-    -Write the table layout well. First, use the data-op-type = "block" table without writing anything. Keep it in one page and see if the table without splitting is correctly laid out.  If it is not correct, there is something wrong with your own table, which has nothing to do with the bookjs-eazy. 
-    -When filling data in, use data-op-type = "table" instead. If there is a problem at this time. You can reproduce the scene here <a href = "https://codepen.io/pen/?template=VwPKWvq"> table test </a>, save and copy the link. Submit issue
+  -Write the table layout well. First, use the data-op-type = "block" table without writing anything. Keep it in one page and see if the table without splitting is correctly laid out.  If it is not correct, there is something wrong with your own table, which has nothing to do with the bookjs-eazy.
+  -When filling data in, use data-op-type = "table" instead. If there is a problem at this time. You can reproduce the scene here <a href = "https://codepen.io/pen/?template=VwPKWvq"> table test </a>, save and copy the link. Submit issue
 - Download PDF timeout
-    -The server timed out making PDF, your page may need token and session to access, and the back-end program cannot access your page correctly.
-    -If you use wkhtmltopdf method, your page may use wkhtmltopdf unsupported features, such as es6.
-    
+  -The server timed out making PDF, your page may need token and session to access, and the back-end program cannot access your page correctly.
+  -If you use wkhtmltopdf method, your page may use wkhtmltopdf unsupported features, such as es6.
+
 - Page stuck, CPU super high
-    -bookjs-eazy cannot be solved by import introduction and recompilation: it needs to be introduced through script tags in html. 
-    -The block element used exceeds the content of the 1 page and cannot be placed even if the page is changed. 
-    Common in "[data-op-type =" table "] td>[data-op-type =" block "]"
-    The next element in td will be regarded as block by default if no data-op-type is specified.
-    Please split the block element reasonably so that it can be placed in the 1 page. 
-   
+  -bookjs-eazy cannot be solved by import introduction and recompilation: it needs to be introduced through script tags in html.
+  -The block element used exceeds the content of the 1 page and cannot be placed even if the page is changed.
+  Common in "[data-op-type =" table "] td>[data-op-type =" block "]"
+  The next element in td will be regarded as block by default if no data-op-type is specified.
+  Please split the block element reasonably so that it can be placed in the 1 page.
+
 - Parts cannot be displayed
-    -When the margin is bookConfig.padding = "0 0 0 0", the blank page part cannot be displayed in the print preview of the Firefox browser. 
-    Adjustment bookConfig.padding = "1px 0 0 0"
-    Or you can try to fill an empty text node for ``` <span>& nbsp<span>``` in the page. 
+  -When the margin is bookConfig.padding = "0 0 0 0", the blank page part cannot be displayed in the print preview of the Firefox browser.
+  Adjustment bookConfig.padding = "1px 0 0 0"
+  Or you can try to fill an empty text node for ``` <span>& nbsp<span>``` in the page.
 
 <!--
     ```bash
@@ -721,11 +721,11 @@ Specify the configuration bookConfig.toolBar.serverPrint.serverUrl value as: '//
     :: Then use -- agent = chrome-headless to succeed. 
     :: The default -- agent = puppeteer is not required. The above operation will start its own browser. 
     ```
-- ->
+-->
 
 # QQ communication group
 
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/qq-group-1.png)
 
 
-- Warehouse address: [GITEE](https://gitee.com/wuxue107/bookjs-eazy) | [GITHUB](https://github.com/wuxue107/bookjs-eazy)
+- Repository: [GITEE](https://gitee.com/wuxue107/bookjs-eazy) | [GITHUB](https://github.com/wuxue107/bookjs-eazy)
