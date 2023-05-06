@@ -29,8 +29,8 @@
 
 - Another novel case
 - JS : <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a>
-- Lodash template:<a href = "https://bookjs.zhouwuxue.com/eazy-4.html" target = "_blank" rel = "noopener noreferrer">eazy-4.html</a>
-- Vue template: <a href = "https://bookjs.zhouwuxue.com/eazy-3.html" target = "_blank" rel = "noopener noreferrer">eazy-3.html</a>
+- Lodash template:<a href="https://bookjs.zhouwuxue.com/eazy-4.html" target="_blank" rel="noopener noreferrer">eazy-4.html</a>
+- Vue template: <a href="https://bookjs.zhouwuxue.com/eazy-3.html" target="_blank" rel="noopener noreferrer">eazy-3.html</a>
 
 
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-2-qrcode.png)
@@ -42,7 +42,7 @@
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-5-qrcode.png)
 
 - Table: Merge Cells
-- Reference example:<a href = "https://bookjs.zhouwuxue.com/eazy-6.html" target = "_blank" rel = "noopener noreferrer">eazy-6.html</a>
+- Reference example:<a href="https://bookjs.zhouwuxue.com/eazy-6.html" target="_blank" rel="noopener noreferrer">eazy-6.html</a>
 
 
 # Use docker quick experience (you can not use docker, please refer to the chapter [PDF generation service installation](# self-built printing service native installation pdf generation service))
@@ -138,7 +138,7 @@ bookConfig = {
         
         /**Directory-related options * */
         showCatalog : true, // optional, whether to insert a directory into the page, default, insert a directory into the page
-        Header: '<div class = "catalog-title"> directory </div>', //optional, Header section of directory page, put everything you want to add
+        Header: '<div class="catalog-title"> directory </div>', //optional, Header section of directory page, put everything you want to add
         itemFillChar : '...', // optional, directory entry padding character, "" empty string, no padding, ignored when using custom makeItem configuration
         positionSelector : '.nop-page-item-pagenum-1', //optional, the directory location will be inserted before the matching page, and the default is before the first numbered page.
         // Optional, custom directory entry. 
@@ -153,7 +153,7 @@ bookConfig = {
         /**Sidebar (PDF Bookmarks) Related Options * */
         showSlide : true, // optional, whether to display sidebar, directory navigation, toolbar button order index: 200, invalid when bookConfig.toolBar option is false
         slideOn : false, // optional, directory navigation, default open state
-        slideHeader : '<div class = "title"> Purpose & nbsp;& nbsp; Record </div>', // Optional, sidebar title
+        slideHeader : '<div class="title"> Purpose & nbsp;& nbsp; Record </div>', // Optional, sidebar title
         slideClassName : '', // optional, sidebar custom class
         slidePosition : 'left', // optional, position left, right
         slideMakeContent : null, // custom sidebar content processing function, when null, the default behavior: fill with directory content, function(){return'sidebar content';}
@@ -289,7 +289,7 @@ bookConfig = {
 - The content after the marked node will be written starting from the new 1 page
 - Example: [New Page Example](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=R992XN88)
 ```html
-<div data-op-type = "new-page"> is just a tag node, the content here is not rendered </div>
+<div data-op-type="new-page"> is just a tag node, the content here is not rendered </div>
 ```
 - Use in one of the positions that meet the following selector rules:
 ```
@@ -314,7 +314,7 @@ bookConfig = {
 ```html
 <div data-op-type="pendants">
     <div style="top: 50px;left: 100px;width: 100px;height: 100px"><img src="...." alt="logo"></div>
-    <div style = "bottom: 50px;left: 400px;width: 100px; height: 30px"><span> Footer: Chapter: xxx</span></div>
+    <div style="bottom: 50px;left: 400px;width: 100px; height: 30px"><span> Footer: Chapter: xxx</span></div>
 </div>
 ```
 
@@ -324,21 +324,21 @@ bookConfig = {
 - **Note**: Do not limit the height of the box and container nodes (such as height and max-height style), which affects overflow detection and causes unknown results.
 
 #### mix-box: mix box (commonly used)
-- box internal class:nop-fill-box marked container node can contain multiple [data-op-type = "text"],[data-op-type = "block"] elements
+- box internal class:nop-fill-box marked container node can contain multiple [data-op-type="text"],[data-op-type="block"] elements
 - When the element in the box is beyond the 1 page, it will be automatically divided to the next page according to the rules of text/block, and the external node carrying the package element will be copied.
 - Example: See Example: [Mixed Box Example](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=EM8ANL97)
 ```html
-    <div data-op-type="mix-box"><!-- when crossing pages: this node will be copied to the next page, except that all contents in the nop-fill-box page will be reused. there can only be one container node (class:nop-fill-box) in a data-op-type page, and the container node can be anywhere in the data-op-type = "mix-box" -->
-        <div class = "title"> Layout 1</div>
+    <div data-op-type="mix-box"><!-- when crossing pages: this node will be copied to the next page, except that all contents in the nop-fill-box page will be reused. there can only be one container node (class:nop-fill-box) in a data-op-type page, and the container node can be anywhere in the data-op-type="mix-box" -->
+        <div class="title"> Layout 1</div>
         <div class="nop-fill-box">
             <!-- when crossing pages, the contents of class: nop-fill-box will continue to fill in the previous page -->
             <span data-op-type="text">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
             <span data-op-type="new-page"></span><!--  Insert New Page -->
             <span data-op-type="text" sytle="color:red">BBBBBBBBBBBBBBBBBBBBBBB</span>
-            <a data-op-type = "text" target = "_blank" href = "https://baijiahao.baidu.com/s?id=1726750581584920901&wfr=spider&for=pc"> Article link...</a><!-- link text here: if there are hyperlinks in the last two pages of the spread -->
+            <a data-op-type="text" target="_blank" href="https://baijiahao.baidu.com/s?id=1726750581584920901&wfr=spider&for=pc"> Article link...</a><!-- link text here: if there are hyperlinks in the last two pages of the spread -->
         </div>
-        <div class = "title"> Layout 2</div>
-        <div class = "title"> Layout 3</div>
+        <div class="title"> Layout 2</div>
+        <div class="title"> Layout 3</div>
     </div>
 ```
 - Use in one of the positions that meet the following selector rules:
@@ -348,8 +348,8 @@ bookConfig = {
 
 #### table: table, also 1 kind of special box
 - some display problems occurred when paging was encountered in the table, and some optimization treatment was made (* * note * *: the column must have a fixed width),(reference: ezay-6 example)
-- For merged cells: the tag attribute data-split-repeat = "true" on td, the text in the pagination td will also be displayed on the new page.
-- td : td> Direct child nodes can be [data-op-type = "text"],[data-op-type = "block"] elements
+- For merged cells: the tag attribute data-split-repeat="true" on td, the text in the pagination td will also be displayed on the new page.
+- td : td> Direct child nodes can be [data-op-type="text"],[data-op-type="block"] elements
 - Use in one of the positions that meet the following selector rules:
 ```
  # content-box> next level node
@@ -360,15 +360,15 @@ bookConfig = {
 <table data-op-type="table" class="nop-simple-table-2">
     <thead>
         <tr>
-            <td width = "100"> Biological species </td>
-            <td width = "100"> Subcategories </td>
-            <td width = "500"> Detailed introduction </td>
+            <td width="100"> Biological species </td>
+            <td width="100"> Subcategories </td>
+            <td width="500"> Detailed introduction </td>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td data-split-repeat = "true" rowspan = "2"> Animals </td>
-            <td data-split-repeat = "true"> Reptile </td>
+            <td data-split-repeat="true" rowspan="2"> Animals </td>
+            <td data-split-repeat="true"> Reptile </td>
             <td>
                 <p data-op-type="text">long text1 ...<p>
                 <img data-op-type="block" src="..." /> 
@@ -377,7 +377,7 @@ bookConfig = {
             </td>
         </tr>
         <tr>
-            <td data-split-repeat = "true"> Mammals </td>
+            <td data-split-repeat="true"> Mammals </td>
             <td>
                 <p data-op-type="text">long text1 ...</p>
                 <img data-op-type="block" src="..." /> 
@@ -432,9 +432,9 @@ bookConfig = {
 ```html
 <div id="content-box" style="display: none">
     <div data-op-type="pendants"><!--  Define page parts (header/footer/page label/watermark background, etc.) -->
-        <div class = 'pendant-title'> Chapter 1: Block Box </div>
+        <div class='pendant-title'> Chapter 1: Block Box </div>
     </div>
-    <h1 data-op-type = 'block'> Chapter 1 Block Box </h1><!--  Block -->
+    <h1 data-op-type='block'> Chapter 1 Block Box </h1><!--  Block -->
     <table data-op-type="block-box" class="nop-simple-table-2" border="1"><!--  Block Box -->
         <thead>
             <tr><th>ID</th><th> Name </th><th> Age </th></tr>
@@ -444,22 +444,22 @@ bookConfig = {
             It's...
         </tbody>
         <tfoot>
-            <tr><td colspan = "3"> Tail of table </td></tr>
+            <tr><td colspan="3"> Tail of table </td></tr>
         </tfoot>
     </table>
     <div data-op-type="new-page"></div><!--  New page tag, force start from new page -->
     <div data-op-type="pendants"><!--  Define page parts (header/footer/bookmark/watermark background, etc.) -->
-        <div class = 'pendant-title'> Chapter 2: Text Box </div>
+        <div class='pendant-title'> Chapter 2: Text Box </div>
     </div>
-    <h1 data-op-type = 'block'> Chapter 2 Text Box </h1><!--  Block -->
+    <h1 data-op-type='block'> Chapter 2 Text Box </h1><!--  Block -->
     <p data-op-type="text-box"><!--  Text Box -->
-        <span class = "nop-fill-box">1234566 .... </span><!--  large text, the program will automatically differential -->
+        <span class="nop-fill-box">1234566 .... </span><!--  large text, the program will automatically differential -->
     </p>
     <div data-op-type="new-page"></div><!--  New page tag, force start from new page -->
     <div data-op-type="pendants"><!--  Define page parts (header/footer/bookmark/watermark background, etc.) -->
-        <div class = 'pendant-title'> Chapter 3: Mixing Boxes </div>
+        <div class='pendant-title'> Chapter 3: Mixing Boxes </div>
     </div>
-    <h1 data-op-type = 'block'> Chapter 3 Mixed Box </h1><!--  Block -->
+    <h1 data-op-type='block'> Chapter 3 Mixed Box </h1><!--  Block -->
     <div data-op-type="mix-box"><!--  Mixing Box -->
         <div class="nop-fill-box" style='font-size: 14px;line-height: 1.5;color: white'><!--  Text or block list, the program will automatically differential -->
             <div data-op-type='block' style='background-color: red;height: 300px;'>red</div>
@@ -473,23 +473,23 @@ bookConfig = {
 
 # Online Experience
 
-- <a href = "https://bookjs.zhouwuxue.com/static/book-tpl/editor.html"> Online template editing </a>
-- Try it: <a href = "https://codepen.io/pen/?template=VwPKWvq">CodePen online test </a>
+- <a href="https://bookjs.zhouwuxue.com/static/book-tpl/editor.html"> Online template editing </a>
+- Try it: <a href="https://codepen.io/pen/?template=VwPKWvq">CodePen online test </a>
 
 # Use Examples
 
 ## Page background image
 
-- <a href = "https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=5R4E4EJU"> Example of a page background image </a>
+- <a href="https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=5R4E4EJU"> Example of a page background image </a>
 
 ## Page Watermark
 
-- <a href = "https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=ESWDZ5G2"> Page Watermark Example </a>
+- <a href="https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=ESWDZ5G2"> Page Watermark Example </a>
 
 ## No paging PDF
 
 - No paging PDF, only back-end generation is supported
-- <a href = "https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=W83KPQXV"> Do not page PDF</a>
+- <a href="https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=W83KPQXV"> Do not page PDF</a>
 
 
 # Relevant details in the design
@@ -564,7 +564,7 @@ class: nop-force-background the marked node to force the printing background, av
 ```html
 <meta name="author" content="nop">
 <meta name="description" content="bookjs-eazy so eazy !! ">
-<meta name = "keywords" content = "PDF, bookjs">
+<meta name="keywords" content="PDF, bookjs">
 ```
 
 ## Auxiliary function, see [BookJsHelper.md](BookJsHelper.md)
@@ -595,7 +595,7 @@ class: nop-force-background the marked node to force the printing background, av
     # The generated pdf will be in the dist/pdf/directory. 
 ```
 
-For more information, see the <a href = "https://gitee.com/wuxue107/screenshot-api-server" target = "_blank">wuxue107/screenshot-api-server</a> project
+For more information, see the <a href="https://gitee.com/wuxue107/screenshot-api-server" target="_blank">wuxue107/screenshot-api-server</a> project
 
 ### Self-built printing service, local installation PDF generation service
 
@@ -687,7 +687,7 @@ Specify the configuration bookConfig.toolBar.serverPrint.serverUrl value as: '//
   -For PDF generated by the server, the font of the page can be specified if possible due to the font. And install the corresponding font on the build server. See: Related Details in Design-> Font Related
 
 - iframe embedded web page invalid: cannot click cannot download print:
-  -need to add sandbox = "allow-downloads allow-top-navigation allow-scripts allow-modals" attribute to iframe
+  -need to add sandbox="allow-downloads allow-top-navigation allow-scripts allow-modals" attribute to iframe
 
 - page event binding failure:
   -After bookjs-eazy rendering,: If it fails, the original binding may be split into different pages. Please try to post the event binding after the PDF rendering is completed.
@@ -695,9 +695,9 @@ Specify the configuration bookConfig.toolBar.serverPrint.serverUrl value as: '//
 - Can't find wkhtmltopdf
   -Execute bin/pdf-xx-xx related commands. No wkhtmltopdf can be found. You need to download the wkhtmltopdf yourself and place it in the PATH directory.
 
-- Merged cells with data-op-type = "table" are not displayed correctly. Recommendations:
-  -Write the table layout well. First, use the data-op-type = "block" table without writing anything. Keep it in one page and see if the table without splitting is correctly laid out.  If it is not correct, there is something wrong with your own table, which has nothing to do with the bookjs-eazy.
-  -When filling data in, use data-op-type = "table" instead. If there is a problem at this time. You can reproduce the scene here <a href = "https://codepen.io/pen/?template=VwPKWvq"> table test </a>, save and copy the link. Submit issue
+- Merged cells with data-op-type="table" are not displayed correctly. Recommendations:
+  -Write the table layout well. First, use the data-op-type="block" table without writing anything. Keep it in one page and see if the table without splitting is correctly laid out.  If it is not correct, there is something wrong with your own table, which has nothing to do with the bookjs-eazy.
+  -When filling data in, use data-op-type="table" instead. If there is a problem at this time. You can reproduce the scene here <a href="https://codepen.io/pen/?template=VwPKWvq"> table test </a>, save and copy the link. Submit issue
 - Download PDF timeout
   -The server timed out making PDF, your page may need token and session to access, and the back-end program cannot access your page correctly.
   -If you use wkhtmltopdf method, your page may use wkhtmltopdf unsupported features, such as es6.
@@ -710,8 +710,8 @@ Specify the configuration bookConfig.toolBar.serverPrint.serverUrl value as: '//
   Please split the block element reasonably so that it can be placed in the 1 page.
 
 - Parts cannot be displayed
-  -When the margin is bookConfig.padding = "0 0 0 0", the blank page part cannot be displayed in the print preview of the Firefox browser.
-  Adjustment bookConfig.padding = "1px 0 0 0"
+  -When the margin is bookConfig.padding="0 0 0 0", the blank page part cannot be displayed in the print preview of the Firefox browser.
+  Adjustment bookConfig.padding="1px 0 0 0"
   Or you can try to fill an empty text node for ``` <span>& nbsp<span>``` in the page.
 
 <!--
