@@ -1,5 +1,6 @@
 # WEB打印，HTML转PDF工具。bookjs-eazy
 
+- Readme: [中文](./README.md) | [English](./README-en.md)
 - 仓库地址： [GITEE](https://gitee.com/wuxue107/bookjs-eazy) | [GITHUB](https://github.com/wuxue107/bookjs-eazy)
 - 主要解决，HTML生成PDF，分页可控的问题，从此生成高品质PDF不在是困难的事
 - 依赖js库：polyfill、jquery、lodash、bookjs-eazy
@@ -425,7 +426,7 @@ bookConfig = {
 - 文本盒子内部nop-fill-box标记的节点内部的一级子节点都被视作"文本"
 
 ### 示例
-```
+
 - 使用样例
 
 ```html
