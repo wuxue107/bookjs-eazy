@@ -242,9 +242,9 @@
 
 ```html
 <body>
-    <div id="content-box">
-        <p data-op-type="text">Hello World!</p>
-    </div>
+<div id="content-box">
+    <p data-op-type="text">Hello World!</p>
+</div>
 </body>
 ```
 
@@ -328,17 +328,17 @@
 - 例如： 见示例：[混合盒子示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=EM8ANL97)
 ```html
     <div data-op-type="mix-box"><!-- 跨页时：这个节点会被复制到下一页，除nop-fill-box内所有的内容都会被复用,一个data-op-type里只可以有一个容器节点（class:nop-fill-box）,容器节点可以在data-op-type="mix-box"里的任意位置 -->
-        <div class="title">布局1</div>
-        <div class="nop-fill-box">
-            <!-- 跨页时，class: nop-fill-box 里的内容会接着上一页页继续填充 -->
-            <span data-op-type="text">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
-            <span data-op-type="new-page"></span><!-- 插入新页 -->
-            <span data-op-type="text" sytle="color:red">BBBBBBBBBBBBBBBBBBBBBBB</span>
-            <a data-op-type="text" target="_blank" href="https://baijiahao.baidu.com/s?id=1726750581584920901&wfr=spider&for=pc">文章链接...</a><!-- 这里的链接文字：如果跨页最两页里都会有超链接 -->
-        </div>
-        <div class="title">布局2</div>
-        <div class="title">布局3</div>
+    <div class="title">布局1</div>
+    <div class="nop-fill-box">
+        <!-- 跨页时，class: nop-fill-box 里的内容会接着上一页页继续填充 -->
+        <span data-op-type="text">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span>
+        <span data-op-type="new-page"></span><!-- 插入新页 -->
+        <span data-op-type="text" sytle="color:red">BBBBBBBBBBBBBBBBBBBBBBB</span>
+        <a data-op-type="text" target="_blank" href="https://baijiahao.baidu.com/s?id=1726750581584920901&wfr=spider&for=pc">文章链接...</a><!-- 这里的链接文字：如果跨页最两页里都会有超链接 -->
     </div>
+    <div class="title">布局2</div>
+    <div class="title">布局3</div>
+</div>
 ```
 - 使用在符合下列选择器规则的位置之一：
 ```
@@ -358,40 +358,40 @@
 ```html
 <table data-op-type="table" class="nop-simple-table-2">
     <thead>
-        <tr>
-            <td width="100">生物种类</td>
-            <td width="100">子类别</td>
-            <td width="500">详解介绍</td>
-        </tr>
+    <tr>
+        <td width="100">生物种类</td>
+        <td width="100">子类别</td>
+        <td width="500">详解介绍</td>
+    </tr>
     </thead>
     <tbody>
-        <tr>
-            <td data-split-repeat="true" rowspan="2">动物</td>
-            <td data-split-repeat="true">爬行动物</td>
-            <td>
-                <p data-op-type="text">long text1 ...<p>
-                <img data-op-type="block" src="..." /> 
-                <p data-op-type="text">long text2 ...</p>
-                <div data-op-type="block">... </div> 
-            </td>
-        </tr>
-        <tr>
-            <td data-split-repeat="true">哺乳动物</td>
-            <td>
-                <p data-op-type="text">long text1 ...</p>
-                <img data-op-type="block" src="..." /> 
-                <p data-op-type="text">long text2 ...</p>
-                <div data-op-type="block">... </div> 
-            </td>
-        </tr>
-        <tr>
-            <td>植物</td>
-            <td>蕨类</td>
-            <td>
-                <p>long text...</p>
-            </td>
-        </tr>
-   </tbody>
+    <tr>
+        <td data-split-repeat="true" rowspan="2">动物</td>
+        <td data-split-repeat="true">爬行动物</td>
+        <td>
+            <p data-op-type="text">long text1 ...<p>
+            <img data-op-type="block" src="..." />
+            <p data-op-type="text">long text2 ...</p>
+            <div data-op-type="block">... </div>
+        </td>
+    </tr>
+    <tr>
+        <td data-split-repeat="true">哺乳动物</td>
+        <td>
+            <p data-op-type="text">long text1 ...</p>
+            <img data-op-type="block" src="..." />
+            <p data-op-type="text">long text2 ...</p>
+            <div data-op-type="block">... </div>
+        </td>
+    </tr>
+    <tr>
+        <td>植物</td>
+        <td>蕨类</td>
+        <td>
+            <p>long text...</p>
+        </td>
+    </tr>
+    </tbody>
 </table>
 ```
 
@@ -409,14 +409,14 @@
 - 例如：见示例：[块示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=6AYD2RET)
 ```html
 <table data-op-type="block-box" style="font-size: 16px">
-<thead>
+    <thead>
     <tr><th>ID</th><th>name</th></tr>
-</thead>
-<tbody class="nop-fill-box">
+    </thead>
+    <tbody class="nop-fill-box">
     <tr><td>1</td><td>name1</td></tr>
     <tr><td>2</td><td>name2</td></tr>
     <tr><td>...</td><td>...</td></tr>
-</tbody>
+    </tbody>
 </table>
 ```
 
@@ -426,11 +426,11 @@
 
 ### 剩余空间预检测
 
-- 这是一个配合其他指令一起使用的指令参数 data-bottom-offset="[尺寸]"，其存在为了让做出的PDF更美观
+- 这是一个配合其他指令一起使用的指令参数 data-op-param='{"bottomOffset":"[尺寸]"}'，其存在为了让做出的PDF更美观
 - 当你想让某个元素，在距离页尾一定距离时，就添加新页面，从新页面插入
 -
 ```html 
-<h2 data-op-type="block" data-bottom-offset="4cm">标题</h2>
+<h2 data-op-type="block" data-op-param='{"bottomOffset":"4cm"}'>标题</h2>
 ```
 
 - 使用在以下场景例子：
