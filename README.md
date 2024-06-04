@@ -424,21 +424,6 @@
 - 与块盒子类似，大文本内容跨多个页面时，会复制外部包裹文本的盒子的部分。
 - 文本盒子内部nop-fill-box标记的节点内部的一级子节点都被视作"文本"
 
-### 剩余空间预检测
-
-- 这是一个配合其他指令一起使用的指令参数 data-op-param='{"bottomOffset":"[尺寸]"}'，其存在为了让做出的PDF更美观
-- 当你想让某个元素，在距离页尾一定距离时，就添加新页面，从新页面插入
--
-```html 
-<h2 data-op-type="block" data-op-param='{"bottomOffset":"4cm"}'>标题</h2>
-```
-
-- 使用在以下场景例子：
-1. 由于页面空间不足，标题被分割到上一页尾部，而正文下下一页。
-2. 表格分页是，表头被分单独分到一页。[示例Issue](https://gitee.com/wuxue107/bookjs-eazy/issues/I67PQC)
-- 可以使用在除指令上：new-page、pendants的所有其他指令上
-- 还可以使用在table指令的tbody>tr上
-
 ### 示例
 
 - 使用样例
