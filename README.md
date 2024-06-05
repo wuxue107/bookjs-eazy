@@ -577,7 +577,7 @@ bookConfig = {
 - 参考 ： bookConfig.toolBar.serverPrint 服务端打印选项
 - 可以配置值为 ：true （和 {serverUrl : '/'}等效） 或 {serverUrl : '//your_screenshot_api_server_host[:WEB_PORT]/'}
 
-### 自建打印服务 ,点击直接下载PDF(服务端打印、推荐) 
+### 自建打印服务(使用官网docker镜像) ,点击直接下载PDF(服务端打印、推荐) 
 
 - 可使用 ./docker-start.sh 进行快速部署
 ```bash
