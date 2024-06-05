@@ -27,9 +27,9 @@
 
 ![alt ](https://bookjs.zhouwuxue.com/static/js/bookjs/eazy-1-qrcode.png)
 
-- 另一个小说案例 
-- JS : <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a> 
-- Lodash模板:<a href="https://bookjs.zhouwuxue.com/eazy-4.html" target="_blank" rel="noopener noreferrer">eazy-4.html</a> 
+- 另一个小说案例
+- JS : <a href="https://bookjs.zhouwuxue.com/eazy-2.html" target="_blank" rel="noopener noreferrer">eazy-2.html</a>
+- Lodash模板:<a href="https://bookjs.zhouwuxue.com/eazy-4.html" target="_blank" rel="noopener noreferrer">eazy-4.html</a>
 - Vue模板:   <a href="https://bookjs.zhouwuxue.com/eazy-3.html" target="_blank" rel="noopener noreferrer">eazy-3.html</a>
 
 
@@ -66,7 +66,7 @@
     **注意**： 
     a. display: float, position: absolute; overflow样式的元素的插入不会页面容器高度变化。可能造成页面溢出而检测不到。
     b. 因为 margin样式的元素 无法撑开.nop-page-content 大小,造成.nop-page-content位置偏移，很容易造成页面出现溢出的现象，所以控制相对位置尽量使用padding
-        
+
 ## 配置页面参数：
 
 - 定义一个全局配置变量 bookConfig
@@ -126,7 +126,7 @@ bookConfig = {
         // 从第几页结束页码编号，默认值：-1 表示最后一页结束。如果不确定结束页,也可以为一个css选择器如：".end_page"，表示从包含选择器节点的页面结束编号
         pageEnd : -1,
         // 页面部件， 可选
-        pendant : '<div class="page-num-simple"><span style="">${PAGE} / ${TOTAL_PAGE}</span></div>',
+        pendant : '<div class="page-num-simple"><span style="">$' + '{PAGE} / $' + '{TOTAL_PAGE}</span></div>',
     }, 
 
     // 目录/书签插件，可选（默认未开启），所列选项为开启时的默认值
@@ -255,7 +255,7 @@ bookConfig = {
 
 - 如果当前页空间充足则整体插入，空间不足，则会自动创建新页，整体插入到下一页
 - **注意**：这里的块,仅是内容不跨页。与css中的display无关，也就可以display: inline样式。
-      前面有用户问到这个问题。从而限制了他对PDF内容设计的思维。
+  前面有用户问到这个问题。从而限制了他对PDF内容设计的思维。
 - 例如：[块示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=4ELVR92Y)
 ```html
 <div data-op-type="block">...</div>
@@ -283,14 +283,14 @@ bookConfig = {
 [data-op-type=table] tbody td> 表格的单元格的一级节点
 ```
 
-        
+
 ### new-page: 新页，手动控制添加新页
 - 在标记的节点后的内容，将从新的一页开始写入
 - 例如：[新页示例](https://bookjs.zhouwuxue.com/static/book-tpl/editor.html?code=R992XN88)
 ```html
 <div data-op-type="new-page">仅仅是一个标记节点，这里的内容是不会渲染的</div>
 ```
-- 使用在符合下列选择器规则的位置之一： 
+- 使用在符合下列选择器规则的位置之一：
 ```
 #content-box> 下的一级节点
 [data-op-type=mix-box] .nop-fill-box>  混合盒子容器节点下的一级节点
@@ -577,7 +577,7 @@ bookConfig = {
 - 参考 ： bookConfig.toolBar.serverPrint 服务端打印选项
 - 可以配置值为 ：true （和 {serverUrl : '/'}等效） 或 {serverUrl : '//your_screenshot_api_server_host[:WEB_PORT]/'}
 
-### 自建打印服务、使用官网docker镜像,点击直接下载PDF(服务端打印、推荐) 
+### 自建打印服务 ,点击直接下载PDF(服务端打印、推荐) 
 
 - 可使用 ./docker-start.sh 进行快速部署
 ```bash
@@ -671,35 +671,35 @@ bookConfig = {
 
 - 页面出现多余空白：
     - 不要手动对html、body、.nop-book、.nop-page、.nop-page-items、nop-page-item元素做任何的border/width/height/margin/padding等样式调整
-    
+
 - 每页都多出一个空白页
     - 见bookConfig.pageFixedHeightOffset 选项，进行调节
-    
+
 - 打印出来是空白页
     - 有用户反映，页面引入polyfill.min.js后出现空白页。引入此js是为了wkhtmltopdf,对部分js特性的兼容问题。 如果去除后测试发现对打印无影响，可将此js去除。
 
 - 字体无法显示：
     - 生成的PDF里全是框框或显示不出来,原因在于。在linux服务器环境下，通常没有安装所需字体。或使用web加载字体文件太大，加载超时
-    
+
 - 生成的PDF与预览有一些差异
     - 对于服务端生成PDF,可能时由于字体原因，可以指定页面的的字体。并在生成服务器安装对应字体。见：设计中的相关细节->字体相关
 
 - iframe 嵌入网页失效：不能点击无法下载打印：
     - 需要在iframe上加入 sandbox="allow-downloads allow-top-navigation allow-scripts allow-modals" 属性
-    
+
 - 页面事件绑定失效：
     - 经过bookjs-eazy渲染后，： 如果失效，原绑定可能被分割到不同页面，请尝试在PDF渲染完成事件后处理事件绑定。
-    
+
 - 找不到wkhtmltopdf
     - 执行bin/pdf-xx-xx 相关命令，找不到wkhtmltopdf，需自己去下载wkhtmltopdf放置PATH目录下
-    
+
 - 使用data-op-type="table" 表格合并单元格分页显示不正确。建议：
     - 将表格布局写好  先使用data-op-type="block"  表格不写任何东西，使保持在一个页面里，看看不经过拆分的表格是否布局正确。 如果不正确，就是你自己table写的有问题，和bookjs-eazy的无关。
     - 在将数据填充进去，改用data-op-type="table" ,此时如出现问题。可以在这里重现场景<a href="https://codepen.io/pen/?template=VwPKWvq">表格测试</a>，保存并复制链接。提交issue
 - 下载PDF超时
     - 服务端制作PDF超时，你的页面可能需要token和session才能访问，后端程序无法正确访问你的页面
     - 如果使用wkhtmltopdf方式生成，可能你的页面使用了wkhtmltopdf不支持的特性，如es6
-    
+
 - 页面卡死，CPU超高
     - bookjs-eazy 不能经过了import引入和再编译 解决： 需要在html中通过script标签引入。
     - 使用的block块元素，超出一页内容，即使换页也放置不下。
